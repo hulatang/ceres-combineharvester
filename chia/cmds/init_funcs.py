@@ -328,7 +328,7 @@ def chia_full_version_str() -> str:
 
 
 # def chia_init(root_path: Path):
-def chia_init(coin: str, root_path: Path):
+def chia_init(root_path: Path, coin: str = "chia"):
     if os.environ.get(f"{coin.upper()}_ROOT", None) is not None:
         print(
             f"warning, your CHIA_ROOT is set to {os.environ['CHIA_ROOT']}. "

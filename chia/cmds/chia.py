@@ -1,3 +1,4 @@
+from pathlib import Path
 from chia.cmds.init_all import init_all
 import click
 
@@ -38,14 +39,14 @@ def monkey_patch_click() -> None:
     epilog="Try 'chia start node', 'chia netspace -d 192', or 'chia show -s'",
     context_settings=CONTEXT_SETTINGS,
 )
-# @click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
+@click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
 @click.pass_context
-def cli(ctx: click.Context) -> None:
-# def cli(ctx: click.Context, root_path: str) -> None:
+# def cli(ctx: click.Context) -> None:
+def cli(ctx: click.Context, root_path: str) -> None:
     from pathlib import Path
 
     ctx.ensure_object(dict)
-    # ctx.obj["root_path"] = Path(root_path)
+    ctx.obj["root_path"] = Path(root_path)
 
 
 @cli.command("version", short_help="Show chia version")
@@ -58,6 +59,9 @@ def version_cmd() -> None:
 def run_daemon_cmd(ctx: click.Context) -> None:
     from chia.daemon.server import async_run_daemon
     import asyncio
+
+    # root_path = DEFAULT_ROOT_PATH
+    # ctx.obj["root_path"] = Path(root_path)
 
     asyncio.get_event_loop().run_until_complete(async_run_daemon(ctx.obj["root_path"]))
 
