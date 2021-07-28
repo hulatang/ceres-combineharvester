@@ -1,4 +1,4 @@
 chia:
-  mainnet: "mainnet"
+  network_id: "mainnet"
 flax:
-  mainnet: "mainnet"
+  network_id: "flax-mainnet"
