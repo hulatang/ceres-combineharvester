@@ -3,7 +3,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
 import pkg_resources
 import yaml
@@ -11,8 +11,12 @@ import yaml
 from chia.util.path import mkdir
 
 
-def initial_config_file(filename: Union[str, Path]) -> str:
-    return pkg_resources.resource_string(__name__, f"initial-{filename}").decode()
+# def initial_config_file(filename: Union[str, Path]) -> str:
+#     return pkg_resources.resource_string(__name__, f"initial-{filename}").decode()
+
+def initial_config_file(coin: str, filename: Union[str, Path]) -> str:
+    return pkg_resources.resource_string(__name__, f"{coin}-initial-{filename}").decode()
+
 
 
 def create_default_chia_config(root_path: Path) -> None:
@@ -22,6 +26,18 @@ def create_default_chia_config(root_path: Path) -> None:
         mkdir(path.parent)
         with open(path, "w") as f:
             f.write(default_config_file_data)
+
+
+def create_default_coin_config(coin: str, root_path: Path) -> None:
+    for filename in ["config.yaml"]:
+        default_config_file_data = initial_config_file(coin, filename)
+        path = config_path_for_filename(root_path, filename)
+        mkdir(path.parent)
+        with open(path, "w") as f:
+            f.write(default_config_file_data)
+
+
+
 
 
 def config_path_for_filename(root_path: Path, filename: Union[str, Path]) -> Path:
@@ -124,3 +140,12 @@ def str2bool(v: Union[str, bool]) -> bool:
         return False
     else:
         raise argparse.ArgumentTypeError("Boolean value expected.")
+
+
+
+
+def get_all_coin_names(config_file: str="all-coins-config.yaml"):
+    config_str = pkg_resources.resource_string(__name__, config_file)
+    config = yaml.safe_load(config_str)
+
+    return [coin for coin in config.keys()]

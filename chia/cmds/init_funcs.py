@@ -11,6 +11,7 @@ from chia.ssl.create_ssl import generate_ca_signed_cert, get_chia_ca_crt_key, ma
 from chia.util.bech32m import encode_puzzle_hash
 from chia.util.config import (
     create_default_chia_config,
+    create_default_coin_config,
     initial_config_file,
     load_config,
     save_config,
@@ -155,7 +156,7 @@ def migrate_from(
     return 1
 
 
-def create_all_ssl(root: Path):
+def create_all_ssl(coin: str, root: Path):
     # remove old key and crt
     config_dir = root / "config"
     old_key_path = config_dir / "trusted.key"
@@ -177,8 +178,10 @@ def create_all_ssl(root: Path):
     private_ca_key_path = ca_dir / "private_ca.key"
     private_ca_crt_path = ca_dir / "private_ca.crt"
     chia_ca_crt, chia_ca_key = get_chia_ca_crt_key()
-    chia_ca_crt_path = ca_dir / "chia_ca.crt"
+    # chia_ca_crt_path = ca_dir / "chia_ca.crt"
     chia_ca_key_path = ca_dir / "chia_ca.key"
+    chia_ca_crt_path = ca_dir / f"{coin}_ca.crt"
+    chia_ca_key_path = ca_dir / f"{coin}_ca.key"
     chia_ca_crt_path.write_bytes(chia_ca_crt)
     chia_ca_key_path.write_bytes(chia_ca_key)
 
@@ -308,15 +311,16 @@ def chia_full_version_str() -> str:
     return f"{major}.{minor}.{patch}{dev}"
 
 
-def chia_init(root_path: Path):
-    if os.environ.get("CHIA_ROOT", None) is not None:
+# def chia_init(root_path: Path):
+def chia_init(coin: str, root_path: Path):
+    if os.environ.get(f"{coin.upper()}_ROOT", None) is not None:
         print(
             f"warning, your CHIA_ROOT is set to {os.environ['CHIA_ROOT']}. "
             f"Please unset the environment variable and run chia init again\n"
             f"or manually migrate config.yaml"
         )
 
-    print(f"Chia directory {root_path}")
+    print(f"{coin} directory {root_path}")
     if root_path.is_dir() and Path(root_path / "config" / "config.yaml").exists():
         # This is reached if CHIA_ROOT is set, or if user has run chia init twice
         # before a new update.
@@ -324,8 +328,10 @@ def chia_init(root_path: Path):
         print(f"{root_path} already exists, no migration action taken")
         return -1
 
-    create_default_chia_config(root_path)
-    create_all_ssl(root_path)
+    # create_default_chia_config(root_path)
+    # create_all_ssl(root_path)
+    create_default_coin_config(coin, root_path)
+    create_all_ssl(coin, root_path)
     check_keys(root_path)
     print("")
     print("To see your keys, run 'chia keys show --show-mnemonic-seed'")

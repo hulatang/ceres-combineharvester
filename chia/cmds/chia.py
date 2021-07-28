@@ -1,3 +1,4 @@
+from chia.cmds.init_all import init_all
 import click
 
 from chia import __version__
@@ -58,6 +59,17 @@ def run_daemon_cmd(ctx: click.Context) -> None:
     import asyncio
 
     asyncio.get_event_loop().run_until_complete(async_run_daemon(ctx.obj["root_path"]))
+
+
+@cli.command("init_all")
+@click.pass_context
+def init_all_cmd(ctx:click.Context) -> None:
+    print("init all")
+    init_all()
+
+
+
+
 
 
 cli.add_command(keys_cmd)
