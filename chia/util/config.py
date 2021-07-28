@@ -145,7 +145,12 @@ def str2bool(v: Union[str, bool]) -> bool:
 
 
 def get_all_coin_names(config_file: str="all-coins-config.yaml"):
+    # config_str = pkg_resources.resource_string(__name__, config_file)
+    # config = yaml.safe_load(config_str)
+    config = get_all_coin_config(config_file)
+    return [coin for coin in config.keys()]
+
+def get_all_coin_config(config_file: str="all-coins-config.yaml"):
     config_str = pkg_resources.resource_string(__name__, config_file)
     config = yaml.safe_load(config_str)
-
-    return [coin for coin in config.keys()]
+    return config
