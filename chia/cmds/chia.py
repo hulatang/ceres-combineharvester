@@ -38,13 +38,14 @@ def monkey_patch_click() -> None:
     epilog="Try 'chia start node', 'chia netspace -d 192', or 'chia show -s'",
     context_settings=CONTEXT_SETTINGS,
 )
-@click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
+# @click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
 @click.pass_context
-def cli(ctx: click.Context, root_path: str) -> None:
+def cli(ctx: click.Context) -> None:
+# def cli(ctx: click.Context, root_path: str) -> None:
     from pathlib import Path
 
     ctx.ensure_object(dict)
-    ctx.obj["root_path"] = Path(root_path)
+    # ctx.obj["root_path"] = Path(root_path)
 
 
 @cli.command("version", short_help="Show chia version")

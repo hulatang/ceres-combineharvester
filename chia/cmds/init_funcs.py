@@ -232,24 +232,40 @@ def copy_cert_files(cert_path: Path, new_path: Path):
             copy_files_rec(old_path_child, new_path_child)
 
 
-def init(create_certs: Optional[Path], root_path: Path):
-    if create_certs is not None:
-        if root_path.exists():
-            if os.path.isdir(create_certs):
-                ca_dir: Path = root_path / "config/ssl/ca"
-                if ca_dir.exists():
-                    print(f"Deleting your OLD CA in {ca_dir}")
-                    shutil.rmtree(ca_dir)
-                print(f"Copying your CA from {create_certs} to {ca_dir}")
-                copy_cert_files(create_certs, ca_dir)
-                create_all_ssl(root_path)
-            else:
-                print(f"** Directory {create_certs} does not exist **")
+# def init_by_coin(coin: str, create_certs: Optional[Path], root_path: Path):
+def init_by_coin(coin: str, create_certs: Optional[Path]):
+    root_path = Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin}/mainnet"))).resolve()
+    if root_path.exists():
+        if os.path.isdir(create_certs):
+            ca_dir: Path = root_path / "config/ssl/ca"
+            if ca_dir.exists():
+                print(f"Deleting your OLD CA in {ca_dir}")
+                shutil.rmtree(ca_dir)
+            print(f"Copying your CA from {create_certs} to {ca_dir}")
+            copy_cert_files(create_certs, ca_dir)
+            create_all_ssl(coin, root_path)
         else:
-            print(f"** {root_path} does not exist **")
-            print("** Please run `chia init` to migrate or create new config files **")
-    else:
-        return chia_init(root_path)
+            print(f"** Directory {create_certs} does not exist **")
+
+
+# def init(create_certs: Optional[Path], root_path: Path):
+#     if create_certs is not None:
+#         if root_path.exists():
+#             if os.path.isdir(create_certs):
+#                 ca_dir: Path = root_path / "config/ssl/ca"
+#                 if ca_dir.exists():
+#                     print(f"Deleting your OLD CA in {ca_dir}")
+#                     shutil.rmtree(ca_dir)
+#                 print(f"Copying your CA from {create_certs} to {ca_dir}")
+#                 copy_cert_files(create_certs, ca_dir)
+#                 create_all_ssl(root_path)
+#             else:
+#                 print(f"** Directory {create_certs} does not exist **")
+#         else:
+#             print(f"** {root_path} does not exist **")
+#             print("** Please run `chia init` to migrate or create new config files **")
+#     else:
+#         return chia_init(root_path)
 
 
 def chia_version_number() -> Tuple[str, str, str, str]:

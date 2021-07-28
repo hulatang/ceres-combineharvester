@@ -1,7 +1,9 @@
+from chia.cmds.init_funcs import init_by_coin
 import click
 
 
 @click.command("init", short_help="Create or migrate the configuration")
+@click.option("-n", "--name", type=str, help="Input coin name")
 @click.option(
     "--create-certs",
     "-c",
@@ -10,7 +12,7 @@ import click
     type=click.Path(),
 )
 @click.pass_context
-def init_cmd(ctx: click.Context, create_certs: str):
+def init_cmd(ctx: click.Context, name: str, create_certs: str):
     """
     Create a new configuration or migrate from previous versions to current
 
@@ -24,9 +26,11 @@ def init_cmd(ctx: click.Context, create_certs: str):
       https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines
     """
     from pathlib import Path
-    from .init_funcs import init
+    # from .init_funcs import init
 
-    init(Path(create_certs) if create_certs is not None else None, ctx.obj["root_path"])
+    print(name, create_certs)
+    # init(Path(create_certs) if name is not None and create_certs is not None else None, ctx.obj["root_path"])
+    init_by_coin(name, Path(create_certs) if name is not None and create_certs is not None else None)
 
 
 if __name__ == "__main__":
