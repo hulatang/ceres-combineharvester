@@ -1,4 +1,5 @@
 import asyncio
+from chia.cmds.init_funcs import chia_full_version_str
 from chia.util.config import get_all_coin_config, load_config_cli
 from chia.util.default_root import get_coin_root_path
 from chia.server.ssl_context import chia_ssl_ca_paths, private_ssl_ca_paths, private_ssl_paths
@@ -138,11 +139,13 @@ class ChiaHarvesterServer(ChiaServer):
                 all_coin_config = get_all_coin_config()
 
                 network_id = all_coin_config[coin]["network_id"]
+                version = all_coin_config[coin]["version"] if "version" in all_coin_config[coin] else chia_full_version_str()
 
                 handshake = await connection.perform_handshake(
                     # self._network_id,
                     network_id,
                     protocol_version,
+                    version,
                     # self._port,
                     target_node.port,
                     self._local_type,

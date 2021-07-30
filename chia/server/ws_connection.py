@@ -103,14 +103,20 @@ class WSChiaConnection:
         self.outbound_rate_limiter = RateLimiter(incoming=False, percentage_of_limit=outbound_rate_limit_percent)
         self.inbound_rate_limiter = RateLimiter(incoming=True, percentage_of_limit=inbound_rate_limit_percent)
 
-    async def perform_handshake(self, network_id: str, protocol_version: str, server_port: int, local_type: NodeType):
+    # async def perform_handshake(self, network_id: str, protocol_version: str, server_port: int, local_type: NodeType):
+    async def perform_handshake(self, network_id: str, protocol_version: str, version: str, server_port: int, local_type: NodeType):
+        # version = chia_full_version_str()
+        if version is None:
+            version = chia_full_version_str()
+
         if self.is_outbound:
             outbound_handshake = make_msg(
                 ProtocolMessageTypes.handshake,
                 Handshake(
                     network_id,
                     protocol_version,
-                    chia_full_version_str(),
+                    # chia_full_version_str(),
+                    version,
                     uint16(server_port),
                     uint8(local_type.value),
                     [(uint16(Capability.BASE.value), "1")],
@@ -143,12 +149,14 @@ class WSChiaConnection:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
             if inbound_handshake.network_id != network_id:
                 raise ProtocolError(Err.INCOMPATIBLE_NETWORK_ID)
+
             outbound_handshake = make_msg(
                 ProtocolMessageTypes.handshake,
                 Handshake(
                     network_id,
                     protocol_version,
-                    chia_full_version_str(),
+                    # chia_full_version_str(),
+                    version,
                     uint16(server_port),
                     uint8(local_type.value),
                     [(uint16(Capability.BASE.value), "1")],
