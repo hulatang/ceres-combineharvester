@@ -12,4 +12,5 @@ def init_all():
 
     for coin in coins_names:
         root_path = Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin}/mainnet"))).resolve()
-        chia_init(coin, root_path)
+        # chia_init(coin, root_path)
+        chia_init(root_path, coin)
