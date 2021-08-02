@@ -1,4 +1,5 @@
 import asyncio
+from chia.util.update_handshake_args import update_handshake_args
 from chia.cmds.init_funcs import chia_full_version_str
 from chia.util.config import get_all_coin_config, load_config_cli
 from chia.util.default_root import get_coin_root_path
@@ -136,20 +137,40 @@ class ChiaHarvesterServer(ChiaServer):
                     session=session,
                 )
 
-                all_coin_config = get_all_coin_config()
+                # all_coin_config = get_all_coin_config()
 
-                network_id = all_coin_config[coin]["network_id"]
-                version = all_coin_config[coin]["version"] if "version" in all_coin_config[coin] else chia_full_version_str()
+                # network_id = all_coin_config[coin]["network_id"]
+                # version = all_coin_config[coin]["version"] if "version" in all_coin_config[coin] else chia_full_version_str()
 
-                handshake = await connection.perform_handshake(
-                    # self._network_id,
-                    network_id,
-                    protocol_version,
-                    version,
-                    # self._port,
-                    target_node.port,
-                    self._local_type,
-                )
+                handshake_args = {
+                    'network_id': 'mainnet',
+                    'protocol_version': protocol_version,
+                    'version': chia_full_version_str(),
+                    'server_port': target_node.port,
+                    'local_type': self._local_type
+                }
+
+                handshake_args = update_handshake_args(coin, **handshake_args)
+
+                handshake = await connection.perform_handshake(**handshake_args)
+                # handshake = await connection.perform_handshake(
+                #     handshake_args['network_id'],
+                #     handshake_args['protocol_version'],
+                #     handshake_args['version'],
+                #     handshake_args['server_port'],
+                #     handshake_args['local_type']
+                # )
+
+
+                # handshake = await connection.perform_handshake(
+                #     # self._network_id,
+                #     network_id,
+                #     protocol_version,
+                #     version,
+                #     # self._port,
+                #     target_node.port,
+                #     self._local_type,
+                # )
                 assert handshake is True
                 await self.connection_added(connection, on_connect)
                 connection_type_str = ""
