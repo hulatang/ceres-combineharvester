@@ -26,7 +26,7 @@ Ceres is a combine harvester designed to harvest plots for Chia blockchain and i
 
 Ceres can be installed by the same way installing Chia normally.
 
-It's highly recommended to read through Chia's wiki, easpecially this article , [[Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
+It's highly recommended to read through Chia's wiki, easpecially this article , [Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
 
 
 
@@ -126,17 +126,17 @@ Spare family forks will be supported very soon.
 
 Current supported forks:
 
-- [Chia]([Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines))
+- [Chia](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines)
 
-- [Flax]([GitHub - Flax-Network/flax-blockchain](https://github.com/Flax-Network/flax-blockchain))
+- [Flax](https://github.com/Flax-Network/flax-blockchain)
 
-- [Kale]([GitHub - Kale-Network/kale-blockchain: A long-term supported fork of Chia. More information at https://kalenetwork.org](https://github.com/Kale-Network/kale-blockchain))
+- [Kale](https://github.com/Kale-Network/kale-blockchain)
 
-- [Goji]([GitHub - GetGoji/goji-blockchain](https://github.com/GetGoji/goji-blockchain)
+- [Goji](https://github.com/GetGoji/goji-blockchain)
 
-- [Chaingreen]([GitHub - ChainGreenOrg/chaingreen-blockchain](https://github.com/ChainGreenOrg/chaingreen-blockchain))
+- [Chaingreen](https://github.com/ChainGreenOrg/chaingreen-blockchain)
 
-- [Seno]([GitHub - denisio/seno-blockchain: Seno is just a fork of Chia, designed to be efficient, decentralized, and secure.](https://github.com/denisio/seno-blockchain))
+- [Seno](https://github.com/denisio/seno-blockchain)
 
 - [Equality](https://github.com/Equality-Network/equality-blockchain)
 
