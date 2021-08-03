@@ -28,8 +28,6 @@ Ceres can be installed by the same way installing Chia normally.
 
 It's highly recommended to read through Chia's wiki, easpecially this article , [Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
 
-
-
 ```
 git clone https://github.com/hulatangchen/ceres-combineharvester.git -b latest
 
@@ -84,21 +82,15 @@ ceres start harvester -r
 
 Defult Chia Harvester and Famer is structured as below
 
-<img src="file:///home/eric/develope/chia_default_net_structure.jpg" title="" alt="alt txt" data-align="center">
+<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/hulatangchen-patch-1/chia_default.png" alt="alt txt" data-align="center">
 
 By Chia default, you should run one harvester for each fork's farmer.
-
-
 
 Ceres has a different structure, like below:
 
 <img title="" src="file:///home/eric/develope/ceres_network.png" alt="alt txt" data-align="center" width="486">
 
 By using Ceres, you can run an unique Harvester server which will response to all the farmer's request. Thanks to Chia's asyncio pattern, a single Harvester server has enough throughput  to proccess farmer's asynchronous challenge hash request.
-
-
-
-
 
 ---
 
@@ -108,21 +100,17 @@ For a harvester, it is responsible for communicating with famer by complying chi
 
 Inspecting most fork's source code shown that there exsits two way to modify Chia's source code.
 
-1.  Chia family:
+1. Chia family:
    
    forks like flax, goji and many uses the exactly same harvester protocol as Chia
 
 2. Spare family:
    
    forks like spare uses their extended harvester protocol, by which change the process harvester communicate with farmer,.
-   
-   
 
 Currently, Creres only support the Chia family forks, these fork's harvester say the same language to their farmer like Chia does.
 
 Spare family forks will be supported very soon.
-
-
 
 Current supported forks:
 
