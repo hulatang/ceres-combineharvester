@@ -44,21 +44,21 @@ if you have setup forks you want to harvest, it is to say you have got .chia or 
 
 here we init from absolutly fresh install, just run:
 
-1. ```
-   chia init_all
-   ```
-   
-   this command will generate root path for each forks, like .chia, .flax under your home directory
+```
+chia init_all
+```
+
+this command will generate root path for each forks, like .chia, .flax under your home directory
 
 next we generate ssl files for each forks, for example you want to harvest flax:
 
 1. copy ca directory from you farmer computer to local [path_to_ca]
 
 2. run:
-   
-   ```
-   chia init -n flax -c [path_to_ca]
-   ```
+
+```
+chia init -n flax -c [path_to_ca]
+```
 
 Finally, what you need to change is your famer-peer ip address under Harvester section(not full node section) in each fork's config.yaml
 
