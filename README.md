@@ -26,11 +26,15 @@ Ceres is a combine harvester designed to harvest plots for Chia blockchain and i
 
 Ceres can be installed by the same way installing Chia normally.
 
+It's highly recommended to read through Chia's wiki, easpecially this article , [[Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
+
+
+
 ```
 git clone https://github.com/hulatangchen/ceres-combineharvester.git -b latest
 
 cd ...
-
+sudo chmod +x install.sh
 sh install.sh
 
 . ./activate
@@ -45,7 +49,7 @@ if you have setup forks you want to harvest, it is to say you have got .chia or 
 here we init from absolutly fresh install, just run:
 
 ```
-chia init_all
+ceres init_all
 ```
 
 this command will generate root path for each forks, like .chia, .flax under your home directory
@@ -57,7 +61,7 @@ next we generate ssl files for each forks, for example you want to harvest flax:
 2. run:
 
 ```
-chia init -n flax -c [path_to_ca]
+ceres init -n flax -c [path_to_ca]
 ```
 
 Finally, what you need to change is your famer-peer ip address under Harvester section(not full node section) in each fork's config.yaml
@@ -69,7 +73,9 @@ Finally, what you need to change is your famer-peer ip address under Harvester s
 activate venv first, then run:
 
 ```
-chia start harvester -r
+ceres start harvester -r
+
+---
 ```
 
 ---
@@ -108,13 +114,31 @@ Inspecting most fork's source code shown that there exsits two way to modify Chi
 
 2. Spare family:
    
-   forks like spare uses their extended harvester protocol
+   forks like spare uses their extended harvester protocol, by which change the process harvester communicate with farmer,.
    
    
 
 Currently, Creres only support the Chia family forks, these fork's harvester say the same language to their farmer like Chia does.
 
 Spare family forks will be supported very soon.
+
+
+
+Current supported forks:
+
+- [Chia]([Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines))
+
+- [Flax]([GitHub - Flax-Network/flax-blockchain](https://github.com/Flax-Network/flax-blockchain))
+
+- [Kale]([GitHub - Kale-Network/kale-blockchain: A long-term supported fork of Chia. More information at https://kalenetwork.org](https://github.com/Kale-Network/kale-blockchain))
+
+- [Goji]([GitHub - GetGoji/goji-blockchain](https://github.com/GetGoji/goji-blockchain)
+
+- [Chaingreen]([GitHub - ChainGreenOrg/chaingreen-blockchain](https://github.com/ChainGreenOrg/chaingreen-blockchain))
+
+- [Seno]([GitHub - denisio/seno-blockchain: Seno is just a fork of Chia, designed to be efficient, decentralized, and secure.](https://github.com/denisio/seno-blockchain))
+
+- [Equality](https://github.com/Equality-Network/equality-blockchain)
 
     
 
@@ -129,6 +153,6 @@ Just download the all-coin-config.yaml from github and replace the old file in c
 then run:
 
 ```
-chia stop all -d
-chia start harvester -r
+ceres stop all -d
+ceres start harvester -r
 ```
