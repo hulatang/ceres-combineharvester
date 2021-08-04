@@ -1,5 +1,7 @@
 chia:
   network_id: "mainnet"
+ceres:
+  network_id: "mainnet"
 flax:
   network_id: "flax-mainnet"
 kale:
@@ -8,3 +10,12 @@ kale:
 goji:
   network_id: "mainnet"
   version: "0.2.3"
+chaingreen:
+  network_id: "mainnet"
+  version: "1.1.7"
+seno:
+  network_id: "mainnet"
+  version: "1.1.7"
+equality:
+  network_id: "equality-mainnet"
+  version: "1.1.716"
