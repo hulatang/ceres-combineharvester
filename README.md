@@ -24,18 +24,12 @@ Ceres is a combine harvester designed to harvest plots for Chia blockchain and i
 
 # Installing
 
-Ceres can be installed by the same way installing Chia normally.
+Ceres can be installed  the same way installing Chia normally.
 
 It's highly recommended to read through Chia's wiki, easpecially this article , [Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
 
 ```
-git clone https://github.com/hulatangchen/Ceres-CombineHarvester.git
-
-cd ...
-sudo chmod +x install.sh
-sh install.sh
-
-. ./activate
+git clone https://github.com/hulatangeric/Ceres-CombineHarvester.git
 ```
 
 ---
@@ -82,13 +76,13 @@ ceres start harvester -r
 
 Defult Chia Harvester and Famer is structured as below
 
-<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/wiki/wiki_images/chia_default_net_structure.png" alt="alt txt" data-align="center">
+<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/hulatangchen-patch-1/chia_default.png" alt="alt txt" data-align="center">
 
 By Chia default, you should run one harvester for each fork's farmer.
 
 Ceres has a different structure, like below:
 
-<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/wiki/wiki_images/ceres_network.png" alt="alt txt" data-align="center" width="486">
+<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/hulatangchen-patch-1/ceres_network.png" alt="alt txt" data-align="center" width="486">
 
 By using Ceres, you can run an unique Harvester server which will response to all the farmer's request. Thanks to Chia's asyncio pattern, a single Harvester server has enough throughput  to proccess farmer's asynchronous challenge hash request.
 
@@ -143,4 +137,27 @@ then run:
 ```
 ceres stop all -d
 ceres start harvester -r
+```
+
+---
+
+# How to remove forks you don't want to harvester
+
+edit the file ceres/util/all-coins-config.yaml
+
+just comment forks you don't want to harvester, like below
+
+
+
+```
+chia:
+  network_id: "mainnet"
+flax:
+  network_id: "flax-mainnet"
+#kale:
+  #network_id: "kale-mainnet"
+  #version: "0.1.21"
+#goji:
+  #network_id: "mainnet"
+  #version: "0.2.3"
 ```
