@@ -95,9 +95,9 @@ private_ssl_ca:
   crt: "config/ssl/ca/private_ca.crt"
   key: "config/ssl/ca/private_ca.key"
 
-chia_ssl_ca:
-  crt: "config/ssl/ca/chia_ca.crt"
-  key: "config/ssl/ca/chia_ca.key"
+ceres_ssl_ca:
+  crt: "config/ssl/ca/ceres_ca.crt"
+  key: "config/ssl/ca/ceres_ca.key"
 
 
 daemon_ssl:
@@ -140,9 +140,9 @@ harvester:
     crt: "config/ssl/ca/private_ca.crt"
     key: "config/ssl/ca/private_ca.key"
 
-  chia_ssl_ca:
-    crt: "config/ssl/ca/chia_ca.crt"
-    key: "config/ssl/ca/chia_ca.key"
+  ceres_ssl_ca:
+    crt: "config/ssl/ca/ceres_ca.crt"
+    key: "config/ssl/ca/ceres_ca.key"
 
 pool:
   # Replace this with a real puzzle hash
