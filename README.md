@@ -29,7 +29,7 @@ Ceres can be installed by the same way installing Chia normally.
 It's highly recommended to read through Chia's wiki, easpecially this article , [Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
 
 ```
-git clone https://github.com/hulatangchen/ceres-combineharvester.git -b latest
+git clone https://github.com/hulatangchen/Ceres-CombineHarvester.git
 
 cd ...
 sudo chmod +x install.sh
