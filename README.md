@@ -82,13 +82,13 @@ ceres start harvester -r
 
 Defult Chia Harvester and Famer is structured as below
 
-<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/hulatangchen-patch-1/chia_default.png" alt="alt txt" data-align="center">
+<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/wiki/wiki_images/chia_default_net_structure.png" alt="alt txt" data-align="center">
 
 By Chia default, you should run one harvester for each fork's farmer.
 
 Ceres has a different structure, like below:
 
-<img title="" src="file:///home/eric/develope/ceres_network.png" alt="alt txt" data-align="center" width="486">
+<img title="" src="https://github.com/hulatangchen/Ceres-CombineHarvester/blob/wiki/wiki_images/ceres_network.png" alt="alt txt" data-align="center" width="486">
 
 By using Ceres, you can run an unique Harvester server which will response to all the farmer's request. Thanks to Chia's asyncio pattern, a single Harvester server has enough throughput  to proccess farmer's asynchronous challenge hash request.
 
