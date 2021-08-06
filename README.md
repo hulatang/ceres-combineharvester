@@ -30,6 +30,8 @@ It's highly recommended to read through Chia's wiki, easpecially this article , 
 
 ```
 git clone https://github.com/hulatangeric/Ceres-CombineHarvester.git
+sudo chmod +x install.sh
+./install.sh
 ```
 
 ---
@@ -66,8 +68,6 @@ activate venv first, then run:
 
 ```
 ceres start harvester -r
-
----
 ```
 
 ---
@@ -158,4 +158,11 @@ flax:
 #goji:
   #network_id: "mainnet"
   #version: "0.2.3"
+```
+
+then:
+
+```
+ceres stop all -d
+ceres start harvester -r
 ```
