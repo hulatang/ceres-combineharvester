@@ -1,0 +1,10 @@
+chia:
+  network_id: "mainnet"
+flax:
+  network_id: "flax-mainnet"
+kale:
+  network_id: "kale-mainnet"
+  version: "0.1.21"
+goji:
+  network_id: "mainnet"
+  version: "0.2.3"

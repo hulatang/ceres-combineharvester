@@ -17,6 +17,7 @@ from chia.ssl.create_ssl import (
 from chia.util.bech32m import encode_puzzle_hash
 from chia.util.config import (
     create_default_chia_config,
+    create_default_coin_config,
     initial_config_file,
     load_config,
     save_config,
@@ -170,7 +171,7 @@ def migrate_from(
     return 1
 
 
-def create_all_ssl(root_path: Path):
+def create_all_ssl(coin: str, root: Path):
     # remove old key and crt
     config_dir = root_path / "config"
     old_key_path = config_dir / "trusted.key"
@@ -189,9 +190,15 @@ def create_all_ssl(root_path: Path):
     private_ca_key_path = ca_dir / "private_ca.key"
     private_ca_crt_path = ca_dir / "private_ca.crt"
     chia_ca_crt, chia_ca_key = get_chia_ca_crt_key()
-    chia_ca_crt_path = ca_dir / "chia_ca.crt"
-    chia_ca_key_path = ca_dir / "chia_ca.key"
-    write_ssl_cert_and_key(chia_ca_crt_path, chia_ca_crt, chia_ca_key_path, chia_ca_key)
+    # chia_ca_crt_path = ca_dir / "chia_ca.crt"
+    # chia_ca_key_path = ca_dir / "chia_ca.key"
+
+    chia_ca_crt_path = ca_dir / f"{coin}_ca.crt"
+    chia_ca_key_path = ca_dir / f"{coin}_ca.key"
+    chia_ca_crt_path.write_bytes(chia_ca_crt)
+    chia_ca_key_path.write_bytes(chia_ca_key)
+
+    # write_ssl_cert_and_key(chia_ca_crt_path, chia_ca_crt, chia_ca_key_path, chia_ca_key)
 
     if not private_ca_key_path.exists() or not private_ca_crt_path.exists():
         # Create private CA
@@ -267,6 +274,40 @@ def init(create_certs: Optional[Path], root_path: Path, fix_ssl_permissions: boo
             return -1
     else:
         return chia_init(root_path, fix_ssl_permissions=fix_ssl_permissions)
+# def init_by_coin(coin: str, create_certs: Optional[Path], root_path: Path):
+def init_by_coin(coin: str, create_certs: Optional[Path]):
+    root_path = Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin}/mainnet"))).resolve()
+    if root_path.exists():
+        if os.path.isdir(create_certs):
+            ca_dir: Path = root_path / "config/ssl/ca"
+            if ca_dir.exists():
+                print(f"Deleting your OLD CA in {ca_dir}")
+                shutil.rmtree(ca_dir)
+            print(f"Copying your CA from {create_certs} to {ca_dir}")
+            copy_cert_files(create_certs, ca_dir)
+            create_all_ssl(coin, root_path)
+        else:
+            print(f"** Directory {create_certs} does not exist **")
+
+
+# def init(create_certs: Optional[Path], root_path: Path):
+#     if create_certs is not None:
+#         if root_path.exists():
+#             if os.path.isdir(create_certs):
+#                 ca_dir: Path = root_path / "config/ssl/ca"
+#                 if ca_dir.exists():
+#                     print(f"Deleting your OLD CA in {ca_dir}")
+#                     shutil.rmtree(ca_dir)
+#                 print(f"Copying your CA from {create_certs} to {ca_dir}")
+#                 copy_cert_files(create_certs, ca_dir)
+#                 create_all_ssl(root_path)
+#             else:
+#                 print(f"** Directory {create_certs} does not exist **")
+#         else:
+#             print(f"** {root_path} does not exist **")
+#             print("** Please run `chia init` to migrate or create new config files **")
+#     else:
+#         return chia_init(root_path)
 
 
 def chia_version_number() -> Tuple[str, str, str, str]:
@@ -328,7 +369,8 @@ def chia_full_version_str() -> str:
     return f"{major}.{minor}.{patch}{dev}"
 
 
-def chia_init(root_path: Path, *, should_check_keys: bool = True, fix_ssl_permissions: bool = False):
+<<<<<<< HEAD
+def chia_init(root_path: Path, coin: str="chia", *, should_check_keys: bool = True, fix_ssl_permissions: bool = False):
     """
     Standard first run initialization or migration steps. Handles config creation,
     generation of SSL certs, and setting target addresses (via check_keys).
@@ -338,13 +380,15 @@ def chia_init(root_path: Path, *, should_check_keys: bool = True, fix_ssl_permis
     handle unlocking the keychain.
     """
     if os.environ.get("CHIA_ROOT", None) is not None:
+# def chia_init(root_path: Path, coin: str = "chia"):
+    # if os.environ.get(f"{coin}_ROOT", None) is not None:
         print(
             f"warning, your CHIA_ROOT is set to {os.environ['CHIA_ROOT']}. "
             f"Please unset the environment variable and run chia init again\n"
             f"or manually migrate config.yaml"
         )
 
-    print(f"Chia directory {root_path}")
+    print(f"{coin} directory {root_path}")
     if root_path.is_dir() and Path(root_path / "config" / "config.yaml").exists():
         # This is reached if CHIA_ROOT is set, or if user has run chia init twice
         # before a new update.
@@ -355,12 +399,24 @@ def chia_init(root_path: Path, *, should_check_keys: bool = True, fix_ssl_permis
         print(f"{root_path} already exists, no migration action taken")
         return -1
 
-    create_default_chia_config(root_path)
-    create_all_ssl(root_path)
+    # create_default_chia_config(root_path)
+    # create_all_ssl(root_path)
+    # if fix_ssl_permissions:
+    #     fix_ssl(root_path)
+    # if should_check_keys:
+    #     check_keys(root_path)
+    # create_default_chia_config(root_path)
+    # create_all_ssl(root_path)
+    create_default_coin_config(coin, root_path)
+    create_all_ssl(coin, root_path)
+    check_keys(root_path)
+
     if fix_ssl_permissions:
         fix_ssl(root_path)
     if should_check_keys:
         check_keys(root_path)
+
+
     print("")
     print("To see your keys, run 'chia keys show --show-mnemonic-seed'")
 
