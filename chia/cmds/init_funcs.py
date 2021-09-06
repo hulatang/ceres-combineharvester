@@ -369,7 +369,6 @@ def chia_full_version_str() -> str:
     return f"{major}.{minor}.{patch}{dev}"
 
 
-<<<<<<< HEAD
 def chia_init(root_path: Path, coin: str="chia", *, should_check_keys: bool = True, fix_ssl_permissions: bool = False):
     """
     Standard first run initialization or migration steps. Handles config creation,
