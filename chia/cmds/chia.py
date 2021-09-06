@@ -105,6 +105,7 @@ def run_daemon_cmd(ctx: click.Context, wait_for_unlock: bool) -> None:
     from chia.util.keychain import Keychain
 
     wait_for_unlock = wait_for_unlock and Keychain.is_keyring_locked()
+    asyncio.get_event_loop().run_until_complete(async_run_daemon(ctx.obj["root_path"], wait_for_unlock=wait_for_unlock))
 
 
 

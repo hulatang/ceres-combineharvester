@@ -171,7 +171,7 @@ def migrate_from(
     return 1
 
 
-def create_all_ssl(coin: str, root: Path):
+def create_all_ssl(coin: str, root_path: Path):
     # remove old key and crt
     config_dir = root_path / "config"
     old_key_path = config_dir / "trusted.key"
