@@ -1,0 +1,84 @@
+ceres:
+  network_id: "mainnet"
+flax:
+  network_id: "flax-mainnet"
+spare:
+  network_id: "mainnet"
+silicoin:
+  network_id: "mainnet"
+flora:
+  network_id: "mainnet"
+chiarose:
+  network_id: "mainnet"
+socks:
+  network_id: "mainnet"
+apple:
+  network_id: "mainnet"
+kale:
+  network_id: "kale-mainnet"
+goji:
+  network_id: "mainnet"
+chaingreen:
+  network_id: "mainnet"
+seno:
+  network_id: "mainnet"
+equality:
+  network_id: "equality-mainnet"
+greendoge:
+  network_id: "mainnet"
+tad:
+  network_id: "mainnet"
+dogechia:
+  network_id: "dogechia-mainnet"
+maize:
+  network_id: "mainnet"
+wheat:
+  network_id: "mainnet"
+taco:
+  network_id: "taco-mainnet"
+covid:
+  network_id: "covid-mainnet"
+melati:
+  network_id: "mainnet"
+cactus:
+  network_id: "mainnet"
+hddcoin:
+  network_id: "mainnet"
+avocado:
+  network_id: "mainnet"
+cryptodoge:
+  network_id: "cryptodoge-mainnet"
+sector:
+  network_id: "mainnet"
+nchain:
+  network_id: "mainnet"
+btcgreen:
+  network_id: "btcgreen-mainnet"
+cannabis:
+  network_id: "mainnet"
+scam:
+  network_id: "scam-mainnet"
+fork:
+  network_id: "fork-mainnet"
+olive:
+  network_id: "olive-mainnet"
+lucky:
+  network_id: "mainnet"
+pipscoin:
+  network_id: "pipscoin-mainnet"
+beer:
+  network_id: "beer-mainnet"
+cunt:
+  network_id: "cunt-mainnet"
+thyme:
+  network_id: "thyme-mainnet"
+littlelambocoin:
+  network_id: "mainnet"
+
+
+
+
+
+
+
+
