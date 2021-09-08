@@ -3,31 +3,99 @@ min_mainnet_k_size: 32
 # Send a ping to all peers after ping_interval seconds
 ping_interval: 120
 self_hostname: &self_hostname "localhost"
-daemon_port: 56300
+daemon_port: 59400
 inbound_rate_limit_percent: 100
 outbound_rate_limit_percent: 30
+
+# Limit the number of start_full_node worker processes to reduce ram and cpu usage
+# This allows users to farm more forks without running out of ram
+# Setting this too low reduces sync speed, but a synced node can stay synced with a multiprocessing_limit of 2
+# A value higher than 61 takes no effect, as chia limits the workers to 61 (windows server related python bug)
+# multiprocessing_limit: 4
 
 network_overrides: &network_overrides
   constants:
     mainnet:
       NETWORK_TYPE: 0
-      GENESIS_CHALLENGE: 4adf0fe70cfbd24286695e105624a92e44c083eca84ee2906106e51566f5ae4d
-      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
-      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
+      GENESIS_CHALLENGE: 0e7dbcaa707b4a75ef62edad42116c2d09e5d66fdcb3a09c2d0262bc50b8fee1
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "851e62a6fd8bc40765f5340648743bf6439e752409217ffffc3f9c1461207083"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "851e62a6fd8bc40765f5340648743bf6439e752409217ffffc3f9c1461207083"
     testnet0:
+      MIN_PLOT_SIZE: 18
       GENESIS_CHALLENGE: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       NETWORK_TYPE: 1
       GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
       GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
+    testnet2:
+      MIN_PLOT_SIZE: 18
+      GENESIS_CHALLENGE: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+      NETWORK_TYPE: 1
+      INITIAL_FREEZE_PERIOD: 100
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
+    testnet3:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: ca7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+    testnet4:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: dd7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      INITIAL_FREEZE_END_TIMESTAMP: 1618776900  # Sun Apr 18 2021 16:15:00 GMT-0400 (Eastern Daylight Time)
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+      EPOCH_BLOCKS: 768
+      DIFFICULTY_STARTING: 30
+    testnet5:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: ee7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      INITIAL_FREEZE_END_TIMESTAMP: 1618869600  # Mon Apr 19 2021 18:00:00 GMT-0400 (Eastern Daylight Time)
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+      EPOCH_BLOCKS: 768
+      DIFFICULTY_STARTING: 30
+    testnet7:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: 117816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      INITIAL_FREEZE_END_TIMESTAMP: 1619661600  # Wed Apr 28 2021 22:00:00 GMT-0400 (Eastern Daylight Time)
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+      EPOCH_BLOCKS: 768
+      DIFFICULTY_STARTING: 30
   config:
     mainnet:
-      address_prefix: "xka"
+      address_prefix: "spare"
+      default_full_node_port: 9444
     testnet0:
-      address_prefix: "txka"
+      address_prefix: "tspare"
+    testnet1:
+      address_prefix: "tspare"
+    testnet2:
+      address_prefix: "tspare"
+    testnet3:
+      address_prefix: "tspare"
+    testnet4:
+      address_prefix: "tspare"
+    testnet7:
+      address_prefix: "tspare"
+      default_full_node_port: 59444
 
 selected_network: &selected_network "mainnet"
-ALERTS_URL: https://download.kalenetwork.org/notify/mainnet_alert.txt
-KALE_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937
+ALERTS_URL: https://download.spare.farm/notify/mainnet_alert.txt
+spare_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937
 
 # public ssl ca is included in source code
 # Private ssl ca is used for trusted connections between machines user owns
@@ -35,9 +103,9 @@ private_ssl_ca:
   crt: "config/ssl/ca/private_ca.crt"
   key: "config/ssl/ca/private_ca.key"
 
-kale_ssl_ca:
-  crt: "config/ssl/ca/kale_ca.crt"
-  key: "config/ssl/ca/kale_ca.key"
+spare_ssl_ca:
+  crt: "config/ssl/ca/spare_ca.crt"
+  key: "config/ssl/ca/spare_ca.key"
 
 
 daemon_ssl:
@@ -49,27 +117,24 @@ daemon_ssl:
 logging: &logging
   log_stdout: False  # If True, outputs to stdout instead of a file
   log_filename: "log/debug.log"
-  log_level: "INFO"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+  log_level: "WARNING"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
   log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set
   log_syslog: False  # If True, outputs to SysLog host and port specified
   log_syslog_host: "localhost"  # Send logging messages to a remote or local Unix syslog
-  log_syslog_port: 514  # UDP port of the remote or local Unix syslog
+  log_syslog_port: 15514  # UDP port of the remote or local Unix syslog
 
 harvester:
   # The harvester server (if run) will run on this port
-  port: 6334
+  port: 9448
   farmer_peer:
     host: *self_hostname
-    port: 6335
+    port: 9447
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 6460
+  rpc_port: 9560
   num_threads: 30
   plot_loading_frequency_seconds: 120
-
-  # If True use parallel reads in chiapos
-  parallel_read: True
 
   logging: *logging
   network_overrides: *network_overrides
@@ -86,13 +151,13 @@ harvester:
     crt: "config/ssl/ca/private_ca.crt"
     key: "config/ssl/ca/private_ca.key"
 
-  kale_ssl_ca:
-    crt: "config/ssl/ca/kale_ca.crt"
-    key: "config/ssl/ca/kale_ca.key"
+  spare_ssl_ca:
+    crt: "config/ssl/ca/spare_ca.crt"
+    key: "config/ssl/ca/spare_ca.key"
 
 pool:
   # Replace this with a real puzzle hash
-  # xka_target_address: txka102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # spare_target_address: tspare102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -100,23 +165,23 @@ pool:
 
 farmer:
   # The farmer server (if run) will run on this port
-  port: 6335
+  port: 9447
   # The farmer will attempt to connect to this full node and harvester
   full_node_peer:
     host: *self_hostname
-    port: 6333
+    port: 9444
   harvester_peer:
     host: *self_hostname
-    port: 6334
+    port: 9448
 
   pool_public_keys: []
 
   # Replace this with a real puzzle hash
-  # xka_target_address: txka102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # spare_target_address: tspare102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 6459
+  rpc_port: 9559
 
   # To send a share to a pool, a proof of space must have required_iters less than this number
   pool_share_threshold: 1000
@@ -133,7 +198,7 @@ farmer:
 # Don't run this unless you want to run VDF clients on the local machine.
 timelord_launcher:
   # The server where the VDF clients will connect to.
-  port: 6500
+  port: 9000
   # Number of VDF client processes to keep alive in the local machine.
   process_count: 3
   logging: *logging
@@ -141,7 +206,7 @@ timelord_launcher:
 
 timelord:
   # The timelord server (if run) will run on this port
-  port: 6336
+  port: 9446
   # Provides a list of VDF clients expected to connect to this timelord.
   # For each client, an IP is provided, together with the estimated iterations per second.
   vdf_clients:
@@ -153,13 +218,13 @@ timelord:
       - 150000
   full_node_peer:
       host: *self_hostname
-      port: 6333
+      port: 9444
   # Maximum number of seconds allowed for a client to reconnect to the server.
   max_connection_time: 60
   # The ip and port where the TCP clients will connect.
   vdf_server:
     host: *self_hostname
-    port: 6500
+    port: 9000
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -188,7 +253,7 @@ timelord:
 
 full_node:
   # The full node server (if run) will run on this port
-  port: 6333
+  port: 9444
 
   # Run multiple nodes with different databases by changing the database_path
   database_path: db/blockchain_v1_CHALLENGE.sqlite
@@ -198,7 +263,7 @@ full_node:
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 6355
+  rpc_port: 9555
 
   # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway
   enable_upnp: True
@@ -225,7 +290,7 @@ full_node:
   # Only connect to peers who we have heard about in the last recent_peer_threshold seconds
   recent_peer_threshold: 6000
 
-  # Send to a Bluebox (sanitizing timelord) uncompact blocks once every
+  # Send to a Bluebox (sanatizing timelord) uncompact blocks once every
   # 'send_uncompact_interval' seconds. Set to 0 if you don't use this feature.
   send_uncompact_interval: 0
   # At every 'send_uncompact_interval' seconds, send blueboxes 'target_uncompact_proofs' proofs to be normalized.
@@ -237,25 +302,25 @@ full_node:
   weight_proof_timeout: 360
 
   # when enabled, the full node will print a pstats profile to the root_dir/profile every second
-  # analyze with kale/utils/profiler.py
+  # analyze with spare/utils/profiler.py
   enable_profiler: False
 
   # List of trusted DNS seeders to bootstrap from.
   # If you modify this, please change the hardcode as well from FullNode.set_server()
   dns_servers:
-    - "dns-introducer.kalenetwork.org"
+    - "dns-introducer-spare.sparecoin.org"
   farmer_peer:
       host: *self_hostname
-      port: 6335
+      port: 9447
   timelord_peer:
       host: *self_hostname
-      port: 6336
+      port: 9446
   introducer_peer:
-      host: introducer.kalenetwork.org  # Kale AWS introducer IPv4/IPv6
-      port: 6333
+      host: introducer.sparecoin.org  # spare AWS introducer IPv4/IPv6
+      port: 9444
   wallet_peer:
     host: *self_hostname
-    port: 6339
+    port: 9449
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -268,10 +333,10 @@ full_node:
 
 ui:
    # The ui node server (if run) will run on this port
-  port: 6777
+  port: 8222
 
   # Which port to use to communicate with the full node
-  rpc_port: 6355
+  rpc_port: 9554
 
   # This SSH key is for the ui SSH server
   ssh_filename: config/ssh_host_key
@@ -282,14 +347,14 @@ ui:
   # this is where the electron UI will find its daemon
   # defaults to the one running locally with its private keys
   daemon_host: *self_hostname
-  daemon_port: 56300
+  daemon_port: 59400
   daemon_ssl:
     private_crt: config/ssl/daemon/private_daemon.crt
     private_key: config/ssl/daemon/private_daemon.key
 
 introducer:
   host: *self_hostname
-  port: 6337
+  port: 9445
   max_peers_to_send: 20
   # The introducer will only return peers who it has seen in the last
   # recent_peer_threshold seconds
@@ -303,8 +368,8 @@ introducer:
     public_key:  "config/ssl/full_node/public_full_node.key"
 
 wallet:
-  port: 6339
-  rpc_port: 7431
+  port: 9449
+  rpc_port: 7256
 
   enable_profiler: False
 
@@ -318,7 +383,7 @@ wallet:
 
   full_node_peer:
     host: *self_hostname
-    port: 6333
+    port: 9444
 
   testing: False
   database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
@@ -335,8 +400,8 @@ wallet:
   recent_peer_threshold: 6000
 
   introducer_peer:
-    host: introducer.kalenetwork.org # Kale AWS introducer IPv4/IPv6
-    port: 6333
+    host: introducer.sparecoin.org # spare AWS introducer IPv4/IPv6
+    port: 9444
 
   ssl:
     private_crt:  "config/ssl/wallet/private_wallet.crt"

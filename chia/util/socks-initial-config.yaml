@@ -1,110 +1,360 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Bitbucket</title>
-    <meta id="bb-bootstrap" data-current-user="{&quot;isKbdShortcutsEnabled&quot;: true, &quot;isSshEnabled&quot;: false, &quot;isAuthenticated&quot;: false}"
- />
-    <meta name="frontbucket-version" content="55e772ec0d2c2ced318f1240a25d9c92ac0a0002">
-    <meta name="frontbucket-environment" content="production">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==" type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"a2cef8c3d3",applicationID:"790458688"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n){return function(){return o(t,[u.now()].concat(f(arguments)),e?null:this,n),e?void 0:this}}var o=t("handle"),a=t(8),f=t(9),c=t("ee").get("tracer"),u=t("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(t,e){s[e]=i(p+e,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),e.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(l+"tracer",[u.now(),t,n],r),function(){if(c.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],n),t}finally{c.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(l+e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){function r(){return f.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,f=t(10);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],4:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],5:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?d("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&d("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();n.length>0&&d("lcp",[n[n.length-1]])}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||d("cls",[t])})}function a(t){if(t instanceof m&&!g){var e=Math.round(t.timeStamp),n={type:t.type};e<=p.now()?n.fid=p.now()-e:e>p.offset&&e<=Date.now()?(e-=p.offset,n.fid=p.now()-e):e=p.now(),g=!0,d("timing",["fi",e,n])}}function f(t){"hidden"===t&&d("pageHide",[p.now()])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var c,u,s,d=t("handle"),p=t("loader"),l=t(7),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){c=new PerformanceObserver(r);try{c.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,h=["click","keydown","mousedown","pointerdown","touchstart"];h.forEach(function(t){document.addEventListener(t,a,!1)})}l(f)}},{}],6:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var f=navigator.userAgent,c=f.match(a);c&&f.indexOf("Chrome")===-1&&f.indexOf("Chromium")===-1&&(i="Safari",o=c[1])}e.exports={agent:i,version:o,match:r}},{}],7:[function(t,e,n){function r(t){function e(){t(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,e,!1)}e.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],8:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],9:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],10:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,c,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var f=e(i),c=v(n),u=c.length,s=0;s<u;s++)c[s].apply(f,r);var p=d[w[n]];return p&&p.push([b,n,r,f]),f}}function o(t,e){y[t]=v(t).concat(e)}function m(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function v(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:m,emit:n,get:g,listeners:v,context:e,buffer:h,abort:f,aborted:!1};return b}function o(t){return u(t,c,a)}function a(){return new r}function f(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var c="nr@context",u=t("gos"),s=t(8),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!R++){var t=M.info=NREUM.info,e=v.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();c(E,function(e,n){t[e]||(t[e]=n)});var n=a();f("mark",["onload",n+M.offset],null,"api"),f("timing",["load",n]);var r=v.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=l+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===v.readyState&&o()}function o(){f("mark",["domContent",a()+M.offset],null,"api")}var a=t(3),f=t("handle"),c=t(8),u=t("ee"),s=t(6),d=t(4),p=t(2),l=p.getConfiguration("ssl")===!1?"http":"https",m=window,v=m.document,g="addEventListener",h="attachEvent",y=m.XMLHttpRequest,w=y&&y.prototype,b=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:y,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,E={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1210.min.js"},O=y&&w&&w[g]&&!/CriOS/.test(navigator.userAgent),M=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:O,userAgent:s,disabled:b};if(!b){t(1),t(5),v[g]?(v[g]("DOMContentLoaded",o,!1),m[g]("load",r,!1)):(v[h]("onreadystatechange",i),m[h]("onload",r)),f("mark",["firstbyte",a.getLastTimestamp()],null,"api");var R=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,c,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,c],s],t)}f(n+"start",[o,a,c],s,u);try{return p=e.apply(a,o)}catch(m){throw f(n+"err",[o,a,m],s,u),m}finally{f(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var f,c,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)c=e[u],f=t[c],a(f)||(t[c]=n(f,s?c+r:r,i,c,o))}function f(n,r,o,a){if(!m||e){var f=m;m=!0;try{t.emit(n,r,o,e,a)}catch(c){i([c,n,r,o],t)}m=f}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function f(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function c(t,e,n){var r=t[e];t[e]=f(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(9),p="nr@original",l=Object.prototype.hasOwnProperty,m=!1;e.exports=r,e.exports.wrapFunction=f,e.exports.wrapInPlace=c,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
-    
+min_mainnet_k_size: 28
+
+# Send a ping to all peers after ping_interval seconds
+ping_interval: 120
+self_hostname: &self_hostname "localhost"
+daemon_port: 55500
+inbound_rate_limit_percent: 100
+outbound_rate_limit_percent: 30
+
+network_overrides: &network_overrides
+  constants:
+    mainnet:
+      NETWORK_TYPE: 0
+      GENESIS_CHALLENGE: c2912bf93eaeb9bb1af477dc40f00deadbeef5dd097078d0b6caa637aa9f74e6
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "2264fbe2b12bbb7f2b013bc221a70989572905db72e2edfb45986e621213af74"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "2264fbe2b12bbb7f2b013bc221a70989572905db72e2edfb45986e621213af74"
+    testnet0:
+      MIN_PLOT_SIZE: 18
+      GENESIS_CHALLENGE: c2912bf93eeeb9bb1af477dc40f00deadbeef5dd097078d0b6caa637aa9f74e6
+      NETWORK_TYPE: 1
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "2264fbe2b12bbb7f2b013bc221a70989572905db72e2edfb45986e621213af74"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "2264fbe2b12bbb7f2b013bc221a70989572905db72e2edfb45986e621213af74"
+  config:
+    mainnet:
+      address_prefix: "sock"
+      default_full_node_port: 58444
+    testnet0:
+      address_prefix: "tsock"
+    testnet1:
+      address_prefix: "tsock"
+    testnet2:
+      address_prefix: "tsock"
+    testnet3:
+      address_prefix: "tsock"
+    testnet4:
+      address_prefix: "tsock"
+    testnet7:
+      address_prefix: "tsock"
+      default_full_node_port: 58444
+
+selected_network: &selected_network "mainnet"
+ALERTS_URL: https://download.socks.works/notify/mainnet_alert.txt
+SOCKS_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937
+
+# public ssl ca is included in source code
+# Private ssl ca is used for trusted connections between machines user owns
+private_ssl_ca:
+  crt: "config/ssl/ca/private_ca.crt"
+  key: "config/ssl/ca/private_ca.key"
+
+socks_ssl_ca:
+  crt: "config/ssl/ca/socks_ca.crt"
+  key: "config/ssl/ca/socks_ca.key"
 
 
-<meta name="bb-env" content="production" />
-<meta id="bb-canon-url" name="bb-canon-url" content="https://bitbucket.org">
-<meta name="bb-api-canon-url" content="https://api.bitbucket.org">
+daemon_ssl:
+  private_crt: "config/ssl/daemon/private_daemon.crt"
+  private_key: "config/ssl/daemon/private_daemon.key"
 
 
+# Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.
+logging: &logging
+  log_stdout: False  # If True, outputs to stdout instead of a file
+  log_filename: "log/debug.log"
+  log_level: "INFO"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+  log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set
+  log_syslog: False  # If True, outputs to SysLog host and port specified
+  log_syslog_host: "localhost"  # Send logging messages to a remote or local Unix syslog
+  log_syslog_port: 514  # UDP port of the remote or local Unix syslog
 
-<meta name="bitbucket-commit-hash" content="9c1333dfb0b7">
-<meta name="bb-app-node" content="13f9c1ef4b99">
-<meta name="bb-dce-env" content="microsbucket">
-<meta name="bb-view-name" content="bitbucket.apps.repo2.views.SourceView">
-<meta name="ignore-whitespace" content="False">
-<meta name="tab-size" content="None">
-<meta name="locale" content="en">
-<meta name="application-name" content="Bitbucket">
-<meta name="apple-mobile-web-app-title" content="Bitbucket">
-<meta name="slack-app-id" content="A8W8QLZD1">
-<meta name="statuspage-api-host" content="https://bqlf8qjztdtr.statuspage.io">
+harvester:
+  # The harvester server (if run) will run on this port
+  port: 58448
+  farmer_peer:
+    host: *self_hostname
+    port: 58447
+
+  # If True, starts an RPC server at the following port
+  start_rpc_server: True
+  rpc_port: 58560
+  num_threads: 30
+  plot_loading_frequency_seconds: 120
+
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  # Plots are searched for in the following directories
+  plot_directories: []
+
+  ssl:
+    private_crt:  "config/ssl/harvester/private_harvester.crt"
+    private_key:  "config/ssl/harvester/private_harvester.key"
+
+  private_ssl_ca:
+    crt: "config/ssl/ca/private_ca.crt"
+    key: "config/ssl/ca/private_ca.key"
+
+  socks_ssl_ca:
+    crt: "config/ssl/ca/socks_ca.crt"
+    key: "config/ssl/ca/socks_ca.key"
+
+pool:
+  # Replace this with a real puzzle hash
+  # sock_target_address: tsock102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
 
 
-<meta name="theme-color" content="#0049B0">
-<meta name="msapplication-TileColor" content="#0052CC">
-<meta name="msapplication-TileImage" content="https://d301sr5gafysq2.cloudfront.net/9c1333dfb0b7/img/logos/bitbucket/mstile-150x150.png">
-<link rel="apple-touch-icon" sizes="180x180" type="image/png" href="https://d301sr5gafysq2.cloudfront.net/9c1333dfb0b7/img/logos/bitbucket/apple-touch-icon.png">
-<link rel="icon" sizes="192x192" type="image/png" href="https://d301sr5gafysq2.cloudfront.net/9c1333dfb0b7/img/logos/bitbucket/android-chrome-192x192.png">
+farmer:
+  # The farmer server (if run) will run on this port
+  port: 58447
+  # The farmer will attempt to connect to this full node and harvester
+  full_node_peer:
+    host: *self_hostname
+    port: 58444
+  harvester_peer:
+    host: *self_hostname
+    port: 58448
 
-<link rel="icon" sizes="16x16 24x24 32x32 64x64" type="image/x-icon" href="/favicon.ico?v=2">
-<link rel="mask-icon" href="https://d301sr5gafysq2.cloudfront.net/9c1333dfb0b7/img/logos/bitbucket/safari-pinned-tab.svg" color="#0052CC">
+  pool_public_keys: []
 
-<link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Bitbucket">
+  # Replace this with a real puzzle hash
+  # sock_target_address: tsock102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
 
-    <meta name="description" content="">
-    <meta name="bb-single-page-app" content="true">
-    
-      <link rel="stylesheet" href="https://d301sr5gafysq2.cloudfront.net/frontbucket/assets/present/vendor.419e95b7.css">
-    
-    
-    
-    <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==">
+  # If True, starts an RPC server at the following port
+  start_rpc_server: True
+  rpc_port: 58559
 
-if (window.performance) {
+  # To send a share to a pool, a proof of space must have required_iters less than this number
+  pool_share_threshold: 1000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
 
-  
-  window.performance.okayToSendMetrics = !document.hidden && 'onvisibilitychange' in document;
+  ssl:
+    private_crt:  "config/ssl/farmer/private_farmer.crt"
+    private_key:  "config/ssl/farmer/private_farmer.key"
+    public_crt:  "config/ssl/farmer/public_farmer.crt"
+    public_key:  "config/ssl/farmer/public_farmer.key"
 
-  if (window.performance.okayToSendMetrics) {
+# Don't run this unless you want to run VDF clients on the local machine.
+timelord_launcher:
+  # The server where the VDF clients will connect to.
+  port: 58555
+  # Number of VDF client processes to keep alive in the local machine.
+  process_count: 3
+  logging: *logging
 
-    
-    window.addEventListener('visibilitychange', function () {
-      if (document.hidden) {
-        window.performance.okayToSendMetrics = false;
-      }
-    });
-  }
 
-  
-  
-}
-</script>
-  </head>
-  <body>
-    <div id="root">
-    <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==">
-      window.__webpack_public_path__ = "https://d301sr5gafysq2.cloudfront.net/frontbucket/assets/present/";
-    </script>
-    
-    
-    
-    </div>
-    <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==">
-      
-        window.__sentry__ = {"dsn": "https://2dcda83904474d8c86928ebbfa1ab294@o55978.ingest.sentry.io/1480772", "environment": "production", "tags": {"dc_location": "Micros", "micros_service_version": "1104", "micros_deployment_id": "q173f4cn0ami4a1m", "micros_service": "bbc-website", "micros_envtype": "prod", "revision": "9c1333dfb0b7"}};
-      
-      window.__app_data__ = {"navigationIsOpen": true, "features": {"new-code-review": true}};
-      
-        window.__initial_state__ = {"section": {"repository": {"connectActions": [], "cloneProtocol": "https", "currentRepository": {"scm": "git", "website": "https://socks.works", "uuid": "{f70067e2-aabc-4775-a9e5-55815efde464}", "links": {"clone": [{"href": "https://bitbucket.org/Socks-Network/socks-blockchain.git", "name": "https"}, {"href": "git@bitbucket.org:Socks-Network/socks-blockchain.git", "name": "ssh"}], "self": {"href": "https://bitbucket.org/!api/2.0/repositories/Socks-Network/socks-blockchain"}, "html": {"href": "https://bitbucket.org/Socks-Network/socks-blockchain"}, "avatar": {"href": "https://bytebucket.org/ravatar/%7Bf70067e2-aabc-4775-a9e5-55815efde464%7D?ts=2876307"}}, "name": "socks-blockchain", "project": {"description": null, "links": {"self": {"href": "https://bitbucket.org/!api/2.0/workspaces/Socks-Network/projects/SOC"}, "html": {"href": "https://bitbucket.org/Socks-Network/workspace/projects/SOC"}, "avatar": {"href": "https://bitbucket.org/account/user/Socks-Network/projects/SOC/avatar/32?ts=1626785241"}}, "name": "Socks-Network", "created_on": "2021-07-20T12:47:21.842678+00:00", "has_publicly_visible_repos": true, "key": "SOC", "updated_on": "2021-07-20T12:47:21.842697+00:00", "owner": {"display_name": "SocksDev", "account_id": "60f6c31f2b56cc006968e737", "links": {"self": {"href": "https://bitbucket.org/!api/2.0/users/%7B0b03caae-a900-4a42-a177-498119fe0064%7D"}, "html": {"href": "https://bitbucket.org/%7B0b03caae-a900-4a42-a177-498119fe0064%7D/"}, "avatar": {"href": "https://secure.gravatar.com/avatar/8bd7d5d15dc00f7d44536ffbbb974258?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FS-4.png"}}, "nickname": "SocksDev", "type": "user", "uuid": "{0b03caae-a900-4a42-a177-498119fe0064}"}, "workspace": {"name": "SocksDev", "type": "workspace", "uuid": "{0b03caae-a900-4a42-a177-498119fe0064}", "links": {"self": {"href": "https://bitbucket.org/!api/2.0/workspaces/Socks-Network"}, "html": {"href": "https://bitbucket.org/Socks-Network/"}, "avatar": {"href": "https://bitbucket.org/workspaces/Socks-Network/avatar/?ts=1626784888"}}, "slug": "Socks-Network"}, "type": "project", "is_private": false, "uuid": "{b20965ef-8c3b-4842-81fe-002203065fe0}"}, "language": "python", "mainbranch": {"name": "main"}, "full_name": "Socks-Network/socks-blockchain", "owner": {"display_name": "SocksDev", "account_id": "60f6c31f2b56cc006968e737", "links": {"self": {"href": "https://bitbucket.org/!api/2.0/users/%7B0b03caae-a900-4a42-a177-498119fe0064%7D"}, "html": {"href": "https://bitbucket.org/%7B0b03caae-a900-4a42-a177-498119fe0064%7D/"}, "avatar": {"href": "https://secure.gravatar.com/avatar/8bd7d5d15dc00f7d44536ffbbb974258?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FS-4.png"}}, "type": "user", "zoneinfo": null, "is_active": true, "uuid": "{0b03caae-a900-4a42-a177-498119fe0064}", "department": null, "created_on": "2021-07-20T12:41:28.707764+00:00", "is_staff": false, "location": null, "account_status": "active", "organization": null, "job_title": null, "nickname": "SocksDev", "properties": {}, "has_2fa_enabled": null}, "updated_on": "2021-09-04T09:31:59.726166+00:00", "type": "repository", "slug": "socks-blockchain", "is_private": false, "description": "New home for Socks Network - fork of Chia\u2122 Network which works. We migrated from github"}, "mirrors": [], "sizeLimits": {"readOnly": 10737418240.0, "hard": 4294967296, "soft": 2147483648}, "menuItems": [{"analytics_label": "repository.source", "is_client_link": true, "icon_class": "icon-source", "target": "_self", "weight": 200, "url": "/Socks-Network/socks-blockchain/src", "tab_name": "source", "can_display": true, "label": "Source", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": ["/diff", "/history-node"], "id": "repo-source-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-source"}, {"analytics_label": "repository.commits", "is_client_link": true, "icon_class": "icon-commits", "target": "_self", "weight": 300, "url": "/Socks-Network/socks-blockchain/commits/", "tab_name": "commits", "can_display": true, "label": "Commits", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-commits-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-commits"}, {"analytics_label": "repository.branches", "is_client_link": true, "icon_class": "icon-branches", "target": "_self", "weight": 400, "url": "/Socks-Network/socks-blockchain/branches/", "tab_name": "branches", "can_display": true, "label": "Branches", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-branches-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-branches"}, {"analytics_label": "repository.pullrequests", "is_client_link": true, "icon_class": "icon-pull-requests", "target": "_self", "weight": 500, "url": "/Socks-Network/socks-blockchain/pull-requests/", "tab_name": "pullrequests", "can_display": true, "label": "Pull requests", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-pullrequests-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-pull-requests"}, {"analytics_label": "user.addon", "is_client_link": true, "icon_class": "aui-iconfont-unfocus", "target": "_self", "weight": 550, "url": "/Socks-Network/socks-blockchain/addon/pipelines/home", "tab_name": "repopage-L8ebAL-add-on-link", "can_display": true, "label": "Pipelines", "is_premium": null, "icon_url": "https://bitbucket-connect-icons.s3.amazonaws.com/add-on/icons/62acf41d-386f-49fd-b823-4f86445390e2.svg?AWSAccessKeyId=AKIA6KOSE3BNJRRFUUX6&Expires=1631107718&Signature=BIMqcSFj%2Bs710HpiIxBTT3nQ4II%3D", "is_dropdown_item": false, "anchor": true, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repopage-L8ebAL-add-on-link", "test_id": null, "type": "connect_menu_item", "children": [], "badge_label": null}, {"analytics_label": "user.addon", "is_client_link": true, "icon_class": "aui-iconfont-unfocus", "target": "_self", "weight": 560, "url": "/Socks-Network/socks-blockchain/addon/pipelines/deployments", "tab_name": "repopage-xyAae5-add-on-link", "can_display": true, "label": "Deployments", "is_premium": null, "icon_url": "https://bitbucket-connect-icons.s3.amazonaws.com/add-on/icons/fca72d46-7e20-4dc4-b6a8-c83fb9665cc6.svg?AWSAccessKeyId=AKIA6KOSE3BNJRRFUUX6&Expires=1631107718&Signature=lxjwFnYolQHuKCSt%2F%2Bsp2waD3Pk%3D", "is_dropdown_item": false, "anchor": true, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repopage-xyAae5-add-on-link", "test_id": null, "type": "connect_menu_item", "children": [], "badge_label": null}, {"analytics_label": "repository.jira", "is_client_link": true, "icon_class": "icon-jira", "target": "_self", "weight": 600, "url": "/Socks-Network/socks-blockchain/jira", "tab_name": "jira", "can_display": true, "label": "Jira issues", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-jira-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-jira"}, {"analytics_label": "repository.security", "is_client_link": true, "icon_class": "icon-security", "target": "_self", "weight": 610, "url": "/Socks-Network/socks-blockchain/security", "tab_name": "security", "can_display": true, "label": "Security", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-security-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-security"}, {"analytics_label": "repository.downloads", "is_client_link": false, "icon_class": "icon-downloads", "target": "_self", "weight": 800, "url": "/Socks-Network/socks-blockchain/downloads/", "tab_name": "downloads", "can_display": true, "label": "Downloads", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-downloads-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-downloads"}], "bitbucketActions": [{"analytics_label": "repository.clone", "is_client_link": false, "icon_class": "icon-clone", "target": "_self", "weight": 100, "url": "#clone", "tab_name": "clone", "can_display": true, "label": "<strong>Clone<\/strong> this repository", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-clone-button", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-clone"}, {"analytics_label": "repository.compare", "is_client_link": false, "icon_class": "aui-icon-small aui-iconfont-devtools-compare", "target": "_self", "weight": 400, "url": "/Socks-Network/socks-blockchain/branches/compare", "tab_name": "compare", "can_display": true, "label": "<strong>Compare<\/strong> branches or tags", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-compare-link", "test_id": null, "type": "menu_item", "children": [], "icon": "aui-icon-small aui-iconfont-devtools-compare"}, {"analytics_label": "repository.fork", "is_client_link": false, "icon_class": "icon-fork", "target": "_self", "weight": 500, "url": "/Socks-Network/socks-blockchain/fork", "tab_name": "fork", "can_display": true, "label": "<strong>Fork<\/strong> this repository", "is_premium": null, "is_dropdown_item": false, "anchor": true, "badge_label": null, "analytics_payload": {}, "matching_url_prefixes": [], "id": "repo-fork-link", "test_id": null, "type": "menu_item", "children": [], "icon": "icon-fork"}], "activeMenuItem": "source"}}, "global": {"needs_marketing_consent": false, "features": {"exp-share-to-invite-variation": false, "whitelisted_throttle_exemption": true, "use-elasticache-lsn-storage": true, "workspaces-api-proxy": true, "uninstall-dvcs-addon-only-when-jira-is-removed": true, "bbc.core.pride-logo": false, "account-switcher": true, "new-analytics-cdn": true, "nav-add-file": false, "remove-deactivated-users-from-followers": true, "restrict-commit-author-data": true, "frontbucket-eager-dispatching-of-exited-code-review": true, "fd-prs-client-cache-fallback": true, "hot-91446-add-tracing-x-b3": true, "reset-changes-requested-status": true, "provision-workspaces-in-hams": true, "provisioning-skip-workspace-creation": true, "enable-replica-gc": true, "enable-jwt-repo-filtering": true, "pr-max-commits-behind-mergecheck": false, "reviewer-status": true, "fd-add-gitignore-dropdown-on-create-repo-page": true, "repo-show-uuid": false, "fetch-all-relevant-jira-projects": true, "provisioning-install-pipelines-addon": true, "log-asap-errors": true, "fd-ie-deprecation-phase-two": true, "new-code-review": true, "bbc.core.enable-workspaces-react-resource-router": false, "orochi-disable-hooks-with-lockid": true, "enable-repository-replication-cronman": true, "fd-ie-deprecation-phase-one": true, "clone-in-xcode": true, "enable-merge-bases-api": true, "bbc.core.disable-repository-statuses-fetch": false, "bms-repository-no-finalize": true, "use-moneybucket": true, "spa-repo-settings--repo-details": true, "workspace-member-set-last-accessed": true, "enable-repository-replication-event": true, "sync-workspace-user-active": true, "auth-flow-adg3": true, "nav-next-settings": true, "consenthub-config-endpoint-update": true, "lookup-pr-approvers-from-prs": true, "orochi-add-custom-backend": true, "null-mainbranch-implies-none": true, "bbc.core.disable-directory-metadata": false, "pr_post_build_merge": true, "read-only-message-migrations": true, "fd-overview-page-pr-filter-buttons": true, "provisioning-auto-login": true, "bbcdev-13546-caching-defaults": true, "fd-jira-compatible-issue-export": true, "spa-repo-settings--access-keys": true, "allocate-with-regions": true, "free-daily-repo-limit": true, "svg-based-qr-code": true, "allow-cloud-session": true, "hide-price-annual": true, "allow-cronman-management-commands": true, "show-upgrade-plans-banner": true}, "locale": "en", "geoip_country": null, "targetFeatures": {"enable-repository-replication-cronman": true, "fd-repository-page-loading-error-guard": true, "workspaces-api-proxy": true, "uninstall-dvcs-addon-only-when-jira-is-removed": true, "enable-merge-bases-api": true, "orochi-large-merge-message-support": true, "spa-repo-settings--user-and-group-access": true, "remove-deactivated-users-from-followers": true, "frontbucket-eager-dispatching-of-exited-code-review": true, "restrict-commit-author-data": true, "whitelisted_throttle_exemption": true, "fd-prs-client-cache-fallback": true, "prlinks-installer": true, "rm-empty-ref-dirs-on-push": true, "reset-changes-requested-status": true, "provision-workspaces-in-hams": true, "provisioning-skip-workspace-creation": true, "enable-replica-gc": true, "enable-jwt-repo-filtering": true, "show-banner-about-new-review-experience": true, "account-switcher": true, "view-source-filtering-upon-timeout": true, "reviewer-status": true, "fd-add-gitignore-dropdown-on-create-repo-page": true, "new-analytics-cdn": true, "use-elasticache-lsn-storage": true, "fetch-all-relevant-jira-projects": true, "provisioning-install-pipelines-addon": true, "consenthub-config-endpoint-update": true, "fd-ie-deprecation-phase-two": true, "new-code-review": true, "orochi-disable-hooks-with-lockid": true, "show-pr-update-activity-changes": true, "fd-ie-deprecation-phase-one": true, "clone-in-xcode": true, "fd-undo-last-push": false, "bms-repository-no-finalize": true, "spa-ws-settings--user-groups": true, "use-moneybucket": true, "spa-repo-settings--repo-details": true, "workspace-member-set-last-accessed": true, "atlassian-editor": true, "enable-repository-replication-event": true, "free-daily-repo-limit": true, "auth-flow-adg3": true, "async-bbbs-queue-update-account": true, "hot-91446-add-tracing-x-b3": true, "nav-next-settings": true, "log-asap-errors": true, "nav-next-ws-settings": true, "lookup-pr-approvers-from-prs": true, "orochi-add-custom-backend": true, "null-mainbranch-implies-none": true, "pr_post_build_merge": true, "read-only-message-migrations": true, "fd-overview-page-pr-filter-buttons": true, "hide-price-annual": true, "provisioning-auto-login": true, "bbcdev-13546-caching-defaults": true, "spa-ws-settings--user-directory": true, "fd-jira-compatible-issue-export": true, "enable-fx3-client": true, "spa-repo-settings--access-keys": true, "allocate-with-regions": true, "sync-workspace-user-active": true, "svg-based-qr-code": true, "allow-cloud-session": true, "exp-new-user-survey": true, "allow-cronman-management-commands": true, "show-upgrade-plans-banner": true}, "isFocusedTask": false, "browser_monitoring": true, "targetUser": {"display_name": "SocksDev", "account_id": "60f6c31f2b56cc006968e737", "links": {"self": {"href": "https://bitbucket.org/!api/2.0/users/%7B0b03caae-a900-4a42-a177-498119fe0064%7D"}, "html": {"href": "https://bitbucket.org/%7B0b03caae-a900-4a42-a177-498119fe0064%7D/"}, "avatar": {"href": "https://secure.gravatar.com/avatar/8bd7d5d15dc00f7d44536ffbbb974258?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FS-4.png"}}, "type": "user", "zoneinfo": null, "is_active": true, "uuid": "{0b03caae-a900-4a42-a177-498119fe0064}", "department": null, "created_on": "2021-07-20T12:41:28.707764+00:00", "is_staff": false, "location": null, "account_status": "active", "organization": null, "job_title": null, "nickname": "SocksDev", "properties": {}, "has_2fa_enabled": null}, "is_mobile_user_agent": false, "flags": [], "site_message": "", "isNavigationOpen": true, "path": "/Socks-Network/socks-blockchain/src/main/socks/util/initial-config.yaml", "focusedTaskBackButtonUrl": "https://bitbucket.org/Socks-Network/socks-blockchain/src/main/socks/util/", "whats_new_feed": "https://bitbucket.org/blog/wp-json/wp/v2/posts?categories=196&context=embed&per_page=6&orderby=date&order=desc"}, "repository": {"source": {"section": {"hash": "0d677c30cce68f505578fe501b77e89db8b0b43a", "atRef": null, "ref": {"name": "main", "links": {"self": {"href": "https://bitbucket.org/!api/2.0/repositories/Socks-Network/socks-blockchain/refs/branches/main"}, "html": {"href": "https://bitbucket.org/Socks-Network/socks-blockchain/branch/main"}}, "target": {"type": "commit", "hash": "0d677c30cce68f505578fe501b77e89db8b0b43a", "links": {"self": {"href": "https://bitbucket.org/!api/2.0/repositories/Socks-Network/socks-blockchain/commit/0d677c30cce68f505578fe501b77e89db8b0b43a"}, "html": {"href": "https://bitbucket.org/Socks-Network/socks-blockchain/commits/0d677c30cce68f505578fe501b77e89db8b0b43a"}}}}}}}};
-      
-      window.__settings__ = {"MARKETPLACE_TERMS_OF_USE_URL": null, "JIRA_ISSUE_COLLECTORS": {"code-review-beta": {"url": "https://bitbucketfeedback.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/-4bqv2z/b/20/a44af77267a987a660377e5c46e0fb64/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=bb066400", "id": "bb066400"}, "jira-software-repo-page": {"url": "https://jira.atlassian.com/s/1ce410db1c7e1b043ed91ab8e28352e2-T/yl6d1c/804001/619f60e5de428c2ed7545f16096c303d/3.1.0/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=064d6699", "id": "064d6699"}, "code-review-rollout": {"url": "https://bitbucketfeedback.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/-4bqv2z/b/20/a44af77267a987a660377e5c46e0fb64/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=de003e2d", "id": "de003e2d"}, "source-browser": {"url": "https://bitbucketfeedback.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/-tqnsjm/b/20/a44af77267a987a660377e5c46e0fb64/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c19c2ff6", "id": "c19c2ff6"}}, "STATUSPAGE_URL": "https://bitbucket.status.atlassian.com/", "SOCIAL_AUTH_ATLASSIANID_LOGIN_PROMPT_URL": "https://id.atlassian.com/login", "CANON_URL": "https://bitbucket.org", "CONSENT_HUB_FRONTEND_BASE_URL": "https://preferences.atlassian.com", "API_CANON_URL": "https://api.bitbucket.org", "SOCIAL_AUTH_ATLASSIANID_LOGOUT_URL": "https://id.atlassian.com/logout", "EMOJI_STANDARD_BASE_URL": "https://bitbucket.org/gateway/api/emoji/"};
-      window.__webpack_nonce__ = 'U/lOHg2yB0EuBcdUhyYqOQ==';
-      window.isInitialLoadApdex = true;
-      
-      
-    </script>
-    
-      <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==" src="https://d301sr5gafysq2.cloudfront.net/frontbucket/assets/i18n/en.b5682b5d.js"></script>
-    
-      <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==" src="https://d301sr5gafysq2.cloudfront.net/frontbucket/assets/present/ajs.f3feef59.js"></script>
-    
-      <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==" src="https://d301sr5gafysq2.cloudfront.net/frontbucket/assets/present/app.bc630224.js"></script>
-    
-    
-      <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==" src="https://d301sr5gafysq2.cloudfront.net/frontbucket/assets/present/performance-timing.8646de93.js" defer></script>
-    
-    <script nonce="U/lOHg2yB0EuBcdUhyYqOQ==" type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","queueTime":0,"licenseKey":"a2cef8c3d3","agent":"","transactionName":"NFcGYEdUW0IAVE1QCw0dIkFbVkFYDlkWWw0XUBFXXlBBHwBHSUpKEVcUWwcbQ1gEQEoDAgpeAVZHWkJCBA==","applicationID":"790458688,773579827","errorBeacon":"bam-cell.nr-data.net","applicationTime":894}</script>
-  </body>
-</html>
+timelord:
+  # The timelord server (if run) will run on this port
+  port: 58446
+  # Provides a list of VDF clients expected to connect to this timelord.
+  # For each client, an IP is provided, together with the estimated iterations per second.
+  vdf_clients:
+    ip:
+      - *self_hostname
+      - localhost
+      - 127.0.0.1
+    ips_estimate:
+      - 150000
+  full_node_peer:
+      host: *self_hostname
+      port: 58444
+  # Maximum number of seconds allowed for a client to reconnect to the server.
+  max_connection_time: 60
+  # The ip and port where the TCP clients will connect.
+  vdf_server:
+    host: *self_hostname
+    port: 58555
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+  # fast_algorithm is a faster proof generation algorithm. This speed increase
+  # requires much less memory usage and a does not have the risk of OOM that
+  # the normal timelord has but requires significantly more cores doing
+  # parrallel proof generation and creates a larger and slower to verify
+  # resulting proof.
+  # An Intel Core i9-10900K can run 2 normal vdf_clients at ~221,000 ips
+  # without slowing down but running more than 1 with fast_algorithm will
+  # run each vdf_client slower.
+  fast_algorithm: False
+  # Bluebox (sanatizing Timelord):
+  # If set 'True', the timelord will create compact proofs of time, instead of
+  # extending the chain. The attribute 'fast_algorithm' won't apply if timelord
+  # is running in sanitizer_mode.
+  # You must set 'send_uncompact_interval' in 'full_node' > 0 in the full_node
+  # section below to have full_node send existing time proofs to be sanitized.
+  sanitizer_mode: False
+
+  ssl:
+    private_crt:  "config/ssl/timelord/private_timelord.crt"
+    private_key:  "config/ssl/timelord/private_timelord.key"
+    public_crt:  "config/ssl/timelord/public_timelord.crt"
+    public_key:  "config/ssl/timelord/public_timelord.key"
+
+full_node:
+  # The full node server (if run) will run on this port
+  port: 58444
+
+  # Run multiple nodes with different databases by changing the database_path
+  database_path: db/blockchain_v1_CHALLENGE.sqlite
+  peer_db_path: db/peer_table_node.sqlite
+  simulator_database_path: sim_db/simulator_blockchain_v1_CHALLENGE.sqlite
+  simulator_peer_db_path: sim_db/peer_table_node.sqlite
+
+  # If True, starts an RPC server at the following port
+  start_rpc_server: True
+  rpc_port: 58455
+
+  # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway
+  enable_upnp: True
+
+  # If node is more than these blocks behind, will do a sync (long sync)
+  sync_blocks_behind_threshold: 300
+
+  # If node is more than these blocks behind, will do a short batch-sync, if it's less, will do a backtrack sync
+  short_sync_blocks_behind_threshold: 20
+
+  # How often to initiate outbound connections to other full nodes.
+  peer_connect_interval: 30
+  # Accept peers until this number of connections
+  target_peer_count: 80
+  # Initiate outbound connections until this number is hit.
+  target_outbound_peer_count: 8
+  # IPv4/IPv6 network addresses and CIDR blocks allowed to connect even when target_peer_count has been hit.
+  # exempt_peer_networks: ["192.168.0.3", "192.168.1.0/24", "fe80::/10", "2606:4700:4700::64/128"]
+  exempt_peer_networks: []
+  # Accept at most # of inbound connections for different node types.
+  max_inbound_wallet: 20
+  max_inbound_farmer: 10
+  max_inbound_timelord: 5
+  # Only connect to peers who we have heard about in the last recent_peer_threshold seconds
+  recent_peer_threshold: 6000
+
+  # Send to a Bluebox (sanatizing timelord) uncompact blocks once every
+  # 'send_uncompact_interval' seconds. Set to 0 if you don't use this feature.
+  send_uncompact_interval: 0
+  # At every 'send_uncompact_interval' seconds, send blueboxes 'target_uncompact_proofs' proofs to be normalized.
+  target_uncompact_proofs: 100
+  # Setting this flag as True, blueboxes will sanitize only data needed in weight proof calculation, as opposed to whole blocks.
+  # Default is set to False, as the network needs only one or two blueboxes like this.
+  sanitize_weight_proof_only: False
+  # timeout for weight proof request
+  weight_proof_timeout: 360
+
+  # when enabled, the full node will print a pstats profile to the root_dir/profile every second
+  # analyze with socks/utils/profiler.py
+  enable_profiler: False
+
+  # List of trusted DNS seeders to bootstrap from.
+  # If you modify this, please change the hardcode as well from FullNode.set_server()
+  dns_servers:
+    - "dns-introducer.socks.works"
+  farmer_peer:
+      host: *self_hostname
+      port: 58447
+  timelord_peer:
+      host: *self_hostname
+      port: 58446
+  introducer_peer:
+      host: introducer.socks.works  # Socks AWS introducer IPv4/IPv6
+      port: 58445
+  wallet_peer:
+    host: *self_hostname
+    port: 58449
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    private_crt:  "config/ssl/full_node/private_full_node.crt"
+    private_key:  "config/ssl/full_node/private_full_node.key"
+    public_crt:  "config/ssl/full_node/public_full_node.crt"
+    public_key:  "config/ssl/full_node/public_full_node.key"
+
+ui:
+   # The ui node server (if run) will run on this port
+  port: 58222
+
+  # Which port to use to communicate with the full node
+  rpc_port: 58555
+
+  # This SSH key is for the ui SSH server
+  ssh_filename: config/ssh_host_key
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  # this is where the electron UI will find its daemon
+  # defaults to the one running locally with its private keys
+  daemon_host: *self_hostname
+  daemon_port: 55500
+  daemon_ssl:
+    private_crt: config/ssl/daemon/private_daemon.crt
+    private_key: config/ssl/daemon/private_daemon.key
+
+introducer:
+  host: *self_hostname
+  port: 58445
+  max_peers_to_send: 20
+  # The introducer will only return peers who it has seen in the last
+  # recent_peer_threshold seconds
+  recent_peer_threshold: 6000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    public_crt:  "config/ssl/full_node/public_full_node.crt"
+    public_key:  "config/ssl/full_node/public_full_node.key"
+
+wallet:
+  port: 58449
+  rpc_port: 59256
+
+  enable_profiler: False
+
+  # The minimum height that we care about for our transactions. Set to zero
+  # If we are restoring from private key and don't know the height.
+  starting_height: 0
+  start_height_buffer: 100  # Wallet will stop fly sync at starting_height - buffer
+  num_sync_batches: 50
+  initial_num_public_keys: 100
+  initial_num_public_keys_new_wallet: 5
+
+  full_node_peer:
+    host: *self_hostname
+    port: 58444
+
+  testing: False
+  database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
+  wallet_peers_path: wallet/db/wallet_peers.sqlite
+
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  target_peer_count: 5
+  peer_connect_interval: 60
+  # The introducer will only return peers who it has seen in the last
+  # recent_peer_threshold seconds
+  recent_peer_threshold: 6000
+
+  introducer_peer:
+    host: introducer.socks.works # Socks AWS introducer IPv4/IPv6
+    port: 58445
+
+  ssl:
+    private_crt:  "config/ssl/wallet/private_wallet.crt"
+    private_key:  "config/ssl/wallet/private_wallet.key"
+    public_crt:  "config/ssl/wallet/public_wallet.crt"
+    public_key:  "config/ssl/wallet/public_wallet.key"
+
+  trusted_peers:
+    trusted_node_1: "config/ssl/full_node/public_full_node.crt"
+
+  short_sync_blocks_behind_threshold: 20

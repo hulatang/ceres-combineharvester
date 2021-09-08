@@ -1,2201 +1,421 @@
-<!DOCTYPE html>
-<html lang='zh-CN'>
-<head>
-<title>chia/util/initial-config.yaml · ext9/ext9-blockchain - Gitee</title>
-<meta content='on' http-equiv='x-dns-prefetch-control'>
-<link href='//e.gitee.com' rel='dns-prefetch'>
-<link href='//files.gitee.com' rel='dns-prefetch'>
-<link href='//toscode.gitee.com' rel='dns-prefetch'>
-<link href='https://assets.gitee.com' rel='dns-prefetch'>
-<link href='https://portrait.gitee.com' rel='dns-prefetch'>
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="https://assets.gitee.com/assets/favicon-9007bd527d8a7851c8330e783151df58.ico" />
-<link rel="canonical" href="https://gitee.com/ext9/ext9-blockchain" />
-<meta content='gitee.com/ext9/ext9-blockchain git https://gitee.com/ext9/ext9-blockchain.git' name='go-import'>
-<meta charset='utf-8'>
-<meta content='always' name='referrer'>
-<meta content='Gitee' property='og:site_name'>
-<meta content='Object' property='og:type'>
-<meta content='http://gitee.com/ext9/ext9-blockchain/blob/net9.dev/chia/util/initial-config.yaml' property='og:url'>
-<meta content='https://gitee.com/static/images/logo_themecolor.png' itemprop='image' property='og:image'>
-<meta content='chia/util/initial-config.yaml · ext9/ext9-blockchain - Gitee' itemprop='name' property='og:title'>
-<meta content='Thanks to the outstanding work accomplished by Chia, it is possible to run multiple blockchain projects using the same hardware resources. Multiple blockchains running simultaneously on PosT based pro' property='og:description'>
-<meta content='码云,Gitee,代码托管,Git,Git@OSC,Gitee.com,开源,内源,项目管理,版本控制,开源代码,代码分享,项目协作,开源项目托管,免费代码托管,Git代码托管,Git托管服务' name='Keywords'>
-<meta content='Thanks to the outstanding work accomplished by Chia, it is possible to run multiple blockchain projects using the same hardware resources. Multiple blockchains running simultaneously on PosT based pro' itemprop='description' name='Description'>
-
-<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-<meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="TD0kw8hIsgl7MG3qg2o1T4kza9MbzvOuXqoQLhoQrdo=" />
-
-<link rel="stylesheet" media="all" href="https://assets.gitee.com/assets/application-8300a9ee3c32f14aa5d22ae11831be17.css" />
-<script>
-//<![CDATA[
-window.gon = {};gon.locale="en";gon.sentry_dsn=null;gon.baidu_register_hm_push=null;gon.sensor={"server_url":"https://haveaniceday.gitee.com:3443/sa?project=production","page_type":"其他"};gon.info={"controller_path":"blob","action_name":"show","current_user":false};gon.tour_env={"current_user":null,"action_name":"show","original_url":"http://gitee.com/ext9/ext9-blockchain/blob/net9.dev/chia/util/initial-config.yaml","controller_path":"blob"};gon.http_clone="https://gitee.com/ext9/ext9-blockchain.git";gon.user_project="ext9/ext9-blockchain";gon.manage_branch="Manage branch";gon.manage_tag="Manage tag";gon.enterprise_id=0;gon.create_reaction_path="/ext9/ext9-blockchain/reactions";gon.ref="net9.dev";
-//]]>
-</script>
-<script src="https://assets.gitee.com/assets/static/sensor-5984a2e9c24e9047ba28a1ddc8442b67.js"></script>
-<script src="https://assets.gitee.com/assets/static/sentry-5.1.0-a823fb0be1b61c5d7ca4a89f0536cb0a.js"></script>
-<script src="https://assets.gitee.com/assets/application-82ced95634ee425b0395f5af5f6a8619.js"></script>
-<script src="https://assets.gitee.com/assets/lib/jquery.timeago.en-d8a06c79c6bf9e7618c1ade936096da5.js"></script>
-
-<link rel="stylesheet" media="all" href="https://assets.gitee.com/assets/projects/application-705b8d764a3d4201795216aad0ed4b70.css" />
-<script src="https://assets.gitee.com/assets/projects/app-e03660280fa2f2c2dec88a4803dd22d4.js"></script>
-
-<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<script>
-  var title = document.title.replace(/( - Gitee| - 码云)$/, '')
-      imgUrl = '';
-  
-  document.addEventListener('DOMContentLoaded', function(event) {
-    var imgUrlEl = document.querySelector('.readme-box .markdown-body > img, .readme-box .markdown-body :not(a) > img');
-    imgUrl = imgUrlEl && imgUrlEl.getAttribute('src');
-  
-    if (!imgUrl) {
-      imgUrlEl = document.querySelector('meta[itemprop=image]');
-      imgUrl = imgUrlEl && imgUrlEl.getAttribute('content');
-      imgUrl = imgUrl || "https://gitee.com/static/images/logo_themecolor.png";
-    }
-  
-    wx.config({
-      debug: false,
-      appId: "wxff219d611a159737",
-      timestamp: "1631106796",
-      nonceStr: "53f8d7c64397466a728de2e76958c586",
-      signature: "2e3105c8eb9e409500af1fd2da4fc4019d0573db",
-      jsApiList: [
-        'onMenuShareTimeline',
-        'onMenuShareAppMessage'
-      ]
-    });
-  
-    wx.ready(function () {
-      wx.onMenuShareTimeline({
-        title: title, // 分享标题
-        link: "https://gitee.com/ext9/ext9-blockchain/blob/net9.dev/chia/util/initial-config.yaml", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: imgUrl // 分享图标
-      });
-      wx.onMenuShareAppMessage({
-        title: title, // 分享标题
-        link: "https://gitee.com/ext9/ext9-blockchain/blob/net9.dev/chia/util/initial-config.yaml", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        desc: document.querySelector('meta[name=Description]').getAttribute('content'),
-        imgUrl: imgUrl // 分享图标
-      });
-    });
-    wx.error(function(res){
-      console.error('err', res)
-    });
-  })
-</script>
-
-<script type='text/x-mathjax-config'>
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [["$$","$$"],["\\[","\\]"]],
-    processEscapes: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-    ignoreClass: "container|files",
-    processClass: "markdown-body"
-  }
-});
-</script>
-<script src="https://assets.gitee.com/uploads/resources/MathJax-2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script>
-  (function () {
-    var messages = {
-      'zh-CN': {
-        addResult: '增加 <b>{term}</b>',
-        count: '已选择 {count}',
-        maxSelections: '最多 {maxCount} 个选择',
-        noResults: '未找到结果',
-        serverError: '连接服务器时发生错误'
-      },
-      'zh-TW': {
-        addResult: '增加 <b>{term}</b>',
-        count: '已選擇 {count}',
-        maxSelections: '最多 {maxCount} 個選擇',
-        noResults: '未找到結果',
-        serverError: '連接服務器時發生錯誤'
-      }
-    }
-  
-    if (messages[gon.locale]) {
-      $.fn.dropdown.settings.message = messages[gon.locale]
-    }
-  }());
-</script>
-
-<script>
-  var userAgent = navigator.userAgent;
-  var isLessIE11 = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
-  if(isLessIE11){
-    var can_access = ""
-    if (can_access != "true"){
-      window.location.href = "/incompatible.html";
-    }
-  }
-  document.addEventListener("error", function (ev) {
-    var elem = ev.target;
-    if (elem.tagName.toLowerCase() === 'img') {
-      elem.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAAAAACIM/FCAAACh0lEQVR4Ae3ch5W0OgyG4dt/mQJ2xgQPzJoM1m3AbALrxzrf28FzsoP0HykJEEAAAUQTBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEkKK0789+GK/I2ezfQB522PnS1qc8pGgXvr4tE4aY0XOUWlGImThWgyCk6DleixzE7qwBkg/MGiDPlVVAyp1VQGrPKiACDhFI6VkF5LmzCki+sg7IwDoglnVAil0IMkeG9CyUiwsxLFUVFzJJOQaKCjFCDN9RXMjIX7W6ztZXZDKKCyn8sWJvH+nca7WHDN9lROlAliPH9iRKCPI4cswFJQWxB46toLQgQ9jhn5QYZA9DOkoMUoQde5YapAxDWkoNYsOQR3KQd9CxUnIQF4S49CB9ENKlBxmDEKsFUgMCCCCAAHIrSF61f6153Ajy8nyiPr8L5MXnmm4CyT2fzN4DUvHZ+ntA2tOQBRBAAAEEEEAAAQQQ7ZBaC6TwSiDUaYHQ2yuB0MN+ft+43whyrs4rgVCjBUKTFshLC6TUAjGA3AxSaYFYLZBOC2RUAsk8h5qTg9QcbEoOsoQhQ2qQhsO5xCD5dgB5JQaZ+KBKGtKecvR81Ic0ZDjByKdDx0rSEDZ/djQbH+bkIdvfJFm98BfV8hD2zprfVdlu9PxVeyYAkciREohRAplJCaRSAplJCcQogTjSAdlyHRBvSAekJR0QRzogA+mADJkOiCPSAPEtqYBshlRAXC43hxix2QiOuEZkVERykGyNo9idIZKE0HO7XrG6OiMShlDWjstVzdPgXtUH9v0CEidAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQP4HgjZxTpdEii0AAAAASUVORK5CYII=";
-    }
-  }, true);
-</script>
-</head>
-
-<body class='git-project lang-en large'>
-<header class='common-header fixed noborder' id='git-header-nav'>
-<div class='ui container'>
-<div class='ui menu header-menu header-container'>
-<div class='git-nav-expand-bar'>
-<i class='iconfont icon-mode-table'></i>
-</div>
-<div class='gitee-nav__sidebar'>
-<div class='gitee-nav__sidebar-container'>
-<div class='gitee-nav__sidebar-top'>
-<div class='gitee-nav__avatar-box'></div>
-<div class='gitee-nav__buttons-box'>
-<a class="ui button small fluid orange" href="/login">Sign in</a>
-<a class="ui button small fluid basic is-register" href="/signup">Sign up</a>
-</div>
-</div>
-<div class='gitee-nav__sidebar-middle'>
-<div class='gitee-nav__sidebar-list'>
-<ul>
-<li class='gitee-nav__sidebar-item'>
-<a href="/explore"><i class='iconfont icon-ic-discover'></i>
-<span class='gitee-nav__sidebar-name'>Explore</span>
-</a></li>
-<li class='gitee-nav__sidebar-item'>
-<a href="/enterprises"><i class='iconfont icon-ic-enterprise'></i>
-<span class='gitee-nav__sidebar-name'>Enterprise</span>
-</a></li>
-<li class='gitee-nav__sidebar-item'>
-<a href="/education"><i class='iconfont icon-ic-education'></i>
-<span class='gitee-nav__sidebar-name'>Education</span>
-</a></li>
-<li class='gitee-nav__sidebar-item split-line'></li>
-<li class='gitee-nav__sidebar-item'>
-<a href="/search"><i class='iconfont icon-ic-search'></i>
-<span class='gitee-nav__sidebar-name'>Search</span>
-</a></li>
-<li class='gitee-nav__sidebar-item'>
-<a href="/help"><i class='iconfont icon-help-circle'></i>
-<span class='gitee-nav__sidebar-name'>Help</span>
-</a></li>
-<li class='gitee-nav__sidebar-item'>
-<a href="/terms"><i class='iconfont icon-file'></i>
-<span class='gitee-nav__sidebar-name'>Terms of use</span>
-</a></li>
-<li class='gitee-nav__sidebar-item'>
-<a href="/about_us"><i class='iconfont icon-issuepx'></i>
-<span class='gitee-nav__sidebar-name'>About Us</span>
-</a></li>
-</ul>
-</div>
-</div>
-<div class='gitee-nav__sidebar-bottom'>
-<div class='gitee-nav__sidebar-close-button'>
-<i class='fa fa-angle-double-left'></i>
-</div>
-</div>
-</div>
-</div>
-
-<div class='item gitosc-logo'>
-<a href="/"><img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline image' height='28' src='/static/images/logo.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='95'>
-<img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline black image' height='28' src='/static/images/logo-black.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='95'>
-</a></div>
-<a title="Explore" class="item " href="/explore">Explore
-</a><a title="Enterprise" class="item " href="/enterprises">Enterprise
-</a><a title="Education" class="item " href="/education">Education
-</a><a title="Gitee Premium" class="item" target="_blank" href="https://gitee.cn?utm_source=giteecom">Gitee Premium
-</a><a title="Blog" class="item" id="gitee-blog" target="_blank" href="https://blog.gitee.com/">Blog
-</a><div class='center responsive-logo'>
-<a href="/"><img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline image' height='24' src='/static/images/logo.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='85'>
-<img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline black image' height='24' src='/static/images/logo-black.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='85'>
-</a></div>
-<div class='right menu userbar right-header' id='git-nav-user-bar'>
-<form class="ui item" id="navbar-search-form" data-text-require="Search keywords can not be less than one" data-text-filter="Invalid search content" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
-<input type="hidden" name="type" id="navbar-search-type" />
-<input type="hidden" name="fork_filter" id="fork_filter" value="on" />
-<div class='ui search header-search'>
-<input type="text" name="q" id="navbar-search-input" value="" class="prompt" placeholder="Search" />
-</div>
-</form>
-
-<script>
-  var can_search_in_repo = 1,
-      repo = "VFZSak1VOUVVVE5OZW14b1RucFplbHBuUFQxaE56WXpaZz09YTc2M2Y=",
-      reponame = "ext9/ext9-blockchain";
-  
-  $(function() {
-    var $search = $('#navbar-search-form .ui.search');
-    $search.search({
-      apiSettings: {
-        url: '/search/relative_project?q={query}',
-        onResponse: function (res) {
-          if (res && res.status === 200 && res.data) {
-            var query = htmlSafe($search.search('get value'));
-  
-            res.data.map(function (item) {
-              item.path_ns = '/' + item.path_ns;
-              item.icon = 'iconfont icon-project-public';
-            });
-            res.data.unshift({
-              name_ns: "在全站搜索 <b class='hl'>" + query +"</b> 相关项目",
-              path_ns: '/search?fork_filter=on&q=' + query,
-              icon: 'iconfont icon-search'
-            });
-            return res;
-          } else {
-            return { data: [] };
-          }
-        }
-      },
-      fields: {
-        results: 'data',
-        description: 'name_ns',
-        url: 'path_ns',
-        icon: 'icon'
-      },
-      minCharacters: 1,
-      maxResults: 10,
-      searchDelay: 250,
-      showNoResults: false,
-      transition: 'fade'
-    });
-  });
-</script>
-
-<div class='ui item' id='feature-update-notice'>
-<div class='notice-update-icon'>
-<a class="notice-update-popup click-knowed" title="" href="javascript:void(0)"><img alt="功能更新" title="" class="bubl_icon bubl-off-icon" src="https://assets.gitee.com/assets/bulb_off-24ee940be20998aace89a3f040cbc704.svg" />
-<img alt="功能更新" title="" class="bubl_icon bubl-on-icon" src="https://assets.gitee.com/assets/bulb_on-3986b1dc417285398e3d15671bd8f261.svg" />
-</a></div>
-<div class='feature-update-notice-panel menu'>
-<div class='notice-img'>
-<img alt="" title="" class="notice-img-show" src="" />
-</div>
-<div class='notice-update-title'></div>
-<div class='notice-update-des'></div>
-<div class='notice-btn-list d-flex-between'>
-<button name="button" type="button" class="ui basic orange button btn-notice btn-knowed click-knowed" style="margin-right: 0">I know</button>
-<a class="ui button orange btn-notice btn-details click-knowed" target="_blank" href="">View Details</a>
-</div>
-</div>
-</div>
-
-<a class="item git-nav-user__login-item" sa_evt="login_show" sa_referrer_url="" sa_referrer_action="站导航右上角-登录按钮" sa_referrer_type="其他" href="/login">Sign in
-</a><a class="item git-nav-user__register-item" sa_evt="register_show" sa_referrer_url="" sa_referrer_action="站导航右上角-注册按钮" sa_referrer_type="其他" href="/signup">Sign up
-</a><script>
-  $('.destroy-user-session').on('click', function() {
-    $.cookie('access_token', null, { path: '/' });
-  })
-</script>
-
-</div>
-</div>
-</div>
-</header>
-<script>
-  Gitee.initNavbar()
-  Gitee.initRepoRemoteWay()
-  $.cookie('user_locale',null)
-</script>
-
-<script>
-  var userAgent = navigator.userAgent;
-  var isLessIE11 = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
-  if(isLessIE11){
-    var can_access = ""
-    if (can_access != "true"){
-      window.location.href = "/incompatible.html";
-    }
-  }
-</script>
-
-<div class='fixed-notice-infos'>
-<div class='all-messages'>
-</div>
-<div class='ui container'>
-<div class='flash-messages' id='messages-container'></div>
-</div>
-<script>
-  (function() {
-    $(function() {
-      var $error_box, alertTip, notify_content, notify_options, template;
-      template = '<div data-notify="container" class="ui {0} message" role="alert">' + '<i data-notify="dismiss" class="close icon"></i>' + '<span data-notify="message">{2}</span>' + '</div>';
-      notify_content = null;
-      notify_options = {};
-      alertTip = '';
-      $error_box = $(".flash_error.flash_error_box");
-      if (notify_options.type === 'error' && $error_box.length > 0 && !$.isEmptyObject(notify_content.message)) {
-        if (notify_content.message === 'captcha_fail') {
-          alertTip = "The captcha is incorrect";
-        } else if (notify_content.message === 'captcha_expired') {
-          alertTip = "The captcha was expired, please refresh it";
-        } else if (notify_content.message === 'not_found_in_database') {
-          alertTip = "Invalid email or password.";
-        } else if (notify_content.message === 'not_found_and_show_captcha') {
-          alertTip = "Invalid email or password.";
-        } else if (notify_content.message === 'phone_captcha_fail') {
-          alertTip = "The phone captcha is incorrect";
-        } else {
-          alertTip = notify_content.message;
-        }
-        return $error_box.html(alertTip).show();
-      } else if (notify_content) {
-        if ("show" === 'third_party_binding') {
-          return $('#third_party_binding-message').html(notify_content.message).addClass('ui message red');
-        }
-        notify_options.delay = 3000;
-        notify_options.template = template;
-        notify_options.offset = {
-          x: 10,
-          y: 30
-        };
-        notify_options.element = '#messages-container';
-        return $.notify(notify_content, notify_options);
-      }
-    });
-  
-  }).call(this);
-</script>
-
-</div>
-<script>
-  (function() {
-    $(function() {
-      var setCookie;
-      setCookie = function(name, value) {
-        $.cookie(name, value, {
-          path: '/',
-          expires: 365
-        });
-      };
-      $('#remove-bulletin, #remove-bulletin-dashboard').on('click', function() {
-        setCookie('remove_bulletin', "gitee-maintain-1627869215");
-        $('#git-bulletin').hide();
-      });
-      $('#remove-member-bulletin').on('click', function() {
-        setCookie('remove_member_bulletin', "gitee_member_bulletin");
-        $(this).parent().hide();
-      });
-      return $('#remove-gift-bulletin').on('click', function() {
-        setCookie('remove_gift_bulletin', "gitee-gift-bulletin");
-        $(this).parent().hide();
-      });
-    });
-  
-  }).call(this);
-</script>
-<script>
-  function closeMessageBanner(pthis, type, val) {
-    var json = {}
-  
-    val = typeof val === 'undefined' ? null : val
-    $(pthis).parent().remove()
-    if (type === 'out_of_enterprise_member') {
-      json = {type: type, data: val}
-    } else if (type === 'enterprise_overdue') {
-      json = {type: type, data: val}
-    }
-    $.post('/profile/close_flash_tip', json)
-  }
-</script>
-
-<div class='site-content'>
-<div class='git-project-header'>
-<div class='fixed-notice-infos'>
-<div class='ui info icon floating message green' id='fetch-ok' style='display: none'>
-<div class='content'>
-<div class='header status-title'>
-<i class='info icon status-icon'></i>
-Fetch the repository succeeded.
-</div>
-</div>
-</div>
-<div class='ui info icon floating message error' id='fetch-error' style='display: none'>
-<div class='content'>
-<div class='header status-title'>
-<i class='info icon status-icon'></i>
-<span class='error_msg'></span>
-</div>
-</div>
-</div>
-</div>
-<div class='ui container'>
-
-<div class='git-project-header-details'>
-<div class='git-project-header-container'>
-<div class='git-project-header-actions'>
-<div class='ui tiny modal project-donate-modal' id='project-donate-modal'>
-<i class='iconfont icon-close close'></i>
-<div class='header'>Donate</div>
-<div class='content'>
-Please sign in before you donate.
-</div>
-<div class='actions'>
-<a class='ui blank button cancel'>Cancel</a>
-<a class='ui orange ok button' href='/login'>Sign in</a>
-</div>
-</div>
-<div class='ui small modal wepay-qrcode'>
-<i class='iconfont icon-close close'></i>
-<div class='header'>
-扫描微信二维码支付
-<span class='wepay-cash'></span>
-</div>
-<div class='content weqcode-center'>
-<img id='wepay-qrcode' src=''>
-</div>
-<div class='actions'>
-<div class='ui cancel blank button'>取消</div>
-<div class='ui ok orange button'>
-支付完成
-</div>
-</div>
-</div>
-<div class='ui mini modal' id='confirm-alipay-modal'>
-<div class='header'>支付提示</div>
-<div class='content'>
-将跳转至支付宝完成支付
-</div>
-<div class='actions'>
-<div class='ui approve orange button'>
-确定
-</div>
-<div class='ui blank cancel button'>
-取消
-</div>
-</div>
-</div>
-
-<span class='ui buttons basic watch-container'>
-<div class='ui dropdown button js-project-watch' data-watch-type='unwatch'>
-<input type='hidden' value=''>
-<i class='iconfont icon-watch'></i>
-<div class='text'>
-Watch
-</div>
-<i class='dropdown icon'></i>
-<div class='menu'>
-<a data-value="unwatch" class="item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/ext9/ext9-blockchain/unwatch"><i class='iconfont icon-msg-read'></i>
-Unwatch
-</a><a data-value="watching" class="item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/ext9/ext9-blockchain/watch"><i class='iconfont icon-msg-read'></i>
-Watching
-</a><a data-value="releases_only" class="disabled item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/ext9/ext9-blockchain/release_only_watch"><i class='iconfont icon-msg-read'></i>
-Releases Only
-</a><a data-value="ignoring" class="item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/ext9/ext9-blockchain/ignoring_watch"><i class='iconfont icon-msg-read'></i>
-Ignoring
-</a></div>
-</div>
-<style>
-  .js-project-watch .text .iconfont {
-    display: none; }
-  .js-project-watch a, .js-project-watch a:hover {
-    color: #000; }
-  .js-project-watch .item > .iconfont {
-    visibility: hidden;
-    margin-left: -10px; }
-  .js-project-watch .selected .iconfont {
-    visibility: visible; }
-  .js-project-watch .menu {
-    margin-top: 4px !important; }
-</style>
-<script>
-  $('.js-project-watch').dropdown({
-    action: 'select',
-    onChange: function(value, text, $selectedItem) {
-      var type = value === 'unwatch' ? 'Watch' : 'Watching';
-      $(this).children('.text').text(type);
-      $(this).dropdown('set selected', value)
-    }
-  });
-</script>
-
-<a class="ui button action-social-count" title="3" href="/ext9/ext9-blockchain/watchers">3
-</a></span>
-<span class='basic buttons star-container ui'>
-<a class="ui button star" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Star" sa_referrer_type="其他" href="/login"><i class='iconfont icon-star'></i>
-Star
-</a><a class="ui button action-social-count " title="1" href="/ext9/ext9-blockchain/stargazers">1
-</a></span>
-<span class='ui basic buttons fork-container' title='You do not have the permission to fork this repository'>
-<a class="ui button fork" title="You must be signed in to fork a repository" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Fork" sa_referrer_type="其他" href="/login"><i class='iconfont icon-fork'></i>
-Fork
-</a><a class="ui button action-social-count disabled-style" title="0" href="/ext9/ext9-blockchain/members">0
-</a></span>
-</div>
-<h2 class='git-project-title mt-0 mb-0'>
-<span class="project-title"><i class="project-icon iconfont icon-project-public" title="This is a public repository"></i> <a title="ext9" class="author" href="/ext9">ext9</a> / <a title="ext9-blockchain" class="repository" target="" style="padding-bottom: 0px; margin-right: 4px" sa_evt="repoClick" sa_location="其他" sa_url="" sa_repo_id="17584739" href="/ext9/ext9-blockchain">ext9-blockchain</a></span><span class="project-badges"><style>
-  .gitee-modal {
-    width: 500px !important; }
-</style>
-</span>
-<input type="hidden" name="project_title" id="project_title" value="ext9/ext9-blockchain" />
-</h2>
-</div>
-</div>
-</div>
-<script>
-  var title_import_url = "false";
-  var title_post_url = "/ext9/ext9-blockchain/update_import";
-  var title_fork_url = "/ext9/ext9-blockchain/sync_fork";
-  var title_project_path = "ext9-blockchain";
-  var title_p_name = "ext9-blockchain";
-  var title_p_id= "17584739";
-  var title_description = "Thanks to the outstanding work accomplished by Chia, it is possible to run multiple blockchain projects using the same hardware resources. Multiple blockchains running simultaneously on PosT based pro";
-  var title_form_authenticity_token = "TD0kw8hIsgl7MG3qg2o1T4kza9MbzvOuXqoQLhoQrdo=";
-  var watch_type = "unwatch";
-  
-  $('.js-project-watch').dropdown('set selected', watch_type);
-  $('.checkbox.sync-wiki').checkbox();
-</script>
-<style>
-  i.loading {
-    -webkit-animation: icon-loading 1.2s linear infinite;
-    animation: icon-loading 1.2s linear infinite;
-  }
-  .qrcode_cs {
-    float: left;
-  }
-  .check-sync-wiki {
-    float: left;
-    height: 28px;
-    line-height: 28px;
-  }
-  .sync-wiki-warn {
-    color: #e28560;
-  }
-</style>
-
-<div class='git-project-nav'>
-<div class='ui container'>
-<div class='ui secondary pointing menu'>
-<a class="item active" href="/ext9/ext9-blockchain"><i class='iconfont icon-code'></i>
-Code
-</a><a class="item " href="/ext9/ext9-blockchain/issues"><i class='iconfont icon-task'></i>
-Issues
-<span class='ui mini circular label'>
-2
-</span>
-</a><a class="item big-wide " href="/ext9/ext9-blockchain/pulls"><i class='iconfont icon-pull-request'></i>
-Pull Requests
-<span class='ui mini circular label'>
-0
-</span>
-</a><a class="item " href="/ext9/ext9-blockchain/wikis"><i class='iconfont icon-wiki'></i>
-Wiki
-</a><a class="item  " href="/ext9/ext9-blockchain/graph/net9.dev"><i class='iconfont icon-statistics'></i>
-Insights
-</a><div class='item project-devops-item'>
-<div class='ui pointing top right dropdown project-devops-dropdown'>
-<div class='text'>
-<i class='iconfont icon-devops'></i>
-DevOps
-</div>
-<i class='dropdown icon'></i>
-<div class='menu' style='display:none'>
-<a class="item" href="/ext9/ext9-blockchain/gitee_go"><img src="https://assets.gitee.com/assets/giteego-7ec42270742374f05850d0d3ad09e303.png" alt="Giteego" />
-<div class='item-title'>
-Gitee Go
-</div>
-</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4285"><img src="https://assets.gitee.com/assets/baidu_efficiency_cloud-81a98c2eb67fac83b1453ca3d2feb326.svg" alt="Baidu efficiency cloud" />
-<div class='item-title'>
-Baidu Efficiency Cloud
-</div>
-</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4318"><img src="https://assets.gitee.com/assets/cloudbase-1197b95ea3398aff1df7fe17c65a6d42.png?20200925" alt="Cloudbase" />
-<div class='item-title'>
-Tencent CloudBase
-</div>
-</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4330"><img src="https://assets.gitee.com/assets/cloud_serverless-686cf926ced5d6d2f1d6e606d270b81e.png" alt="Cloud serverless" />
-<div class='item-title'>
-Tencent Cloud Serverless
-</div>
-</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4193"><img src="https://assets.gitee.com/assets/jenkins_for_gitee-554ec65c490d0f1f18de632c48acc4e7.png" alt="Jenkins for gitee" />
-<div class='item-title'>
-Jenkins for Gitee
-</div>
-</a></div>
-</div>
-</div>
-<div class='item'>
-<div class='ui pointing top right dropdown git-project-service'>
-<div class='text'>
-<i class='iconfont icon-service'></i>
-Service
-</div>
-<i class='dropdown icon'></i>
-<div class='menu' style='display:none'>
-<a class="item" href="/ext9/ext9-blockchain/pages"><img src="/static/images/logo-en.svg" alt="Logo en" />
-<div class='item-title'>
-Gitee Pages
-</div>
-</a><a class="item" href="/ext9/ext9-blockchain/javadoc"><img src="https://assets.gitee.com/assets/maven-bd58aee84f266d64d4b8ce5b006a9fcf.png" alt="Maven" />
-<div class='item-title'>
-JavaDoc
-</div>
-</a><a class="item" href="/ext9/ext9-blockchain/phpdoc"><img src="https://assets.gitee.com/assets/phpdoc-a99f87c2feaa2fd99e5065377a39487e.png" alt="Phpdoc" />
-<div class='item-title'>
-PHPDoc
-</div>
-</a><a class="item" href="/ext9/ext9-blockchain/quality_analyses?platform=sonar_qube"><img src="https://assets.gitee.com/assets/sonar_mini-5e1b54bb9f6c951d97fb778ef623afea.png" alt="Sonar mini" />
-<div class='item-title'>
-Quality analysis
-</div>
-</a><a class="item" href="/ext9/ext9-blockchain/quality_analyses?platform=codesafe"><img width="100%" src="https://assets.gitee.com/assets/codesafe_mini-accbe1e555e9864c552620240d10e4de.png" alt="Codesafe mini" />
-<div class='item-title'>
-CodeSafe
-</div>
-</a><a class="item" href="/ext9/ext9-blockchain/gitee_scans"><img src="https://assets.gitee.com/assets/giteescan-cd9ab4076bd751faf7e30888eb10f782.png" alt="Giteescan" />
-<div class='item-title'>Gitee Scan</div>
-</a><button class='ui orange basic button quit-button' id='quiting-button'>
-Don’t show this again
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<script>
-  $('.git-project-nav .ui.dropdown').dropdown({ action: 'nothing' });
-  var gitee_reward_config = JSON.parse(localStorage.getItem('gitee_reward_config') || null) || false
-  var $settingText = $('.setting-text')
-  // 如果没有访问过 
-  if(!gitee_reward_config) $settingText.addClass('red-dot')
-</script>
-<style>
-  .git-project-nav i.checkmark.icon {
-    color: green;
-  }
-  #quiting-button {
-    display: none;
-  }
-  
-  .git-project-nav .dropdown .menu.hidden:after {
-    visibility: hidden !important;
-  }
-</style>
-<script>
-  isSignIn = false
-  isClickGuide = false
-  $('#git-versions.dropdown').dropdown();
-  $.ajax({
-    url:"/ext9/ext9-blockchain/access/add_access_log",
-    type:"GET"
-  });
-  $('#quiting-button').on('click',function() {
-    $('.git-project-service').click();
-    if (isSignIn) {
-      $.post("/projects/set_service_guide")
-    }
-    $.cookie("Serve_State", true, { expires: 3650, path: '/'})
-    $('#quiting-button').hide();
-  });
-  if (!(isClickGuide || $.cookie("Serve_State") == 'true')) {
-    $('.git-project-service').click()
-    $('#quiting-button').show()
-  }
-</script>
-
-</div>
-<div class='ui container'>
-<div class='register-guide'>
-<div class='register-container'>
-<div class='regist'>
-Create your Gitee Account
-</div>
-<div class='description'>
-Explore and code with more than 6 million developers，Free private repositories ！：）
-</div>
-<a class="ui orange button free-registion" sa_evt="register_show" sa_referrer_url="" sa_referrer_action="免费加入" sa_referrer_type="其他" href="/signup?from=project-guide">Sign up</a>
-<div class='login'>
-Already have an account?
-<a href="/login?from=project-guide">Sign in</a>
-</div>
-</div>
-</div>
-
-<div class='git-project-content-wrapper'>
-<div class='ui grid' id='project-wrapper'>
-<div class='sixteen wide column'>
-<div class='git-project-content' id='git-project-content'>
-<div class='row'>
-<div class='git-project-desc-wrapper'>
-<script>
-  if (false) {
-    gon.project_new_blob_path = "/ext9/ext9-blockchain/new/net9.dev/chia/util/initial-config.yaml"
-    bindShowModal({
-      el: $('.no-license .project-license__create'),
-      complete: function(data, modal) {
-        if (!data.haveNoChoice && !data.data) {
-          Flash.show('Please select an open source license')
-        } else {
-          location.href = gon.project_new_blob_path + '?license=' + data.data
-        }
-      },
-      skip: function () {
-        location.href = gon.project_new_blob_path + '?license'
-      }
-    });
-  }
-  
-  $('i.help.circle.icon').popup({
-    popup: '.no-license .ui.popup',
-    position: 'right center'
-  });
-  
-  $('#remove-no-license-message').on('click', function() {
-    $.cookie("skip_repo_no_license_message_17584739", 'hide', { expires: 365 });
-    $('#user-no-license-message').hide();
-    return;
-  });
-</script>
-</div>
-
-</div>
-<div class='git-project-bread' id='git-project-bread'>
-<div class='ui horizontal list mr-1'>
-<div class='item git-project-branch-item'>
-<input type="hidden" name="path" id="path" value="chia/util/initial-config.yaml" />
-<div class='ui top left pointing dropdown gradient button dropdown-has-tabs' id='git-project-branch'>
-<input type="hidden" name="ref" id="ref" value="net9.dev" />
-<div class='default text'>
-net9.dev
-</div>
-<i class='dropdown icon'></i>
-<div class='menu'>
-<div class='ui left icon search input'>
-<i class='iconfont icon-search'></i>
-<input class='search-branch' placeholder='Search branch' type='text'>
-</div>
-<div class='tab-menu'>
-<div class='tab-menu-action' data-tab='branches'>
-<a class="ui link button" href="/ext9/ext9-blockchain/branches">Manage</a>
-</div>
-<div class='tab-menu-action' data-tab='tags'>
-<a class="ui link button" href="/ext9/ext9-blockchain/tags">Manage</a>
-</div>
-<div class='tab-menu-item' data-placeholder='Search branches' data-tab='branches'>
-Branches (1)
-</div>
-<div class='tab-menu-item' data-placeholder='Search tags' data-tab='tags'>
-Tags (4)
-</div>
-</div>
-<div class='tab scrolling menu' data-tab='branches'>
-<div data-value="net9.dev" class="item"><span>net9.dev</span></div>
-</div>
-<div class='tab scrolling menu' data-tab='tags'>
-<div class='item' data-value='0.1.1'>0.1.1</div>
-<div class='item' data-value='0.1.2'>0.1.2</div>
-<div class='item' data-value='0.1.0'>0.1.0</div>
-<div class='item' data-value='0.0.6.2'>0.0.6.2</div>
-</div>
-</div>
-</div>
-<style>
-  .iconfont.icon-shieldlock {
-    color: #8c92a4;
-  }
-</style>
-
-<script>
-  $(function () {
-    Gitee.initTabsInDropdown($('#git-project-branch').dropdown({
-      fullTextSearch: true,
-      selectOnKeydown: true,
-      action: function (text,value,el) {
-        var oItemOrInitObject = el[0] || el
-        var isNotSelect = oItemOrInitObject.dataset.tab && oItemOrInitObject.dataset.tab === 'branches'
-        if(isNotSelect){
-          console.warn("You didn't choose a branch")
-          return
-        } 
-        var path = $('#path').val();
-        var href = ['/ext9/ext9-blockchain/tree', encodeURIComponent(value), path].join('/');
-        window.location.href = href;
-        return true
-      },
-      onNoResults: function (searchTerm) {
-        //未找到结果
-        return true
-      },
-    }));
-    $('.protected-branch-popup').popup()
-  })
-</script>
-
-</div>
-</div>
-<div class='git-project-right-actions pull-right'>
-<div class='ui orange button' id='btn-dl-or-clone'>
-Clone or download
-<i class='dropdown icon'></i>
-</div>
-<div class='git-project-download-panel for-project ui bottom right popup'>
-<div class='ui small secondary pointing menu'>
-<a class='item active' data-text='' data-type='http' data-url='https://gitee.com/ext9/ext9-blockchain.git'>HTTPS</a>
-<a class='item' data-text='' data-type='ssh' data-url='git@gitee.com:ext9/ext9-blockchain.git'>SSH</a>
-<a class='item' data-text="The repository has forbidden SVN access. if you need it, please visit: &lt;a target='_blank' href=/ext9/ext9-blockchain/settings&gt;Repository security settings&lt;/a&gt;" data-type='svn' data-url=''>SVN</a>
-<a class='item' data-text="The repository has forbidden SVN access. if you need it, please visit: &lt;a target='_blank' href=/ext9/ext9-blockchain/settings&gt;Repository security settings&lt;/a&gt;" data-type='svn_ssh' data-url=''>SVN+SSH</a>
-</div>
-<div class='ui fluid right labeled small input download-url-panel'>
-<input type="text" name="project_clone_url" id="project_clone_url" value="https://gitee.com/ext9/ext9-blockchain.git" onclick="focus();select()" readonly="readonly" />
-<div class='ui basic label'>
-<div class='ui small basic orange button' data-clipboard-target='#project_clone_url' id='btn-copy-clone-url'>
-Copy
-</div>
-</div>
-</div>
-<div class='ui fluid right labeled warning-text forbid-warning-text'>
-
-</div>
-<hr>
-<a class="ui fluid download link button" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="克隆/下载" sa_referrer_type="其他" href="javascript:void(0);"><i class='icon download'></i>
-Download ZIP
-</a><div class='download_repository_zip form modal tiny ui' id='unlanding-complaint-modal'>
-<i class='iconfont icon-close close'></i>
-<div class='header'>
-Login prompt
-</div>
-<div class='container actions'>
-<div class='content'>
-This operation requires login to the code cloud account. Please log in before operating.
-</div>
-<div class='ui orange icon large button ok'>
-Go to login
-</div>
-<div class='ui button blank cancel'>
-No account. Register
-</div>
-</div>
-</div>
-<script>
-  var $elm = $('.download');
-  
-  $elm.on('click', function() {
-    var modals = $("#unlanding-complaint-modal.download_repository_zip");
-    if (modals.length > 1) {
-      modals.eq(0).modal('show');
-    } else {
-      modals.modal('show');
-    }
-  })
-  $("#unlanding-complaint-modal.download_repository_zip").modal({
-    onDeny: function() {
-      window.location.href = "/signup?from=download_repository_zip";
-    },
-    onApprove: function() {
-      window.location.href = "/login?from=download_repository_zip";
-    }
-  })
-</script>
-
-</div>
-<script>
-  (function() {
-    var $btnClone, $btnCopy, $input, $panel;
-  
-    $btnClone = $('#btn-dl-or-clone');
-  
-    $panel = $('.git-project-download-panel');
-  
-    $input = $('#project_clone_url');
-  
-    $btnCopy = $('#btn-copy-clone-url');
-  
-    $btnClone.popup({
-      on: 'click',
-      hoverable: true,
-      position: 'bottom center'
-    });
-  
-    $panel.find('.menu > .item').on('click', function(e) {
-      var $item, dataUrl;
-      $item = $(this).addClass('active');
-      $item.siblings().removeClass('active');
-      dataUrl = $item.attr('data-url');
-      if (dataUrl) {
-        $panel.find('.download-url-panel').show();
-        $input.val(dataUrl);
-        $panel.find('.forbid-warning-text').html('');
-      } else {
-        $panel.find('.download-url-panel').hide();
-        $panel.find('.forbid-warning-text').html($item.attr('data-text') || '');
-      }
-      return $.cookie('remote_way', $item.attr('data-type'), {
-        expires: 365,
-        path: '/'
-      });
-    }).filter('[data-type="' + ($.cookie('remote_way') || 'http') + '"]').trigger('click');
-  
-    new Clipboard($btnCopy[0]).on('success', function() {
-      $btnCopy.popup({
-        content: 'Copied',
-        position: 'right center',
-        onHidden: function() {
-          return $btnCopy.popup('destroy');
-        }
-      });
-      return $btnCopy.popup('show');
-    });
-  
-  }).call(this);
-</script>
-
-</div>
-<div class='d-inline pull-right' id='git-project-root-actions'>
-<script>
-  $('.disabled-upload-readonly').popup({
-    content: "Readonly directory does not allow uploading files",
-    className: {
-      popup: 'ui popup',
-    },
-    position: 'bottom center',
-  })
-  $('.disabled-create-folder').popup({
-    content: "Readonly directory does not allow directory creation",
-    className: {
-      popup: 'ui popup',
-    },
-    position: 'bottom center',
-  })
-  $('.disabled-create-file').popup({
-    content: "Readonly directory does not allow files creation",
-    className: {
-      popup: 'ui popup',
-    },
-    position: 'bottom center',
-  })
-  $('.disabled-upload-readonly').click(function() {
-    return false
-  })
-  $('.disabled-create-folder').click(function() {
-    return false
-  })
-  $('.disabled-create-file').click(function() {
-    return false
-  })
-</script>
-<style>
-  .disabled-upload-readonly, .disabled-create-file, .disabled-create-folder {
-    background-color: #dcddde !important;
-    color: rgba(0, 0, 0, 0.4) !important;
-    opacity: 0.3 !important;
-    background-image: none !important;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important; }
-</style>
-
-
-</div>
-<div class='breadcrumb_path path-breadcrumb-contrainer' id='git-project-breadcrumb'>
-<div class='ui breadcrumb path project-path-breadcrumb' id='path-breadcrumb'>
-<a data-direction="back" class="section repo-name" style="font-weight: bold" href="/ext9/ext9-blockchain/tree/net9.dev">ext9-blockchain
-</a><div class='divider'>
-/
-</div>
-<strong>
-<a data-direction="back" class="section" href="/ext9/ext9-blockchain/tree/net9.dev/chia"><span class='cblue'>
-chia
-</span>
-</a></strong>
-<div class='divider'>
-/
-</div>
-<strong>
-<a data-direction="back" class="section" href="/ext9/ext9-blockchain/tree/net9.dev/chia/util"><span class='cblue'>
-util
-</span>
-</a></strong>
-<div class='divider'>
-/
-</div>
-<strong>
-initial-config.yaml
-</strong>
-<i class='iconfont icon-clone' data-clipboard-text='chia/util/initial-config.yaml' id='btn-copy-file-path'></i>
-</div>
-<style>
-  #btn-copy-file-path {
-    vertical-align: middle;
-    cursor: pointer;
-  }
-</style>
-<script>
-  $btnCopy = $('#btn-copy-file-path')
-  $btnCopy.popup({
-    content: 'Copy path'
-  })
-  
-  if ($btnCopy[0]) {
-    new Clipboard($btnCopy[0]).on('success', function() {
-      $btnCopy.popup('destroy').popup({
-        content: 'Copied',
-        on: 'manual'
-      }).popup('show');
-      setTimeout(function () {
-        $btnCopy.popup('destroy').popup({
-          content: 'Copy path'
-        });
-      }, 2000)
-    });
-  }
-</script>
-
-
-</div>
-<div class='ui horizontal list repo-action-list branches-tags' style='display: none;'>
-<div class='item'>
-<a class="ui blank button" href="/ext9/ext9-blockchain/branches"><i class='iconfont icon-branches'></i>
-Branches 1
-</a></div>
-<div class='item mr-3'>
-<a class="ui blank button" href="/ext9/ext9-blockchain/tags"><i class='iconfont icon-tag'></i>
-Tags 4
-</a></div>
-</div>
-</div>
-<script>
-  if(window.gon.locale == 'en')
-    $('.branches-tags').css('margin-top', '12px')
-</script>
-
-<style>
-  .ui.dropdown .menu > .header {
-    text-transform: none; }
-</style>
-<script>
-  $(function () {
-    var $tip = $('#apk-download-tip');
-    if (!$tip.length) {
-      return;
-    }
-    $tip.find('.btn-close').on('click', function () {
-      $tip.hide();
-    });
-  });
-  (function(){
-    function pathAutoRender() {
-      var $parent = $('#git-project-bread'),
-          $child = $('#git-project-bread').children('.ui.horizontal.list'),
-          mainWidth = 0;
-      $child.each(function (i,item) {
-        mainWidth += $(item).width()
-      });
-      $('.breadcrumb.path.fork-path').remove();
-      if (mainWidth > 995) {
-        $('#path-breadcrumb').hide();
-        $parent.append('<div class="ui breadcrumb path fork-path">' + $('#path-breadcrumb').html() + '<div/>')
-      } else {
-        $('#path-breadcrumb').show();
-      }
-    }
-    window.pathAutoRender = pathAutoRender;
-    pathAutoRender();
-  })();
-</script>
-
-<div class='row column tree-holder' id='tree-holder'>
-<div class='tree-content-holder' id='tree-content-holder'>
-<div class='file_holder'>
-<div class='file_title'>
-<div class='blob-header-title'>
-<div class='blob-description'>
-<i class="iconfont icon-file"></i>
-<span class='file_name' title='initial-config.yaml'>
-initial-config.yaml
-</span>
-<small>15.36 KB</small>
-</div>
-<div class='options'><div class='ui mini buttons basic'>
-
-<textarea name="blob_raw" id="blob_raw" style="display:none;">
-min_mainnet_k_size: 32&#x000A;&#x000A;# Send a ping to all peers after ping_interval seconds&#x000A;ping_interval: 120&#x000A;self_hostname: &amp;self_hostname &quot;localhost&quot;&#x000A;daemon_port: 35400&#x000A;inbound_rate_limit_percent: 100&#x000A;outbound_rate_limit_percent: 30&#x000A;&#x000A;network_overrides: &amp;network_overrides&#x000A;  constants:&#x000A;    mainnet:&#x000A;      NETWORK_TYPE: 0&#x000A;      GENESIS_CHALLENGE: ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: &quot;d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&quot;&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: &quot;3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&quot;&#x000A;    testnet0:&#x000A;      MIN_PLOT_SIZE: 18&#x000A;      GENESIS_CHALLENGE: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&#x000A;      NETWORK_TYPE: 1&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: &quot;d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&quot;&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: &quot;3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&quot;&#x000A;    testnet2:&#x000A;      MIN_PLOT_SIZE: 18&#x000A;      GENESIS_CHALLENGE: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&#x000A;      NETWORK_TYPE: 1&#x000A;      INITIAL_FREEZE_PERIOD: 100&#x000A;      DIFFICULTY_CONSTANT_FACTOR: 10052721566054&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: &quot;d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&quot;&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: &quot;3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&quot;&#x000A;    testnet3:&#x000A;      DIFFICULTY_CONSTANT_FACTOR: 10052721566054&#x000A;      GENESIS_CHALLENGE: ca7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&#x000A;      MIN_PLOT_SIZE: 18&#x000A;      NETWORK_TYPE: 1&#x000A;      MEMPOOL_BLOCK_BUFFER: 10&#x000A;    testnet4:&#x000A;      DIFFICULTY_CONSTANT_FACTOR: 10052721566054&#x000A;      GENESIS_CHALLENGE: dd7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&#x000A;      INITIAL_FREEZE_END_TIMESTAMP: 1618776900  # Sun Apr 18 2021 16:15:00 GMT-0400 (Eastern Daylight Time)&#x000A;      MIN_PLOT_SIZE: 18&#x000A;      NETWORK_TYPE: 1&#x000A;      MEMPOOL_BLOCK_BUFFER: 10&#x000A;      EPOCH_BLOCKS: 768&#x000A;      DIFFICULTY_STARTING: 30&#x000A;    testnet5:&#x000A;      DIFFICULTY_CONSTANT_FACTOR: 10052721566054&#x000A;      GENESIS_CHALLENGE: ee7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&#x000A;      INITIAL_FREEZE_END_TIMESTAMP: 1618869600  # Mon Apr 19 2021 18:00:00 GMT-0400 (Eastern Daylight Time)&#x000A;      MIN_PLOT_SIZE: 18&#x000A;      NETWORK_TYPE: 1&#x000A;      MEMPOOL_BLOCK_BUFFER: 10&#x000A;      EPOCH_BLOCKS: 768&#x000A;      DIFFICULTY_STARTING: 30&#x000A;    testnet7:&#x000A;      DIFFICULTY_CONSTANT_FACTOR: 10052721566054&#x000A;      GENESIS_CHALLENGE: 117816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc&#x000A;      INITIAL_FREEZE_END_TIMESTAMP: 1619661600  # Wed Apr 28 2021 22:00:00 GMT-0400 (Eastern Daylight Time)&#x000A;      MIN_PLOT_SIZE: 18&#x000A;      NETWORK_TYPE: 1&#x000A;      MEMPOOL_BLOCK_BUFFER: 10&#x000A;      EPOCH_BLOCKS: 768&#x000A;      DIFFICULTY_STARTING: 30&#x000A;    ext9:      &#x000A;      GENESIS_CHALLENGE: 7319a0d4a23e5c4fbaab34d1ec65b82d147cd09b6e8f97098bc00151bdce922a&#x000A;      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af&#x000A;      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc &#x000A;      DIFFICULTY_STARTING: 1&#x000A;      DIFFICULTY_CONSTANT_FACTOR: 1152921504606846976 &#x000A;      &#x000A;  config:&#x000A;    mainnet:&#x000A;      address_prefix: &quot;xch&quot;&#x000A;      default_full_node_port: 8444&#x000A;    testnet0:&#x000A;      address_prefix: &quot;txch&quot;&#x000A;    testnet1:&#x000A;      address_prefix: &quot;txch&quot;&#x000A;    testnet2:&#x000A;      address_prefix: &quot;txch&quot;&#x000A;    testnet3:&#x000A;      address_prefix: &quot;txch&quot;&#x000A;    testnet4:&#x000A;      address_prefix: &quot;txch&quot;&#x000A;    testnet7:&#x000A;      address_prefix: &quot;txch&quot;&#x000A;      default_full_node_port: 58444&#x000A;    ext9:&#x000A;      address_prefix: &quot;nch&quot;&#x000A;      default_full_node_port: 58445      &#x000A;&#x000A;selected_network: &amp;selected_network &quot;ext9&quot;&#x000A;ALERTS_URL: https://download.chia.net/notify/mainnet_alert.txt&#x000A;CHIA_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937&#x000A;&#x000A;# public ssl ca is included in source code&#x000A;# Private ssl ca is used for trusted connections between machines user owns&#x000A;private_ssl_ca:&#x000A;  crt: &quot;config/ssl/ca/private_ca.crt&quot;&#x000A;  key: &quot;config/ssl/ca/private_ca.key&quot;&#x000A;&#x000A;chia_ssl_ca:&#x000A;  crt: &quot;config/ssl/ca/chia_ca.crt&quot;&#x000A;  key: &quot;config/ssl/ca/chia_ca.key&quot;&#x000A;&#x000A;&#x000A;daemon_ssl:&#x000A;  private_crt: &quot;config/ssl/daemon/private_daemon.crt&quot;&#x000A;  private_key: &quot;config/ssl/daemon/private_daemon.key&quot;&#x000A;&#x000A;&#x000A;# Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.&#x000A;logging: &amp;logging&#x000A;  log_stdout: False  # If True, outputs to stdout instead of a file&#x000A;  log_filename: &quot;log/debug.log&quot;&#x000A;  log_level: &quot;WARNING&quot;  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET&#x000A;  log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set&#x000A;  log_syslog: False  # If True, outputs to SysLog host and port specified&#x000A;  log_syslog_host: &quot;localhost&quot;  # Send logging messages to a remote or local Unix syslog&#x000A;  log_syslog_port: 514  # UDP port of the remote or local Unix syslog&#x000A;&#x000A;harvester:&#x000A;  # The harvester server (if run) will run on this port&#x000A;  port: 38448&#x000A;  farmer_peer:&#x000A;    host: *self_hostname&#x000A;    port: 38447&#x000A;&#x000A;  # If True, starts an RPC server at the following port&#x000A;  start_rpc_server: True&#x000A;  rpc_port: 38560&#x000A;  num_threads: 30&#x000A;  plot_loading_frequency_seconds: 120&#x000A;&#x000A;  # If True use parallel reads in chiapos&#x000A;  parallel_read: True&#x000A;&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;  # Plots are searched for in the following directories&#x000A;  plot_directories: []&#x000A;&#x000A;  ssl:&#x000A;    private_crt:  &quot;config/ssl/harvester/private_harvester.crt&quot;&#x000A;    private_key:  &quot;config/ssl/harvester/private_harvester.key&quot;&#x000A;&#x000A;  private_ssl_ca:&#x000A;    crt: &quot;config/ssl/ca/private_ca.crt&quot;&#x000A;    key: &quot;config/ssl/ca/private_ca.key&quot;&#x000A;&#x000A;  chia_ssl_ca:&#x000A;    crt: &quot;config/ssl/ca/chia_ca.crt&quot;&#x000A;    key: &quot;config/ssl/ca/chia_ca.key&quot;&#x000A;&#x000A;pool:&#x000A;  # Replace this with a real puzzle hash&#x000A;  # xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;&#x000A;farmer:&#x000A;  # The farmer server (if run) will run on this port&#x000A;  port: 38447&#x000A;  # The farmer will attempt to connect to this full node and harvester&#x000A;  full_node_peer:&#x000A;    host: *self_hostname&#x000A;    port: 58445&#x000A;  harvester_peer:&#x000A;    host: *self_hostname&#x000A;    port: 38448&#x000A;&#x000A;  pool_public_keys: []&#x000A;&#x000A;  # Replace this with a real puzzle hash&#x000A;  # xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg&#x000A;&#x000A;  # If True, starts an RPC server at the following port&#x000A;  start_rpc_server: True&#x000A;  rpc_port: 38559&#x000A;&#x000A;  # To send a share to a pool, a proof of space must have required_iters less than this number&#x000A;  pool_share_threshold: 1000&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;  ssl:&#x000A;    private_crt:  &quot;config/ssl/farmer/private_farmer.crt&quot;&#x000A;    private_key:  &quot;config/ssl/farmer/private_farmer.key&quot;&#x000A;    public_crt:  &quot;config/ssl/farmer/public_farmer.crt&quot;&#x000A;    public_key:  &quot;config/ssl/farmer/public_farmer.key&quot;&#x000A;&#x000A;# Don&#39;t run this unless you want to run VDF clients on the local machine.&#x000A;timelord_launcher:&#x000A;  # The server where the VDF clients will connect to.&#x000A;  port: 38000&#x000A;  # Number of VDF client processes to keep alive in the local machine.&#x000A;  process_count: 3&#x000A;  logging: *logging&#x000A;&#x000A;&#x000A;timelord:&#x000A;  # The timelord server (if run) will run on this port&#x000A;  port: 38446&#x000A;  # Provides a list of VDF clients expected to connect to this timelord.&#x000A;  # For each client, an IP is provided, together with the estimated iterations per second.&#x000A;  vdf_clients:&#x000A;    ip:&#x000A;      - *self_hostname&#x000A;      - localhost&#x000A;      - 127.0.0.1&#x000A;    ips_estimate:&#x000A;      - 150000&#x000A;  full_node_peer:&#x000A;      host: *self_hostname&#x000A;      port: 58445&#x000A;  # Maximum number of seconds allowed for a client to reconnect to the server.&#x000A;  max_connection_time: 60&#x000A;  # The ip and port where the TCP clients will connect.&#x000A;  vdf_server:&#x000A;    host: *self_hostname&#x000A;    port: 38000&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;  # fast_algorithm is a faster proof generation algorithm. This speed increase&#x000A;  # requires much less memory usage and a does not have the risk of OOM that&#x000A;  # the normal timelord has but requires significantly more cores doing&#x000A;  # parrallel proof generation and creates a larger and slower to verify&#x000A;  # resulting proof.&#x000A;  # An Intel Core i9-10900K can run 2 normal vdf_clients at ~221,000 ips&#x000A;  # without slowing down but running more than 1 with fast_algorithm will&#x000A;  # run each vdf_client slower.&#x000A;  fast_algorithm: False&#x000A;  # Bluebox (sanatizing Timelord):&#x000A;  # If set &#39;True&#39;, the timelord will create compact proofs of time, instead of&#x000A;  # extending the chain. The attribute &#39;fast_algorithm&#39; won&#39;t apply if timelord&#x000A;  # is running in sanitizer_mode.&#x000A;  # You must set &#39;send_uncompact_interval&#39; in &#39;full_node&#39; &gt; 0 in the full_node&#x000A;  # section below to have full_node send existing time proofs to be sanitized.&#x000A;  sanitizer_mode: False&#x000A;&#x000A;  ssl:&#x000A;    private_crt:  &quot;config/ssl/timelord/private_timelord.crt&quot;&#x000A;    private_key:  &quot;config/ssl/timelord/private_timelord.key&quot;&#x000A;    public_crt:  &quot;config/ssl/timelord/public_timelord.crt&quot;&#x000A;    public_key:  &quot;config/ssl/timelord/public_timelord.key&quot;&#x000A;&#x000A;full_node:&#x000A;  # The full node server (if run) will run on this port&#x000A;  port: 58445&#x000A;&#x000A;  # Run multiple nodes with different databases by changing the database_path&#x000A;  database_path: db/blockchain_v1_CHALLENGE.sqlite&#x000A;  peer_db_path: db/peer_table_node.sqlite&#x000A;  simulator_database_path: sim_db/simulator_blockchain_v1_CHALLENGE.sqlite&#x000A;  simulator_peer_db_path: sim_db/peer_table_node.sqlite&#x000A;&#x000A;  # If True, starts an RPC server at the following port&#x000A;  start_rpc_server: True&#x000A;  rpc_port: 38555&#x000A;&#x000A;  # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway&#x000A;  enable_upnp: True&#x000A;&#x000A;  # If node is more than these blocks behind, will do a sync (long sync)&#x000A;  sync_blocks_behind_threshold: 300&#x000A;&#x000A;  # If node is more than these blocks behind, will do a short batch-sync, if it&#39;s less, will do a backtrack sync&#x000A;  short_sync_blocks_behind_threshold: 20&#x000A;&#x000A;  # How often to initiate outbound connections to other full nodes.&#x000A;  peer_connect_interval: 30&#x000A;  # Accept peers until this number of connections&#x000A;  target_peer_count: 240&#x000A;  # Initiate outbound connections until this number is hit.&#x000A;  target_outbound_peer_count: 7&#x000A;  # IPv4/IPv6 network addresses and CIDR blocks allowed to connect even when target_peer_count has been hit.&#x000A;  # exempt_peer_networks: [&quot;192.168.0.3&quot;, &quot;192.168.1.0/24&quot;, &quot;fe80::/10&quot;, &quot;2606:4700:4700::64/128&quot;]&#x000A;  exempt_peer_networks: []&#x000A;  # Accept at most # of inbound connections for different node types.&#x000A;  max_inbound_wallet: 20&#x000A;  max_inbound_farmer: 10&#x000A;  max_inbound_timelord: 5&#x000A;  # Only connect to peers who we have heard about in the last recent_peer_threshold seconds&#x000A;  recent_peer_threshold: 6000&#x000A;&#x000A;  # Send to a Bluebox (sanatizing timelord) uncompact blocks once every&#x000A;  # &#39;send_uncompact_interval&#39; seconds. Set to 0 if you don&#39;t use this feature.&#x000A;  send_uncompact_interval: 0&#x000A;  # At every &#39;send_uncompact_interval&#39; seconds, send blueboxes &#39;target_uncompact_proofs&#39; proofs to be normalized.&#x000A;  target_uncompact_proofs: 100&#x000A;  # Setting this flag as True, blueboxes will sanitize only data needed in weight proof calculation, as opposed to whole blocks.&#x000A;  # Default is set to False, as the network needs only one or two blueboxes like this.&#x000A;  sanitize_weight_proof_only: False&#x000A;  # timeout for weight proof request&#x000A;  weight_proof_timeout: 360&#x000A;&#x000A;  # when enabled, the full node will print a pstats profile to the root_dir/profile every second&#x000A;  # analyze with chia/utils/profiler.py&#x000A;  enable_profiler: False&#x000A;&#x000A;  # List of trusted DNS seeders to bootstrap from.&#x000A;  # If you modify this, please change the hardcode as well from FullNode.set_server()&#x000A;  dns_servers: []&#x000A;  farmer_peer:&#x000A;      host: *self_hostname&#x000A;      port: 38447&#x000A;  timelord_peer:&#x000A;      host: *self_hostname&#x000A;      port: 38446&#x000A;  introducer_peer:&#x000A;      host: introducer.ext9.org  # Chia AWS introducer IPv4/IPv6&#x000A;      port: 38445&#x000A;  wallet_peer:&#x000A;    host: *self_hostname&#x000A;    port: 38449&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;  ssl:&#x000A;    private_crt:  &quot;config/ssl/full_node/private_full_node.crt&quot;&#x000A;    private_key:  &quot;config/ssl/full_node/private_full_node.key&quot;&#x000A;    public_crt:  &quot;config/ssl/full_node/public_full_node.crt&quot;&#x000A;    public_key:  &quot;config/ssl/full_node/public_full_node.key&quot;&#x000A;&#x000A;ui:&#x000A;   # The ui node server (if run) will run on this port&#x000A;  port: 38222&#x000A;&#x000A;  # Which port to use to communicate with the full node&#x000A;  rpc_port: 38555&#x000A;&#x000A;  # This SSH key is for the ui SSH server&#x000A;  ssh_filename: config/ssh_host_key&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;  # this is where the electron UI will find its daemon&#x000A;  # defaults to the one running locally with its private keys&#x000A;  daemon_host: *self_hostname&#x000A;  daemon_port: 35400&#x000A;  daemon_ssl:&#x000A;    private_crt: config/ssl/daemon/private_daemon.crt&#x000A;    private_key: config/ssl/daemon/private_daemon.key&#x000A;&#x000A;introducer:&#x000A;  host: *self_hostname&#x000A;  port: 38445&#x000A;  max_peers_to_send: 20&#x000A;  # The introducer will only return peers who it has seen in the last&#x000A;  # recent_peer_threshold seconds&#x000A;  recent_peer_threshold: 6000&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;  ssl:&#x000A;    public_crt:  &quot;config/ssl/full_node/public_full_node.crt&quot;&#x000A;    public_key:  &quot;config/ssl/full_node/public_full_node.key&quot;&#x000A;&#x000A;wallet:&#x000A;  port: 38449&#x000A;  rpc_port: 39256&#x000A;&#x000A;  enable_profiler: False&#x000A;&#x000A;  # The minimum height that we care about for our transactions. Set to zero&#x000A;  # If we are restoring from private key and don&#39;t know the height.&#x000A;  starting_height: 0&#x000A;  start_height_buffer: 100  # Wallet will stop fly sync at starting_height - buffer&#x000A;  num_sync_batches: 50&#x000A;  initial_num_public_keys: 100&#x000A;  initial_num_public_keys_new_wallet: 5&#x000A;&#x000A;  full_node_peer:&#x000A;    host: *self_hostname&#x000A;    port: 58445&#x000A;&#x000A;  testing: False&#x000A;  database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite&#x000A;  wallet_peers_path: wallet/db/wallet_peers.sqlite&#x000A;&#x000A;  logging: *logging&#x000A;  network_overrides: *network_overrides&#x000A;  selected_network: *selected_network&#x000A;&#x000A;  target_peer_count: 5&#x000A;  peer_connect_interval: 60&#x000A;  # The introducer will only return peers who it has seen in the last&#x000A;  # recent_peer_threshold seconds&#x000A;  recent_peer_threshold: 6000&#x000A;&#x000A;  introducer_peer:&#x000A;    host: introducer.ext9.org # introducer.chia.net # Chia AWS introducer IPv4/IPv6&#x000A;    port: 38445&#x000A;&#x000A;  ssl:&#x000A;    private_crt:  &quot;config/ssl/wallet/private_wallet.crt&quot;&#x000A;    private_key:  &quot;config/ssl/wallet/private_wallet.key&quot;&#x000A;    public_crt:  &quot;config/ssl/wallet/public_wallet.crt&quot;&#x000A;    public_key:  &quot;config/ssl/wallet/public_wallet.key&quot;&#x000A;&#x000A;  trusted_peers:&#x000A;    trusted_node_1: &quot;config/ssl/full_node/public_full_node.crt&quot;&#x000A;&#x000A;  short_sync_blocks_behind_threshold: 20&#x000A;</textarea>
-<a class="ui button" id="copy-text" href="#">Copy</a>
-<a class="ui button edit-blob" title="Please login" href="/ext9/ext9-blockchain/edit/net9.dev/chia/util/initial-config.yaml">Edit</a>
-<a class="ui button web-ide" target="_blank" href="/-/ide/project/ext9/ext9-blockchain/edit/net9.dev/-/chia/util/initial-config.yaml">Web IDE</a>
-<a class="ui button edit-raw" target="_blank" href="/ext9/ext9-blockchain/raw/net9.dev/chia/util/initial-config.yaml">Raw</a>
-<a class="ui button edit-blame" href="/ext9/ext9-blockchain/blame/net9.dev/chia/util/initial-config.yaml">Blame</a>
-<a class="ui button edit-history" href="/ext9/ext9-blockchain/commits/net9.dev/chia/util/initial-config.yaml">History</a>
-</div>
-<script>
-  "use strict";
-  try {
-    if((gon.wait_fork!=undefined && gon.wait_fork==true) || (gon.wait_fetch!=undefined && gon.wait_fetch==true)){
-      $('.edit-blob').popup({content:"This repository is doing something background, pleace try again later", on: 'hover', delay: { show: 200, hide: 200 }});
-      $('.edit-blob').click(function(e){
-        e.preventDefault();
-      })
-    }
-  
-    var setUrl = function() {
-      var params = window.location.search
-      if (params==undefined || $.trim(params).length==0) return;
-      $('span.options').children('.basic').find('a').each(function(index,ele){
-        var origin_href = $(ele).attr('href');
-        if (origin_href!="#" && origin_href.indexOf('?') == -1){
-          $(ele).attr('href',origin_href+params);
-        }
-      });
-    }
-  
-    setUrl();
-  
-    var clipboard = null,
-        $btncopy  = $("#copy-text");
-  
-    clipboard = new Clipboard("#copy-text", {
-      text: function(trigger) {
-        return $("#blob_raw").val();
-      }
-    })
-  
-    clipboard.on('success', function(e) {
-      $btncopy.popup('hide');
-      $btncopy.popup('destroy');
-      $btncopy.popup({content: 'Copied', position: 'bottom center'});
-      $btncopy.popup('show');
-    })
-  
-    clipboard.on('error', function(e) {
-      var giteeModal = new GiteeModalHelper({okText: 'Confirm'});
-      giteeModal.alert("Copy", 'Copy failed. Please copy it manually');
-    })
-  
-    $(function() {
-      $btncopy.popup({
-        content: 'Copy to clipboard',
-        position: 'bottom center'
-      })
-    })
-  
-  } catch (error) {
-    console.log('blob/action error:' + error);
-  }
-  
-  $('.disabled-edit-readonly').popup({
-    content: "Readonly file is not editable",
-    className: {
-      popup: 'ui popup',
-    },
-    position: 'bottom center',
-  })
-  $('.disabled-edit-readonly, .disabled-edit-status').click(function() {
-    return false
-  })
-  $('.has_tooltip').popup({
-    position: 'top center'
-  });
-</script>
-<style>
-  .disabled-edit-readonly, .disabled-edit-status {
-    background-color: #dcddde !important;
-    color: rgba(0, 0, 0, 0.4) !important;
-    opacity: 0.3 !important;
-    background-image: none !important;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-    cursor: default !important; }
-</style>
-</div>
-</div>
-<div class='contributor-description'><span class='recent-commit' style='margin-top: 0.7rem'>
-<a class="commit-author-link  js-popover-card " data-username="ext9" href="/ext9">ext9</a>
-<span>authored</span>
-<span class='timeago commit-date' title='2021-08-19 16:46:28 +0000'>
-2021-08-19 16:46
-</span>
-.
-<a href="/ext9/ext9-blockchain/commit/877045ea28e544693d2d28736be1d18c6813de8e">update chia/util/initial-config.yaml.</a>
-</span>
-</div>
-</div>
-<div class='clearfix'></div>
-<div class='file_content code'>
-<div class='lines white'>
-<div class='line-numbers'><a href='#L1' id='L1'>1</a><a href='#L2' id='L2'>2</a><a href='#L3' id='L3'>3</a><a href='#L4' id='L4'>4</a><a href='#L5' id='L5'>5</a><a href='#L6' id='L6'>6</a><a href='#L7' id='L7'>7</a><a href='#L8' id='L8'>8</a><a href='#L9' id='L9'>9</a><a href='#L10' id='L10'>10</a><a href='#L11' id='L11'>11</a><a href='#L12' id='L12'>12</a><a href='#L13' id='L13'>13</a><a href='#L14' id='L14'>14</a><a href='#L15' id='L15'>15</a><a href='#L16' id='L16'>16</a><a href='#L17' id='L17'>17</a><a href='#L18' id='L18'>18</a><a href='#L19' id='L19'>19</a><a href='#L20' id='L20'>20</a><a href='#L21' id='L21'>21</a><a href='#L22' id='L22'>22</a><a href='#L23' id='L23'>23</a><a href='#L24' id='L24'>24</a><a href='#L25' id='L25'>25</a><a href='#L26' id='L26'>26</a><a href='#L27' id='L27'>27</a><a href='#L28' id='L28'>28</a><a href='#L29' id='L29'>29</a><a href='#L30' id='L30'>30</a><a href='#L31' id='L31'>31</a><a href='#L32' id='L32'>32</a><a href='#L33' id='L33'>33</a><a href='#L34' id='L34'>34</a><a href='#L35' id='L35'>35</a><a href='#L36' id='L36'>36</a><a href='#L37' id='L37'>37</a><a href='#L38' id='L38'>38</a><a href='#L39' id='L39'>39</a><a href='#L40' id='L40'>40</a><a href='#L41' id='L41'>41</a><a href='#L42' id='L42'>42</a><a href='#L43' id='L43'>43</a><a href='#L44' id='L44'>44</a><a href='#L45' id='L45'>45</a><a href='#L46' id='L46'>46</a><a href='#L47' id='L47'>47</a><a href='#L48' id='L48'>48</a><a href='#L49' id='L49'>49</a><a href='#L50' id='L50'>50</a><a href='#L51' id='L51'>51</a><a href='#L52' id='L52'>52</a><a href='#L53' id='L53'>53</a><a href='#L54' id='L54'>54</a><a href='#L55' id='L55'>55</a><a href='#L56' id='L56'>56</a><a href='#L57' id='L57'>57</a><a href='#L58' id='L58'>58</a><a href='#L59' id='L59'>59</a><a href='#L60' id='L60'>60</a><a href='#L61' id='L61'>61</a><a href='#L62' id='L62'>62</a><a href='#L63' id='L63'>63</a><a href='#L64' id='L64'>64</a><a href='#L65' id='L65'>65</a><a href='#L66' id='L66'>66</a><a href='#L67' id='L67'>67</a><a href='#L68' id='L68'>68</a><a href='#L69' id='L69'>69</a><a href='#L70' id='L70'>70</a><a href='#L71' id='L71'>71</a><a href='#L72' id='L72'>72</a><a href='#L73' id='L73'>73</a><a href='#L74' id='L74'>74</a><a href='#L75' id='L75'>75</a><a href='#L76' id='L76'>76</a><a href='#L77' id='L77'>77</a><a href='#L78' id='L78'>78</a><a href='#L79' id='L79'>79</a><a href='#L80' id='L80'>80</a><a href='#L81' id='L81'>81</a><a href='#L82' id='L82'>82</a><a href='#L83' id='L83'>83</a><a href='#L84' id='L84'>84</a><a href='#L85' id='L85'>85</a><a href='#L86' id='L86'>86</a><a href='#L87' id='L87'>87</a><a href='#L88' id='L88'>88</a><a href='#L89' id='L89'>89</a><a href='#L90' id='L90'>90</a><a href='#L91' id='L91'>91</a><a href='#L92' id='L92'>92</a><a href='#L93' id='L93'>93</a><a href='#L94' id='L94'>94</a><a href='#L95' id='L95'>95</a><a href='#L96' id='L96'>96</a><a href='#L97' id='L97'>97</a><a href='#L98' id='L98'>98</a><a href='#L99' id='L99'>99</a><a href='#L100' id='L100'>100</a><a href='#L101' id='L101'>101</a><a href='#L102' id='L102'>102</a><a href='#L103' id='L103'>103</a><a href='#L104' id='L104'>104</a><a href='#L105' id='L105'>105</a><a href='#L106' id='L106'>106</a><a href='#L107' id='L107'>107</a><a href='#L108' id='L108'>108</a><a href='#L109' id='L109'>109</a><a href='#L110' id='L110'>110</a><a href='#L111' id='L111'>111</a><a href='#L112' id='L112'>112</a><a href='#L113' id='L113'>113</a><a href='#L114' id='L114'>114</a><a href='#L115' id='L115'>115</a><a href='#L116' id='L116'>116</a><a href='#L117' id='L117'>117</a><a href='#L118' id='L118'>118</a><a href='#L119' id='L119'>119</a><a href='#L120' id='L120'>120</a><a href='#L121' id='L121'>121</a><a href='#L122' id='L122'>122</a><a href='#L123' id='L123'>123</a><a href='#L124' id='L124'>124</a><a href='#L125' id='L125'>125</a><a href='#L126' id='L126'>126</a><a href='#L127' id='L127'>127</a><a href='#L128' id='L128'>128</a><a href='#L129' id='L129'>129</a><a href='#L130' id='L130'>130</a><a href='#L131' id='L131'>131</a><a href='#L132' id='L132'>132</a><a href='#L133' id='L133'>133</a><a href='#L134' id='L134'>134</a><a href='#L135' id='L135'>135</a><a href='#L136' id='L136'>136</a><a href='#L137' id='L137'>137</a><a href='#L138' id='L138'>138</a><a href='#L139' id='L139'>139</a><a href='#L140' id='L140'>140</a><a href='#L141' id='L141'>141</a><a href='#L142' id='L142'>142</a><a href='#L143' id='L143'>143</a><a href='#L144' id='L144'>144</a><a href='#L145' id='L145'>145</a><a href='#L146' id='L146'>146</a><a href='#L147' id='L147'>147</a><a href='#L148' id='L148'>148</a><a href='#L149' id='L149'>149</a><a href='#L150' id='L150'>150</a><a href='#L151' id='L151'>151</a><a href='#L152' id='L152'>152</a><a href='#L153' id='L153'>153</a><a href='#L154' id='L154'>154</a><a href='#L155' id='L155'>155</a><a href='#L156' id='L156'>156</a><a href='#L157' id='L157'>157</a><a href='#L158' id='L158'>158</a><a href='#L159' id='L159'>159</a><a href='#L160' id='L160'>160</a><a href='#L161' id='L161'>161</a><a href='#L162' id='L162'>162</a><a href='#L163' id='L163'>163</a><a href='#L164' id='L164'>164</a><a href='#L165' id='L165'>165</a><a href='#L166' id='L166'>166</a><a href='#L167' id='L167'>167</a><a href='#L168' id='L168'>168</a><a href='#L169' id='L169'>169</a><a href='#L170' id='L170'>170</a><a href='#L171' id='L171'>171</a><a href='#L172' id='L172'>172</a><a href='#L173' id='L173'>173</a><a href='#L174' id='L174'>174</a><a href='#L175' id='L175'>175</a><a href='#L176' id='L176'>176</a><a href='#L177' id='L177'>177</a><a href='#L178' id='L178'>178</a><a href='#L179' id='L179'>179</a><a href='#L180' id='L180'>180</a><a href='#L181' id='L181'>181</a><a href='#L182' id='L182'>182</a><a href='#L183' id='L183'>183</a><a href='#L184' id='L184'>184</a><a href='#L185' id='L185'>185</a><a href='#L186' id='L186'>186</a><a href='#L187' id='L187'>187</a><a href='#L188' id='L188'>188</a><a href='#L189' id='L189'>189</a><a href='#L190' id='L190'>190</a><a href='#L191' id='L191'>191</a><a href='#L192' id='L192'>192</a><a href='#L193' id='L193'>193</a><a href='#L194' id='L194'>194</a><a href='#L195' id='L195'>195</a><a href='#L196' id='L196'>196</a><a href='#L197' id='L197'>197</a><a href='#L198' id='L198'>198</a><a href='#L199' id='L199'>199</a><a href='#L200' id='L200'>200</a><a href='#L201' id='L201'>201</a><a href='#L202' id='L202'>202</a><a href='#L203' id='L203'>203</a><a href='#L204' id='L204'>204</a><a href='#L205' id='L205'>205</a><a href='#L206' id='L206'>206</a><a href='#L207' id='L207'>207</a><a href='#L208' id='L208'>208</a><a href='#L209' id='L209'>209</a><a href='#L210' id='L210'>210</a><a href='#L211' id='L211'>211</a><a href='#L212' id='L212'>212</a><a href='#L213' id='L213'>213</a><a href='#L214' id='L214'>214</a><a href='#L215' id='L215'>215</a><a href='#L216' id='L216'>216</a><a href='#L217' id='L217'>217</a><a href='#L218' id='L218'>218</a><a href='#L219' id='L219'>219</a><a href='#L220' id='L220'>220</a><a href='#L221' id='L221'>221</a><a href='#L222' id='L222'>222</a><a href='#L223' id='L223'>223</a><a href='#L224' id='L224'>224</a><a href='#L225' id='L225'>225</a><a href='#L226' id='L226'>226</a><a href='#L227' id='L227'>227</a><a href='#L228' id='L228'>228</a><a href='#L229' id='L229'>229</a><a href='#L230' id='L230'>230</a><a href='#L231' id='L231'>231</a><a href='#L232' id='L232'>232</a><a href='#L233' id='L233'>233</a><a href='#L234' id='L234'>234</a><a href='#L235' id='L235'>235</a><a href='#L236' id='L236'>236</a><a href='#L237' id='L237'>237</a><a href='#L238' id='L238'>238</a><a href='#L239' id='L239'>239</a><a href='#L240' id='L240'>240</a><a href='#L241' id='L241'>241</a><a href='#L242' id='L242'>242</a><a href='#L243' id='L243'>243</a><a href='#L244' id='L244'>244</a><a href='#L245' id='L245'>245</a><a href='#L246' id='L246'>246</a><a href='#L247' id='L247'>247</a><a href='#L248' id='L248'>248</a><a href='#L249' id='L249'>249</a><a href='#L250' id='L250'>250</a><a href='#L251' id='L251'>251</a><a href='#L252' id='L252'>252</a><a href='#L253' id='L253'>253</a><a href='#L254' id='L254'>254</a><a href='#L255' id='L255'>255</a><a href='#L256' id='L256'>256</a><a href='#L257' id='L257'>257</a><a href='#L258' id='L258'>258</a><a href='#L259' id='L259'>259</a><a href='#L260' id='L260'>260</a><a href='#L261' id='L261'>261</a><a href='#L262' id='L262'>262</a><a href='#L263' id='L263'>263</a><a href='#L264' id='L264'>264</a><a href='#L265' id='L265'>265</a><a href='#L266' id='L266'>266</a><a href='#L267' id='L267'>267</a><a href='#L268' id='L268'>268</a><a href='#L269' id='L269'>269</a><a href='#L270' id='L270'>270</a><a href='#L271' id='L271'>271</a><a href='#L272' id='L272'>272</a><a href='#L273' id='L273'>273</a><a href='#L274' id='L274'>274</a><a href='#L275' id='L275'>275</a><a href='#L276' id='L276'>276</a><a href='#L277' id='L277'>277</a><a href='#L278' id='L278'>278</a><a href='#L279' id='L279'>279</a><a href='#L280' id='L280'>280</a><a href='#L281' id='L281'>281</a><a href='#L282' id='L282'>282</a><a href='#L283' id='L283'>283</a><a href='#L284' id='L284'>284</a><a href='#L285' id='L285'>285</a><a href='#L286' id='L286'>286</a><a href='#L287' id='L287'>287</a><a href='#L288' id='L288'>288</a><a href='#L289' id='L289'>289</a><a href='#L290' id='L290'>290</a><a href='#L291' id='L291'>291</a><a href='#L292' id='L292'>292</a><a href='#L293' id='L293'>293</a><a href='#L294' id='L294'>294</a><a href='#L295' id='L295'>295</a><a href='#L296' id='L296'>296</a><a href='#L297' id='L297'>297</a><a href='#L298' id='L298'>298</a><a href='#L299' id='L299'>299</a><a href='#L300' id='L300'>300</a><a href='#L301' id='L301'>301</a><a href='#L302' id='L302'>302</a><a href='#L303' id='L303'>303</a><a href='#L304' id='L304'>304</a><a href='#L305' id='L305'>305</a><a href='#L306' id='L306'>306</a><a href='#L307' id='L307'>307</a><a href='#L308' id='L308'>308</a><a href='#L309' id='L309'>309</a><a href='#L310' id='L310'>310</a><a href='#L311' id='L311'>311</a><a href='#L312' id='L312'>312</a><a href='#L313' id='L313'>313</a><a href='#L314' id='L314'>314</a><a href='#L315' id='L315'>315</a><a href='#L316' id='L316'>316</a><a href='#L317' id='L317'>317</a><a href='#L318' id='L318'>318</a><a href='#L319' id='L319'>319</a><a href='#L320' id='L320'>320</a><a href='#L321' id='L321'>321</a><a href='#L322' id='L322'>322</a><a href='#L323' id='L323'>323</a><a href='#L324' id='L324'>324</a><a href='#L325' id='L325'>325</a><a href='#L326' id='L326'>326</a><a href='#L327' id='L327'>327</a><a href='#L328' id='L328'>328</a><a href='#L329' id='L329'>329</a><a href='#L330' id='L330'>330</a><a href='#L331' id='L331'>331</a><a href='#L332' id='L332'>332</a><a href='#L333' id='L333'>333</a><a href='#L334' id='L334'>334</a><a href='#L335' id='L335'>335</a><a href='#L336' id='L336'>336</a><a href='#L337' id='L337'>337</a><a href='#L338' id='L338'>338</a><a href='#L339' id='L339'>339</a><a href='#L340' id='L340'>340</a><a href='#L341' id='L341'>341</a><a href='#L342' id='L342'>342</a><a href='#L343' id='L343'>343</a><a href='#L344' id='L344'>344</a><a href='#L345' id='L345'>345</a><a href='#L346' id='L346'>346</a><a href='#L347' id='L347'>347</a><a href='#L348' id='L348'>348</a><a href='#L349' id='L349'>349</a><a href='#L350' id='L350'>350</a><a href='#L351' id='L351'>351</a><a href='#L352' id='L352'>352</a><a href='#L353' id='L353'>353</a><a href='#L354' id='L354'>354</a><a href='#L355' id='L355'>355</a><a href='#L356' id='L356'>356</a><a href='#L357' id='L357'>357</a><a href='#L358' id='L358'>358</a><a href='#L359' id='L359'>359</a><a href='#L360' id='L360'>360</a><a href='#L361' id='L361'>361</a><a href='#L362' id='L362'>362</a><a href='#L363' id='L363'>363</a><a href='#L364' id='L364'>364</a><a href='#L365' id='L365'>365</a><a href='#L366' id='L366'>366</a><a href='#L367' id='L367'>367</a><a href='#L368' id='L368'>368</a><a href='#L369' id='L369'>369</a><a href='#L370' id='L370'>370</a><a href='#L371' id='L371'>371</a><a href='#L372' id='L372'>372</a><a href='#L373' id='L373'>373</a><a href='#L374' id='L374'>374</a><a href='#L375' id='L375'>375</a><a href='#L376' id='L376'>376</a><a href='#L377' id='L377'>377</a><a href='#L378' id='L378'>378</a><a href='#L379' id='L379'>379</a><a href='#L380' id='L380'>380</a><a href='#L381' id='L381'>381</a><a href='#L382' id='L382'>382</a><a href='#L383' id='L383'>383</a><a href='#L384' id='L384'>384</a><a href='#L385' id='L385'>385</a><a href='#L386' id='L386'>386</a><a href='#L387' id='L387'>387</a><a href='#L388' id='L388'>388</a><a href='#L389' id='L389'>389</a><a href='#L390' id='L390'>390</a><a href='#L391' id='L391'>391</a><a href='#L392' id='L392'>392</a><a href='#L393' id='L393'>393</a><a href='#L394' id='L394'>394</a><a href='#L395' id='L395'>395</a><a href='#L396' id='L396'>396</a><a href='#L397' id='L397'>397</a><a href='#L398' id='L398'>398</a><a href='#L399' id='L399'>399</a><a href='#L400' id='L400'>400</a><a href='#L401' id='L401'>401</a><a href='#L402' id='L402'>402</a><a href='#L403' id='L403'>403</a><a href='#L404' id='L404'>404</a><a href='#L405' id='L405'>405</a><a href='#L406' id='L406'>406</a><a href='#L407' id='L407'>407</a><a href='#L408' id='L408'>408</a><a href='#L409' id='L409'>409</a><a href='#L410' id='L410'>410</a><a href='#L411' id='L411'>411</a><a href='#L412' id='L412'>412</a><a href='#L413' id='L413'>413</a><a href='#L414' id='L414'>414</a><a href='#L415' id='L415'>415</a><a href='#L416' id='L416'>416</a><a href='#L417' id='L417'>417</a><a href='#L418' id='L418'>418</a><a href='#L419' id='L419'>419</a><a href='#L420' id='L420'>420</a><a href='#L421' id='L421'>421</a></div><div class="highlight"><pre class=""><div class='line' id='LC1'><span class="na">min_mainnet_k_size</span><span class="pi">:</span> <span class="m">32</span>&#x000A;</div><div class='line' id='LC2'>&#x000A;</div><div class='line' id='LC3'><span class="c1"># Send a ping to all peers after ping_interval seconds</span>&#x000A;</div><div class='line' id='LC4'><span class="na">ping_interval</span><span class="pi">:</span> <span class="m">120</span>&#x000A;</div><div class='line' id='LC5'><span class="na">self_hostname</span><span class="pi">:</span> <span class="nl">&amp;self_hostname</span> <span class="s2">"</span><span class="s">localhost"</span>&#x000A;</div><div class='line' id='LC6'><span class="na">daemon_port</span><span class="pi">:</span> <span class="m">35400</span>&#x000A;</div><div class='line' id='LC7'><span class="na">inbound_rate_limit_percent</span><span class="pi">:</span> <span class="m">100</span>&#x000A;</div><div class='line' id='LC8'><span class="na">outbound_rate_limit_percent</span><span class="pi">:</span> <span class="m">30</span>&#x000A;</div><div class='line' id='LC9'>&#x000A;</div><div class='line' id='LC10'><span class="na">network_overrides</span><span class="pi">:</span> <span class="nl">&amp;network_overrides</span>&#x000A;</div><div class='line' id='LC11'>  <span class="na">constants</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC12'>    <span class="na">mainnet</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC13'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">0</span>&#x000A;</div><div class='line' id='LC14'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb</span>&#x000A;</div><div class='line' id='LC15'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s2">"</span><span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"</span>&#x000A;</div><div class='line' id='LC16'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"</span>&#x000A;</div><div class='line' id='LC17'>    <span class="na">testnet0</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC18'>      <span class="na">MIN_PLOT_SIZE</span><span class="pi">:</span> <span class="m">18</span>&#x000A;</div><div class='line' id='LC19'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>&#x000A;</div><div class='line' id='LC20'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC21'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s2">"</span><span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"</span>&#x000A;</div><div class='line' id='LC22'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"</span>&#x000A;</div><div class='line' id='LC23'>    <span class="na">testnet2</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC24'>      <span class="na">MIN_PLOT_SIZE</span><span class="pi">:</span> <span class="m">18</span>&#x000A;</div><div class='line' id='LC25'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span>&#x000A;</div><div class='line' id='LC26'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC27'>      <span class="na">INITIAL_FREEZE_PERIOD</span><span class="pi">:</span> <span class="m">100</span>&#x000A;</div><div class='line' id='LC28'>      <span class="na">DIFFICULTY_CONSTANT_FACTOR</span><span class="pi">:</span> <span class="m">10052721566054</span>&#x000A;</div><div class='line' id='LC29'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s2">"</span><span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"</span>&#x000A;</div><div class='line' id='LC30'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"</span>&#x000A;</div><div class='line' id='LC31'>    <span class="na">testnet3</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC32'>      <span class="na">DIFFICULTY_CONSTANT_FACTOR</span><span class="pi">:</span> <span class="m">10052721566054</span>&#x000A;</div><div class='line' id='LC33'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">ca7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af</span>&#x000A;</div><div class='line' id='LC34'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af</span>&#x000A;</div><div class='line' id='LC35'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc</span>&#x000A;</div><div class='line' id='LC36'>      <span class="na">MIN_PLOT_SIZE</span><span class="pi">:</span> <span class="m">18</span>&#x000A;</div><div class='line' id='LC37'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC38'>      <span class="na">MEMPOOL_BLOCK_BUFFER</span><span class="pi">:</span> <span class="m">10</span>&#x000A;</div><div class='line' id='LC39'>    <span class="na">testnet4</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC40'>      <span class="na">DIFFICULTY_CONSTANT_FACTOR</span><span class="pi">:</span> <span class="m">10052721566054</span>&#x000A;</div><div class='line' id='LC41'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">dd7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af</span>&#x000A;</div><div class='line' id='LC42'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af</span>&#x000A;</div><div class='line' id='LC43'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc</span>&#x000A;</div><div class='line' id='LC44'>      <span class="na">INITIAL_FREEZE_END_TIMESTAMP</span><span class="pi">:</span> <span class="m">1618776900</span>  <span class="c1"># Sun Apr 18 2021 16:15:00 GMT-0400 (Eastern Daylight Time)</span>&#x000A;</div><div class='line' id='LC45'>      <span class="na">MIN_PLOT_SIZE</span><span class="pi">:</span> <span class="m">18</span>&#x000A;</div><div class='line' id='LC46'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC47'>      <span class="na">MEMPOOL_BLOCK_BUFFER</span><span class="pi">:</span> <span class="m">10</span>&#x000A;</div><div class='line' id='LC48'>      <span class="na">EPOCH_BLOCKS</span><span class="pi">:</span> <span class="m">768</span>&#x000A;</div><div class='line' id='LC49'>      <span class="na">DIFFICULTY_STARTING</span><span class="pi">:</span> <span class="m">30</span>&#x000A;</div><div class='line' id='LC50'>    <span class="na">testnet5</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC51'>      <span class="na">DIFFICULTY_CONSTANT_FACTOR</span><span class="pi">:</span> <span class="m">10052721566054</span>&#x000A;</div><div class='line' id='LC52'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">ee7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af</span>&#x000A;</div><div class='line' id='LC53'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af</span>&#x000A;</div><div class='line' id='LC54'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc</span>&#x000A;</div><div class='line' id='LC55'>      <span class="na">INITIAL_FREEZE_END_TIMESTAMP</span><span class="pi">:</span> <span class="m">1618869600</span>  <span class="c1"># Mon Apr 19 2021 18:00:00 GMT-0400 (Eastern Daylight Time)</span>&#x000A;</div><div class='line' id='LC56'>      <span class="na">MIN_PLOT_SIZE</span><span class="pi">:</span> <span class="m">18</span>&#x000A;</div><div class='line' id='LC57'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC58'>      <span class="na">MEMPOOL_BLOCK_BUFFER</span><span class="pi">:</span> <span class="m">10</span>&#x000A;</div><div class='line' id='LC59'>      <span class="na">EPOCH_BLOCKS</span><span class="pi">:</span> <span class="m">768</span>&#x000A;</div><div class='line' id='LC60'>      <span class="na">DIFFICULTY_STARTING</span><span class="pi">:</span> <span class="m">30</span>&#x000A;</div><div class='line' id='LC61'>    <span class="na">testnet7</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC62'>      <span class="na">DIFFICULTY_CONSTANT_FACTOR</span><span class="pi">:</span> <span class="m">10052721566054</span>&#x000A;</div><div class='line' id='LC63'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">117816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af</span>&#x000A;</div><div class='line' id='LC64'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af</span>&#x000A;</div><div class='line' id='LC65'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc</span>&#x000A;</div><div class='line' id='LC66'>      <span class="na">INITIAL_FREEZE_END_TIMESTAMP</span><span class="pi">:</span> <span class="m">1619661600</span>  <span class="c1"># Wed Apr 28 2021 22:00:00 GMT-0400 (Eastern Daylight Time)</span>&#x000A;</div><div class='line' id='LC67'>      <span class="na">MIN_PLOT_SIZE</span><span class="pi">:</span> <span class="m">18</span>&#x000A;</div><div class='line' id='LC68'>      <span class="na">NETWORK_TYPE</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC69'>      <span class="na">MEMPOOL_BLOCK_BUFFER</span><span class="pi">:</span> <span class="m">10</span>&#x000A;</div><div class='line' id='LC70'>      <span class="na">EPOCH_BLOCKS</span><span class="pi">:</span> <span class="m">768</span>&#x000A;</div><div class='line' id='LC71'>      <span class="na">DIFFICULTY_STARTING</span><span class="pi">:</span> <span class="m">30</span>&#x000A;</div><div class='line' id='LC72'>    <span class="na">ext9</span><span class="pi">:</span>      &#x000A;</div><div class='line' id='LC73'>      <span class="na">GENESIS_CHALLENGE</span><span class="pi">:</span> <span class="s">7319a0d4a23e5c4fbaab34d1ec65b82d147cd09b6e8f97098bc00151bdce922a</span>&#x000A;</div><div class='line' id='LC74'>      <span class="na">GENESIS_PRE_FARM_FARMER_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af</span>&#x000A;</div><div class='line' id='LC75'>      <span class="na">GENESIS_PRE_FARM_POOL_PUZZLE_HASH</span><span class="pi">:</span> <span class="s">d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc</span> &#x000A;</div><div class='line' id='LC76'>      <span class="na">DIFFICULTY_STARTING</span><span class="pi">:</span> <span class="m">1</span>&#x000A;</div><div class='line' id='LC77'>      <span class="na">DIFFICULTY_CONSTANT_FACTOR</span><span class="pi">:</span> <span class="s">1152921504606846976</span> &#x000A;</div><div class='line' id='LC78'>      &#x000A;</div><div class='line' id='LC79'>  <span class="na">config</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC80'>    <span class="na">mainnet</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC81'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xch"</span>&#x000A;</div><div class='line' id='LC82'>      <span class="na">default_full_node_port</span><span class="pi">:</span> <span class="m">8444</span>&#x000A;</div><div class='line' id='LC83'>    <span class="na">testnet0</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC84'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">txch"</span>&#x000A;</div><div class='line' id='LC85'>    <span class="na">testnet1</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC86'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">txch"</span>&#x000A;</div><div class='line' id='LC87'>    <span class="na">testnet2</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC88'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">txch"</span>&#x000A;</div><div class='line' id='LC89'>    <span class="na">testnet3</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC90'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">txch"</span>&#x000A;</div><div class='line' id='LC91'>    <span class="na">testnet4</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC92'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">txch"</span>&#x000A;</div><div class='line' id='LC93'>    <span class="na">testnet7</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC94'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">txch"</span>&#x000A;</div><div class='line' id='LC95'>      <span class="na">default_full_node_port</span><span class="pi">:</span> <span class="m">58444</span>&#x000A;</div><div class='line' id='LC96'>    <span class="na">ext9</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC97'>      <span class="na">address_prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nch"</span>&#x000A;</div><div class='line' id='LC98'>      <span class="na">default_full_node_port</span><span class="pi">:</span> <span class="s">58445</span>      &#x000A;</div><div class='line' id='LC99'>&#x000A;</div><div class='line' id='LC100'><span class="na">selected_network</span><span class="pi">:</span> <span class="nl">&amp;selected_network</span> <span class="s2">"</span><span class="s">ext9"</span>&#x000A;</div><div class='line' id='LC101'><span class="na">ALERTS_URL</span><span class="pi">:</span> <span class="s">https://download.chia.net/notify/mainnet_alert.txt</span>&#x000A;</div><div class='line' id='LC102'><span class="na">CHIA_ALERTS_PUBKEY</span><span class="pi">:</span> <span class="s">89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937</span>&#x000A;</div><div class='line' id='LC103'>&#x000A;</div><div class='line' id='LC104'><span class="c1"># public ssl ca is included in source code</span>&#x000A;</div><div class='line' id='LC105'><span class="c1"># Private ssl ca is used for trusted connections between machines user owns</span>&#x000A;</div><div class='line' id='LC106'><span class="na">private_ssl_ca</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC107'>  <span class="na">crt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/private_ca.crt"</span>&#x000A;</div><div class='line' id='LC108'>  <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/private_ca.key"</span>&#x000A;</div><div class='line' id='LC109'>&#x000A;</div><div class='line' id='LC110'><span class="na">chia_ssl_ca</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC111'>  <span class="na">crt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/chia_ca.crt"</span>&#x000A;</div><div class='line' id='LC112'>  <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/chia_ca.key"</span>&#x000A;</div><div class='line' id='LC113'>&#x000A;</div><div class='line' id='LC114'>&#x000A;</div><div class='line' id='LC115'><span class="na">daemon_ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC116'>  <span class="na">private_crt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/daemon/private_daemon.crt"</span>&#x000A;</div><div class='line' id='LC117'>  <span class="na">private_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/daemon/private_daemon.key"</span>&#x000A;</div><div class='line' id='LC118'>&#x000A;</div><div class='line' id='LC119'>&#x000A;</div><div class='line' id='LC120'><span class="c1"># Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.</span>&#x000A;</div><div class='line' id='LC121'><span class="na">logging</span><span class="pi">:</span> <span class="nl">&amp;logging</span>&#x000A;</div><div class='line' id='LC122'>  <span class="na">log_stdout</span><span class="pi">:</span> <span class="s">False</span>  <span class="c1"># If True, outputs to stdout instead of a file</span>&#x000A;</div><div class='line' id='LC123'>  <span class="na">log_filename</span><span class="pi">:</span> <span class="s2">"</span><span class="s">log/debug.log"</span>&#x000A;</div><div class='line' id='LC124'>  <span class="na">log_level</span><span class="pi">:</span> <span class="s2">"</span><span class="s">WARNING"</span>  <span class="c1"># Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET</span>&#x000A;</div><div class='line' id='LC125'>  <span class="na">log_maxfilesrotation</span><span class="pi">:</span> <span class="m">7</span> <span class="c1">#  Max files in rotation. Default value 7 if the key is not set</span>&#x000A;</div><div class='line' id='LC126'>  <span class="na">log_syslog</span><span class="pi">:</span> <span class="s">False</span>  <span class="c1"># If True, outputs to SysLog host and port specified</span>&#x000A;</div><div class='line' id='LC127'>  <span class="na">log_syslog_host</span><span class="pi">:</span> <span class="s2">"</span><span class="s">localhost"</span>  <span class="c1"># Send logging messages to a remote or local Unix syslog</span>&#x000A;</div><div class='line' id='LC128'>  <span class="na">log_syslog_port</span><span class="pi">:</span> <span class="m">514</span>  <span class="c1"># UDP port of the remote or local Unix syslog</span>&#x000A;</div><div class='line' id='LC129'>&#x000A;</div><div class='line' id='LC130'><span class="na">harvester</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC131'>  <span class="c1"># The harvester server (if run) will run on this port</span>&#x000A;</div><div class='line' id='LC132'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38448</span>&#x000A;</div><div class='line' id='LC133'>  <span class="na">farmer_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC134'>    <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC135'>    <span class="na">port</span><span class="pi">:</span> <span class="m">38447</span>&#x000A;</div><div class='line' id='LC136'>&#x000A;</div><div class='line' id='LC137'>  <span class="c1"># If True, starts an RPC server at the following port</span>&#x000A;</div><div class='line' id='LC138'>  <span class="na">start_rpc_server</span><span class="pi">:</span> <span class="s">True</span>&#x000A;</div><div class='line' id='LC139'>  <span class="na">rpc_port</span><span class="pi">:</span> <span class="m">38560</span>&#x000A;</div><div class='line' id='LC140'>  <span class="na">num_threads</span><span class="pi">:</span> <span class="m">30</span>&#x000A;</div><div class='line' id='LC141'>  <span class="na">plot_loading_frequency_seconds</span><span class="pi">:</span> <span class="m">120</span>&#x000A;</div><div class='line' id='LC142'>&#x000A;</div><div class='line' id='LC143'>  <span class="c1"># If True use parallel reads in chiapos</span>&#x000A;</div><div class='line' id='LC144'>  <span class="na">parallel_read</span><span class="pi">:</span> <span class="s">True</span>&#x000A;</div><div class='line' id='LC145'>&#x000A;</div><div class='line' id='LC146'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC147'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC148'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC149'>&#x000A;</div><div class='line' id='LC150'>  <span class="c1"># Plots are searched for in the following directories</span>&#x000A;</div><div class='line' id='LC151'>  <span class="na">plot_directories</span><span class="pi">:</span> <span class="pi">[]</span>&#x000A;</div><div class='line' id='LC152'>&#x000A;</div><div class='line' id='LC153'>  <span class="na">ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC154'>    <span class="na">private_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/harvester/private_harvester.crt"</span>&#x000A;</div><div class='line' id='LC155'>    <span class="na">private_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/harvester/private_harvester.key"</span>&#x000A;</div><div class='line' id='LC156'>&#x000A;</div><div class='line' id='LC157'>  <span class="na">private_ssl_ca</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC158'>    <span class="na">crt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/private_ca.crt"</span>&#x000A;</div><div class='line' id='LC159'>    <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/private_ca.key"</span>&#x000A;</div><div class='line' id='LC160'>&#x000A;</div><div class='line' id='LC161'>  <span class="na">chia_ssl_ca</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC162'>    <span class="na">crt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/chia_ca.crt"</span>&#x000A;</div><div class='line' id='LC163'>    <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/ca/chia_ca.key"</span>&#x000A;</div><div class='line' id='LC164'>&#x000A;</div><div class='line' id='LC165'><span class="na">pool</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC166'>  <span class="c1"># Replace this with a real puzzle hash</span>&#x000A;</div><div class='line' id='LC167'>  <span class="c1"># xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg</span>&#x000A;</div><div class='line' id='LC168'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC169'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC170'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC171'>&#x000A;</div><div class='line' id='LC172'>&#x000A;</div><div class='line' id='LC173'><span class="na">farmer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC174'>  <span class="c1"># The farmer server (if run) will run on this port</span>&#x000A;</div><div class='line' id='LC175'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38447</span>&#x000A;</div><div class='line' id='LC176'>  <span class="c1"># The farmer will attempt to connect to this full node and harvester</span>&#x000A;</div><div class='line' id='LC177'>  <span class="na">full_node_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC178'>    <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC179'>    <span class="na">port</span><span class="pi">:</span> <span class="m">58445</span>&#x000A;</div><div class='line' id='LC180'>  <span class="na">harvester_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC181'>    <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC182'>    <span class="na">port</span><span class="pi">:</span> <span class="m">38448</span>&#x000A;</div><div class='line' id='LC183'>&#x000A;</div><div class='line' id='LC184'>  <span class="na">pool_public_keys</span><span class="pi">:</span> <span class="pi">[]</span>&#x000A;</div><div class='line' id='LC185'>&#x000A;</div><div class='line' id='LC186'>  <span class="c1"># Replace this with a real puzzle hash</span>&#x000A;</div><div class='line' id='LC187'>  <span class="c1"># xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg</span>&#x000A;</div><div class='line' id='LC188'>&#x000A;</div><div class='line' id='LC189'>  <span class="c1"># If True, starts an RPC server at the following port</span>&#x000A;</div><div class='line' id='LC190'>  <span class="na">start_rpc_server</span><span class="pi">:</span> <span class="s">True</span>&#x000A;</div><div class='line' id='LC191'>  <span class="na">rpc_port</span><span class="pi">:</span> <span class="m">38559</span>&#x000A;</div><div class='line' id='LC192'>&#x000A;</div><div class='line' id='LC193'>  <span class="c1"># To send a share to a pool, a proof of space must have required_iters less than this number</span>&#x000A;</div><div class='line' id='LC194'>  <span class="na">pool_share_threshold</span><span class="pi">:</span> <span class="m">1000</span>&#x000A;</div><div class='line' id='LC195'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC196'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC197'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC198'>&#x000A;</div><div class='line' id='LC199'>  <span class="na">ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC200'>    <span class="na">private_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/farmer/private_farmer.crt"</span>&#x000A;</div><div class='line' id='LC201'>    <span class="na">private_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/farmer/private_farmer.key"</span>&#x000A;</div><div class='line' id='LC202'>    <span class="na">public_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/farmer/public_farmer.crt"</span>&#x000A;</div><div class='line' id='LC203'>    <span class="na">public_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/farmer/public_farmer.key"</span>&#x000A;</div><div class='line' id='LC204'>&#x000A;</div><div class='line' id='LC205'><span class="c1"># Don't run this unless you want to run VDF clients on the local machine.</span>&#x000A;</div><div class='line' id='LC206'><span class="na">timelord_launcher</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC207'>  <span class="c1"># The server where the VDF clients will connect to.</span>&#x000A;</div><div class='line' id='LC208'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38000</span>&#x000A;</div><div class='line' id='LC209'>  <span class="c1"># Number of VDF client processes to keep alive in the local machine.</span>&#x000A;</div><div class='line' id='LC210'>  <span class="na">process_count</span><span class="pi">:</span> <span class="m">3</span>&#x000A;</div><div class='line' id='LC211'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC212'>&#x000A;</div><div class='line' id='LC213'>&#x000A;</div><div class='line' id='LC214'><span class="na">timelord</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC215'>  <span class="c1"># The timelord server (if run) will run on this port</span>&#x000A;</div><div class='line' id='LC216'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38446</span>&#x000A;</div><div class='line' id='LC217'>  <span class="c1"># Provides a list of VDF clients expected to connect to this timelord.</span>&#x000A;</div><div class='line' id='LC218'>  <span class="c1"># For each client, an IP is provided, together with the estimated iterations per second.</span>&#x000A;</div><div class='line' id='LC219'>  <span class="na">vdf_clients</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC220'>    <span class="na">ip</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC221'>      <span class="pi">-</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC222'>      <span class="pi">-</span> <span class="s">localhost</span>&#x000A;</div><div class='line' id='LC223'>      <span class="pi">-</span> <span class="s">127.0.0.1</span>&#x000A;</div><div class='line' id='LC224'>    <span class="na">ips_estimate</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC225'>      <span class="pi">-</span> <span class="m">150000</span>&#x000A;</div><div class='line' id='LC226'>  <span class="na">full_node_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC227'>      <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC228'>      <span class="na">port</span><span class="pi">:</span> <span class="m">58445</span>&#x000A;</div><div class='line' id='LC229'>  <span class="c1"># Maximum number of seconds allowed for a client to reconnect to the server.</span>&#x000A;</div><div class='line' id='LC230'>  <span class="na">max_connection_time</span><span class="pi">:</span> <span class="m">60</span>&#x000A;</div><div class='line' id='LC231'>  <span class="c1"># The ip and port where the TCP clients will connect.</span>&#x000A;</div><div class='line' id='LC232'>  <span class="na">vdf_server</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC233'>    <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC234'>    <span class="na">port</span><span class="pi">:</span> <span class="m">38000</span>&#x000A;</div><div class='line' id='LC235'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC236'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC237'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC238'>  <span class="c1"># fast_algorithm is a faster proof generation algorithm. This speed increase</span>&#x000A;</div><div class='line' id='LC239'>  <span class="c1"># requires much less memory usage and a does not have the risk of OOM that</span>&#x000A;</div><div class='line' id='LC240'>  <span class="c1"># the normal timelord has but requires significantly more cores doing</span>&#x000A;</div><div class='line' id='LC241'>  <span class="c1"># parrallel proof generation and creates a larger and slower to verify</span>&#x000A;</div><div class='line' id='LC242'>  <span class="c1"># resulting proof.</span>&#x000A;</div><div class='line' id='LC243'>  <span class="c1"># An Intel Core i9-10900K can run 2 normal vdf_clients at ~221,000 ips</span>&#x000A;</div><div class='line' id='LC244'>  <span class="c1"># without slowing down but running more than 1 with fast_algorithm will</span>&#x000A;</div><div class='line' id='LC245'>  <span class="c1"># run each vdf_client slower.</span>&#x000A;</div><div class='line' id='LC246'>  <span class="na">fast_algorithm</span><span class="pi">:</span> <span class="s">False</span>&#x000A;</div><div class='line' id='LC247'>  <span class="c1"># Bluebox (sanatizing Timelord):</span>&#x000A;</div><div class='line' id='LC248'>  <span class="c1"># If set 'True', the timelord will create compact proofs of time, instead of</span>&#x000A;</div><div class='line' id='LC249'>  <span class="c1"># extending the chain. The attribute 'fast_algorithm' won't apply if timelord</span>&#x000A;</div><div class='line' id='LC250'>  <span class="c1"># is running in sanitizer_mode.</span>&#x000A;</div><div class='line' id='LC251'>  <span class="c1"># You must set 'send_uncompact_interval' in 'full_node' &gt; 0 in the full_node</span>&#x000A;</div><div class='line' id='LC252'>  <span class="c1"># section below to have full_node send existing time proofs to be sanitized.</span>&#x000A;</div><div class='line' id='LC253'>  <span class="na">sanitizer_mode</span><span class="pi">:</span> <span class="s">False</span>&#x000A;</div><div class='line' id='LC254'>&#x000A;</div><div class='line' id='LC255'>  <span class="na">ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC256'>    <span class="na">private_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/timelord/private_timelord.crt"</span>&#x000A;</div><div class='line' id='LC257'>    <span class="na">private_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/timelord/private_timelord.key"</span>&#x000A;</div><div class='line' id='LC258'>    <span class="na">public_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/timelord/public_timelord.crt"</span>&#x000A;</div><div class='line' id='LC259'>    <span class="na">public_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/timelord/public_timelord.key"</span>&#x000A;</div><div class='line' id='LC260'>&#x000A;</div><div class='line' id='LC261'><span class="na">full_node</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC262'>  <span class="c1"># The full node server (if run) will run on this port</span>&#x000A;</div><div class='line' id='LC263'>  <span class="na">port</span><span class="pi">:</span> <span class="m">58445</span>&#x000A;</div><div class='line' id='LC264'>&#x000A;</div><div class='line' id='LC265'>  <span class="c1"># Run multiple nodes with different databases by changing the database_path</span>&#x000A;</div><div class='line' id='LC266'>  <span class="na">database_path</span><span class="pi">:</span> <span class="s">db/blockchain_v1_CHALLENGE.sqlite</span>&#x000A;</div><div class='line' id='LC267'>  <span class="na">peer_db_path</span><span class="pi">:</span> <span class="s">db/peer_table_node.sqlite</span>&#x000A;</div><div class='line' id='LC268'>  <span class="na">simulator_database_path</span><span class="pi">:</span> <span class="s">sim_db/simulator_blockchain_v1_CHALLENGE.sqlite</span>&#x000A;</div><div class='line' id='LC269'>  <span class="na">simulator_peer_db_path</span><span class="pi">:</span> <span class="s">sim_db/peer_table_node.sqlite</span>&#x000A;</div><div class='line' id='LC270'>&#x000A;</div><div class='line' id='LC271'>  <span class="c1"># If True, starts an RPC server at the following port</span>&#x000A;</div><div class='line' id='LC272'>  <span class="na">start_rpc_server</span><span class="pi">:</span> <span class="s">True</span>&#x000A;</div><div class='line' id='LC273'>  <span class="na">rpc_port</span><span class="pi">:</span> <span class="m">38555</span>&#x000A;</div><div class='line' id='LC274'>&#x000A;</div><div class='line' id='LC275'>  <span class="c1"># Use UPnP to attempt to allow other full nodes to reach your node behind a gateway</span>&#x000A;</div><div class='line' id='LC276'>  <span class="na">enable_upnp</span><span class="pi">:</span> <span class="s">True</span>&#x000A;</div><div class='line' id='LC277'>&#x000A;</div><div class='line' id='LC278'>  <span class="c1"># If node is more than these blocks behind, will do a sync (long sync)</span>&#x000A;</div><div class='line' id='LC279'>  <span class="na">sync_blocks_behind_threshold</span><span class="pi">:</span> <span class="m">300</span>&#x000A;</div><div class='line' id='LC280'>&#x000A;</div><div class='line' id='LC281'>  <span class="c1"># If node is more than these blocks behind, will do a short batch-sync, if it's less, will do a backtrack sync</span>&#x000A;</div><div class='line' id='LC282'>  <span class="na">short_sync_blocks_behind_threshold</span><span class="pi">:</span> <span class="m">20</span>&#x000A;</div><div class='line' id='LC283'>&#x000A;</div><div class='line' id='LC284'>  <span class="c1"># How often to initiate outbound connections to other full nodes.</span>&#x000A;</div><div class='line' id='LC285'>  <span class="na">peer_connect_interval</span><span class="pi">:</span> <span class="m">30</span>&#x000A;</div><div class='line' id='LC286'>  <span class="c1"># Accept peers until this number of connections</span>&#x000A;</div><div class='line' id='LC287'>  <span class="na">target_peer_count</span><span class="pi">:</span> <span class="m">240</span>&#x000A;</div><div class='line' id='LC288'>  <span class="c1"># Initiate outbound connections until this number is hit.</span>&#x000A;</div><div class='line' id='LC289'>  <span class="na">target_outbound_peer_count</span><span class="pi">:</span> <span class="m">7</span>&#x000A;</div><div class='line' id='LC290'>  <span class="c1"># IPv4/IPv6 network addresses and CIDR blocks allowed to connect even when target_peer_count has been hit.</span>&#x000A;</div><div class='line' id='LC291'>  <span class="c1"># exempt_peer_networks: ["192.168.0.3", "192.168.1.0/24", "fe80::/10", "2606:4700:4700::64/128"]</span>&#x000A;</div><div class='line' id='LC292'>  <span class="na">exempt_peer_networks</span><span class="pi">:</span> <span class="pi">[]</span>&#x000A;</div><div class='line' id='LC293'>  <span class="c1"># Accept at most # of inbound connections for different node types.</span>&#x000A;</div><div class='line' id='LC294'>  <span class="na">max_inbound_wallet</span><span class="pi">:</span> <span class="m">20</span>&#x000A;</div><div class='line' id='LC295'>  <span class="na">max_inbound_farmer</span><span class="pi">:</span> <span class="m">10</span>&#x000A;</div><div class='line' id='LC296'>  <span class="na">max_inbound_timelord</span><span class="pi">:</span> <span class="m">5</span>&#x000A;</div><div class='line' id='LC297'>  <span class="c1"># Only connect to peers who we have heard about in the last recent_peer_threshold seconds</span>&#x000A;</div><div class='line' id='LC298'>  <span class="na">recent_peer_threshold</span><span class="pi">:</span> <span class="m">6000</span>&#x000A;</div><div class='line' id='LC299'>&#x000A;</div><div class='line' id='LC300'>  <span class="c1"># Send to a Bluebox (sanatizing timelord) uncompact blocks once every</span>&#x000A;</div><div class='line' id='LC301'>  <span class="c1"># 'send_uncompact_interval' seconds. Set to 0 if you don't use this feature.</span>&#x000A;</div><div class='line' id='LC302'>  <span class="na">send_uncompact_interval</span><span class="pi">:</span> <span class="m">0</span>&#x000A;</div><div class='line' id='LC303'>  <span class="c1"># At every 'send_uncompact_interval' seconds, send blueboxes 'target_uncompact_proofs' proofs to be normalized.</span>&#x000A;</div><div class='line' id='LC304'>  <span class="na">target_uncompact_proofs</span><span class="pi">:</span> <span class="m">100</span>&#x000A;</div><div class='line' id='LC305'>  <span class="c1"># Setting this flag as True, blueboxes will sanitize only data needed in weight proof calculation, as opposed to whole blocks.</span>&#x000A;</div><div class='line' id='LC306'>  <span class="c1"># Default is set to False, as the network needs only one or two blueboxes like this.</span>&#x000A;</div><div class='line' id='LC307'>  <span class="na">sanitize_weight_proof_only</span><span class="pi">:</span> <span class="s">False</span>&#x000A;</div><div class='line' id='LC308'>  <span class="c1"># timeout for weight proof request</span>&#x000A;</div><div class='line' id='LC309'>  <span class="na">weight_proof_timeout</span><span class="pi">:</span> <span class="m">360</span>&#x000A;</div><div class='line' id='LC310'>&#x000A;</div><div class='line' id='LC311'>  <span class="c1"># when enabled, the full node will print a pstats profile to the root_dir/profile every second</span>&#x000A;</div><div class='line' id='LC312'>  <span class="c1"># analyze with chia/utils/profiler.py</span>&#x000A;</div><div class='line' id='LC313'>  <span class="na">enable_profiler</span><span class="pi">:</span> <span class="s">False</span>&#x000A;</div><div class='line' id='LC314'>&#x000A;</div><div class='line' id='LC315'>  <span class="c1"># List of trusted DNS seeders to bootstrap from.</span>&#x000A;</div><div class='line' id='LC316'>  <span class="c1"># If you modify this, please change the hardcode as well from FullNode.set_server()</span>&#x000A;</div><div class='line' id='LC317'>  <span class="na">dns_servers</span><span class="pi">:</span> <span class="pi">[]</span>&#x000A;</div><div class='line' id='LC318'>  <span class="na">farmer_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC319'>      <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC320'>      <span class="na">port</span><span class="pi">:</span> <span class="m">38447</span>&#x000A;</div><div class='line' id='LC321'>  <span class="na">timelord_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC322'>      <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC323'>      <span class="na">port</span><span class="pi">:</span> <span class="m">38446</span>&#x000A;</div><div class='line' id='LC324'>  <span class="na">introducer_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC325'>      <span class="na">host</span><span class="pi">:</span> <span class="s">introducer.ext9.org</span>  <span class="c1"># Chia AWS introducer IPv4/IPv6</span>&#x000A;</div><div class='line' id='LC326'>      <span class="na">port</span><span class="pi">:</span> <span class="m">38445</span>&#x000A;</div><div class='line' id='LC327'>  <span class="na">wallet_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC328'>    <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC329'>    <span class="na">port</span><span class="pi">:</span> <span class="m">38449</span>&#x000A;</div><div class='line' id='LC330'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC331'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC332'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC333'>&#x000A;</div><div class='line' id='LC334'>  <span class="na">ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC335'>    <span class="na">private_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/full_node/private_full_node.crt"</span>&#x000A;</div><div class='line' id='LC336'>    <span class="na">private_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/full_node/private_full_node.key"</span>&#x000A;</div><div class='line' id='LC337'>    <span class="na">public_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/full_node/public_full_node.crt"</span>&#x000A;</div><div class='line' id='LC338'>    <span class="na">public_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/full_node/public_full_node.key"</span>&#x000A;</div><div class='line' id='LC339'>&#x000A;</div><div class='line' id='LC340'><span class="na">ui</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC341'>   <span class="c1"># The ui node server (if run) will run on this port</span>&#x000A;</div><div class='line' id='LC342'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38222</span>&#x000A;</div><div class='line' id='LC343'>&#x000A;</div><div class='line' id='LC344'>  <span class="c1"># Which port to use to communicate with the full node</span>&#x000A;</div><div class='line' id='LC345'>  <span class="na">rpc_port</span><span class="pi">:</span> <span class="m">38555</span>&#x000A;</div><div class='line' id='LC346'>&#x000A;</div><div class='line' id='LC347'>  <span class="c1"># This SSH key is for the ui SSH server</span>&#x000A;</div><div class='line' id='LC348'>  <span class="na">ssh_filename</span><span class="pi">:</span> <span class="s">config/ssh_host_key</span>&#x000A;</div><div class='line' id='LC349'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC350'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC351'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC352'>&#x000A;</div><div class='line' id='LC353'>  <span class="c1"># this is where the electron UI will find its daemon</span>&#x000A;</div><div class='line' id='LC354'>  <span class="c1"># defaults to the one running locally with its private keys</span>&#x000A;</div><div class='line' id='LC355'>  <span class="na">daemon_host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC356'>  <span class="na">daemon_port</span><span class="pi">:</span> <span class="m">35400</span>&#x000A;</div><div class='line' id='LC357'>  <span class="na">daemon_ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC358'>    <span class="na">private_crt</span><span class="pi">:</span> <span class="s">config/ssl/daemon/private_daemon.crt</span>&#x000A;</div><div class='line' id='LC359'>    <span class="na">private_key</span><span class="pi">:</span> <span class="s">config/ssl/daemon/private_daemon.key</span>&#x000A;</div><div class='line' id='LC360'>&#x000A;</div><div class='line' id='LC361'><span class="na">introducer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC362'>  <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC363'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38445</span>&#x000A;</div><div class='line' id='LC364'>  <span class="na">max_peers_to_send</span><span class="pi">:</span> <span class="m">20</span>&#x000A;</div><div class='line' id='LC365'>  <span class="c1"># The introducer will only return peers who it has seen in the last</span>&#x000A;</div><div class='line' id='LC366'>  <span class="c1"># recent_peer_threshold seconds</span>&#x000A;</div><div class='line' id='LC367'>  <span class="na">recent_peer_threshold</span><span class="pi">:</span> <span class="m">6000</span>&#x000A;</div><div class='line' id='LC368'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC369'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC370'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC371'>&#x000A;</div><div class='line' id='LC372'>  <span class="na">ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC373'>    <span class="na">public_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/full_node/public_full_node.crt"</span>&#x000A;</div><div class='line' id='LC374'>    <span class="na">public_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/full_node/public_full_node.key"</span>&#x000A;</div><div class='line' id='LC375'>&#x000A;</div><div class='line' id='LC376'><span class="na">wallet</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC377'>  <span class="na">port</span><span class="pi">:</span> <span class="m">38449</span>&#x000A;</div><div class='line' id='LC378'>  <span class="na">rpc_port</span><span class="pi">:</span> <span class="m">39256</span>&#x000A;</div><div class='line' id='LC379'>&#x000A;</div><div class='line' id='LC380'>  <span class="na">enable_profiler</span><span class="pi">:</span> <span class="s">False</span>&#x000A;</div><div class='line' id='LC381'>&#x000A;</div><div class='line' id='LC382'>  <span class="c1"># The minimum height that we care about for our transactions. Set to zero</span>&#x000A;</div><div class='line' id='LC383'>  <span class="c1"># If we are restoring from private key and don't know the height.</span>&#x000A;</div><div class='line' id='LC384'>  <span class="na">starting_height</span><span class="pi">:</span> <span class="m">0</span>&#x000A;</div><div class='line' id='LC385'>  <span class="na">start_height_buffer</span><span class="pi">:</span> <span class="m">100</span>  <span class="c1"># Wallet will stop fly sync at starting_height - buffer</span>&#x000A;</div><div class='line' id='LC386'>  <span class="na">num_sync_batches</span><span class="pi">:</span> <span class="m">50</span>&#x000A;</div><div class='line' id='LC387'>  <span class="na">initial_num_public_keys</span><span class="pi">:</span> <span class="m">100</span>&#x000A;</div><div class='line' id='LC388'>  <span class="na">initial_num_public_keys_new_wallet</span><span class="pi">:</span> <span class="m">5</span>&#x000A;</div><div class='line' id='LC389'>&#x000A;</div><div class='line' id='LC390'>  <span class="na">full_node_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC391'>    <span class="na">host</span><span class="pi">:</span> <span class="nv">*self_hostname</span>&#x000A;</div><div class='line' id='LC392'>    <span class="na">port</span><span class="pi">:</span> <span class="m">58445</span>&#x000A;</div><div class='line' id='LC393'>&#x000A;</div><div class='line' id='LC394'>  <span class="na">testing</span><span class="pi">:</span> <span class="s">False</span>&#x000A;</div><div class='line' id='LC395'>  <span class="na">database_path</span><span class="pi">:</span> <span class="s">wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite</span>&#x000A;</div><div class='line' id='LC396'>  <span class="na">wallet_peers_path</span><span class="pi">:</span> <span class="s">wallet/db/wallet_peers.sqlite</span>&#x000A;</div><div class='line' id='LC397'>&#x000A;</div><div class='line' id='LC398'>  <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>&#x000A;</div><div class='line' id='LC399'>  <span class="na">network_overrides</span><span class="pi">:</span> <span class="nv">*network_overrides</span>&#x000A;</div><div class='line' id='LC400'>  <span class="na">selected_network</span><span class="pi">:</span> <span class="nv">*selected_network</span>&#x000A;</div><div class='line' id='LC401'>&#x000A;</div><div class='line' id='LC402'>  <span class="na">target_peer_count</span><span class="pi">:</span> <span class="m">5</span>&#x000A;</div><div class='line' id='LC403'>  <span class="na">peer_connect_interval</span><span class="pi">:</span> <span class="m">60</span>&#x000A;</div><div class='line' id='LC404'>  <span class="c1"># The introducer will only return peers who it has seen in the last</span>&#x000A;</div><div class='line' id='LC405'>  <span class="c1"># recent_peer_threshold seconds</span>&#x000A;</div><div class='line' id='LC406'>  <span class="na">recent_peer_threshold</span><span class="pi">:</span> <span class="m">6000</span>&#x000A;</div><div class='line' id='LC407'>&#x000A;</div><div class='line' id='LC408'>  <span class="na">introducer_peer</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC409'>    <span class="na">host</span><span class="pi">:</span> <span class="s">introducer.ext9.org</span> <span class="c1"># introducer.chia.net # Chia AWS introducer IPv4/IPv6</span>&#x000A;</div><div class='line' id='LC410'>    <span class="na">port</span><span class="pi">:</span> <span class="m">38445</span>&#x000A;</div><div class='line' id='LC411'>&#x000A;</div><div class='line' id='LC412'>  <span class="na">ssl</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC413'>    <span class="na">private_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/wallet/private_wallet.crt"</span>&#x000A;</div><div class='line' id='LC414'>    <span class="na">private_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/wallet/private_wallet.key"</span>&#x000A;</div><div class='line' id='LC415'>    <span class="na">public_crt</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/wallet/public_wallet.crt"</span>&#x000A;</div><div class='line' id='LC416'>    <span class="na">public_key</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">config/ssl/wallet/public_wallet.key"</span>&#x000A;</div><div class='line' id='LC417'>&#x000A;</div><div class='line' id='LC418'>  <span class="na">trusted_peers</span><span class="pi">:</span>&#x000A;</div><div class='line' id='LC419'>    <span class="na">trusted_node_1</span><span class="pi">:</span> <span class="s2">"</span><span class="s">config/ssl/full_node/public_full_node.crt"</span>&#x000A;</div><div class='line' id='LC420'>&#x000A;</div><div class='line' id='LC421'>  <span class="na">short_sync_blocks_behind_threshold</span><span class="pi">:</span> <span class="m">20</span>&#x000A;</div></pre></div></div>
-</div>
-<script>
-  window.Gitee.initReadmeCatalog();
-  toMathMlCode('','markdown-body');
-</script>
-
-</div>
-</div>
-<div class='tree_progress'></div>
-<div class='ui small modal' id='modal-linejump'>
-<div class='ui custom form content'>
-<div class='field'>
-<div class='ui right action input'>
-<input placeholder='Jump to line...' type='number'>
-<div class='ui orange button'>
-Go
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class='row column inner-comment' id='blob-comment'>
-<input type="hidden" name="comment_path" id="comment_path" value="chia/util/initial-config.yaml" />
-<div class='tree-comments'>
-<h3 id='tree_comm_title'>
-Comment
-(
-<span class='comments-count'>
-0
-</span>
-)
-</h3>
-<div class='ui threaded comments middle aligned' id='notes-list'></div>
-<input type="hidden" name="ajax_add_note_id" id="ajax_add_note_id" />
-<div class='text-center'>
-<div class='tip-loading' style='display: none'>
-<div class='ui active mini inline loader'></div>
-Loading...
-</div>
-</div>
-</div>
-<script>
-  "use strict";
-  $(function(){
-    var page = 1
-    var commentsCount = 0
-    var $container = $('.tree-comments')
-    var $comments = $container.find('.ui.comments')
-    var $tipLoading = $container.find('.tip-loading')
-    var $btnLoad = $container.find('.btn-load-more')
-    var noteAnchor = new Gitee.NoteAnchor({ defaultAnchor: '#tree_comm_title' })
-  
-    if (commentsCount < 1) {
-      return;
-    }
-  
-    var path;
-    if ($('#comment_path').val() === '') {
-      path = '/';
-    } else {
-      path = $('#comment_path').val();
-    }
-  
-    function loadComments () {
-      $btnLoad.hide();
-      $tipLoading.show();
-      $.ajax({
-        url: '/ext9/ext9-blockchain/comment_list',
-        data: {
-          page: page,
-          path: path
-        },
-        success: function(data) {
-          var err;
-          try {
-            $tipLoading.hide();
-            $btnLoad.show();
-            if (data.status !== 0) {
-              $btnLoad.text('No more comments')
-              return $btnLoad.prop('disabled', true).addClass('disabled');
-            } else {
-              TreeComment.CommentListHandler(data);
-              page += 1;
-              if (data.comments_count < 10) {
-                $('#ajax_add_note_id').val('');
-                $btnLoad.text('No more comments')
-                $btnLoad.prop('disabled', true).addClass('disabled');
-              }
-              // osctree can not load script
-              $comments.find('.timeago').timeago();
-              $comments.find('.commenter-role-label').popup();
-              noteAnchor.locate();
-              toMathMlCode('', 'comments');
-              return $('.markdown-body pre code').each(function(i, block) {
-                return hljs.highlightBlock(block);
-              });
-            }
-          } catch (error) {
-            err = error;
-            return console.log('loadComments error:' + err);
-          }
-        }
-      });
-    };
-  
-  
-    function checkLoad () {
-      var listTop, top;
-      top = $(window).scrollTop();
-      listTop = $container.offset().top;
-      if (listTop >= top && listTop < top + $(window).height()) {
-        $(window).off('scroll', checkLoad);
-        return loadComments();
-      }
-    };
-  
-    $btnLoad.on('click', loadComments);
-    loadComments()
-  })
-</script>
-
-</div>
-<div class='inner-comment-box' id='comment-box'>
-<p>
-<a href="/login">Sign in</a> for post a comment
-</p>
-
-</div>
-
-<div class='complaint'>
-<div class='ui modal small form' id='landing-comments-complaint-modal'>
-<i class='iconfont icon-close close'></i>
-<div class='header'>
-Report
-</div>
-<div class='content'>
-<div class='appeal-success-tip hide'>
-<i class='iconfont icon-ic_msg_success'></i>
-<div class='appeal-success-text'>
-Report success
-</div>
-<span>
-We will send you the feedback within 2 working days through the letter!
-</span>
-</div>
-<div class='appeal-tip'>
-Please fill in the reason for the report carefully. Provide as detailed a description as possible.
-</div>
-<div class='ui form appeal-form'>
-<div class='inline field'>
-<label class='left-part appeal-type-wrap'>
-Type
-</label>
-<div class='ui dropdown selection' id='appeal-comments-types'>
-<div class='text default'>
-Please select a report type
-</div>
-<i class='dropdown icon'></i>
-<div class='menu'></div>
-</div>
-</div>
-<div class='inline field'>
-<label class='left-part'>
-Reason
-</label>
-<textarea class='appeal-reason' id='appeal-comment-reason' name='msg' placeholder='Please explain the reason for the report' rows='3'></textarea>
-</div>
-<div class='ui message callback-msg hide'></div>
-<div class='ui small error text message exceeded-size-tip'></div>
-</div>
-</div>
-<div class='actions'>
-<div class='ui button blank cancel'>
-Cancel
-</div>
-<div class='ui orange icon button disabled ok' id='complaint-comment-confirm'>
-Send
-</div>
-</div>
-</div>
-<script>
-  var $complaintCommentsModal = $('#landing-comments-complaint-modal'),
-      $complainCommentType = $complaintCommentsModal.find('#appeal-comments-types'),
-      $complaintModalTip = $complaintCommentsModal.find('.callback-msg'),
-      $complaintCommentsContent = $complaintCommentsModal.find('.appeal-reason'),
-      $complaintCommentBtn = $complaintCommentsModal.find('#complaint-comment-confirm'),
-      complaintSending = false,
-      initedCommentsType = false;
-  
-  function initCommentsTypeList() {
-    if (!initedCommentsType) {
-      $.ajax({
-        url: "/appeals/fetch_types",
-        method: 'get',
-        data: {'type': 'comment'},
-        success: function (data) {
-          var result = '';
-          for (var i = 0; i < data.length; i++) {
-            result = result + "<div class='item' data-value='" + data[i].id + "'>" + data[i].name + "</div>";
-          }
-          $complainCommentType.find('.menu').html(result);
-        }
-      });
-      $complainCommentType.dropdown({showOnFocus: false});
-      initedCommentsType = true;
-    }
-  }
-  $complainCommentType.on('click', function() {
-    $complaintCommentsModal.modal({
-      autofocus: false,
-      onApprove: function() {
-        return false;
-      },
-      onHidden: function() {
-        restoreCommonentDefault();
-      }
-    }).modal('show');
-  });
-  
-  $complaintCommentsContent.on('change keyup', function(e) {
-    var content = $(this).val();
-    if ($.trim(content).length > 0 && $complainCommentType.dropdown('get value').length > 0 ) {
-      $complaintCommentBtn.removeClass('disabled');
-      return;
-    }
-    $complaintCommentBtn.addClass('disabled');
-  });
-  
-  
-  $complainCommentType.dropdown({
-    showOnFocus: false,
-    onChange: function(value, text, $selectedItem) {
-      if (value.length > 0 && $.trim($complaintCommentsContent.val()).length > 0) {
-        $complaintCommentBtn.removeClass('disabled');
-        return
-      }
-      $complaintCommentBtn.addClass('disabled');
-    }
-  });
-  
-  function restoreCommonentDefault() {
-    $complainCommentType.dropdown('restore defaults');
-    $complaintCommentsContent.val('');
-    $('.exceeded-size-tip').text('').hide();
-    $complaintModalTip.text('').hide();
-    setTimeout(function() {
-      setCommentSendTip(false);
-    }, 1500);
-  }
-  
-  $complaintCommentBtn.on('click',function(e){
-    var reason = $complaintCommentsContent.val();
-    var appealableId = $('#landing-comments-complaint-modal').attr('data-id');
-    if (complaintSending) {
-      return;
-    }
-    var appealType = $complainCommentType.dropdown('get value');
-    var formData = new FormData();
-    formData.append('appeal_type_id', appealType);
-    formData.append('reason', reason);
-    formData.append('appeal_type','Note');
-    formData.append('target_id',appealableId);
-    $.ajax({
-      type: 'POST',
-      url: "/appeals",
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: formData,
-      beforeSend: function() {
-        setCommentSendStatus(true);
-      },
-      success: function(res) {
-        if (res.status == 200) {
-          setCommentSendTip(true);
-          setTimeout(function() {
-            $complaintCommentsModal.modal('hide');
-            restoreCommonentDefault();
-          }, 3000);
-        }
-        setCommentSendStatus(false);
-      },
-      error: function(err) {
-        showCommonTips(err.responseJSON.message, 'error');
-        setCommentSendStatus(false);
-      }
-    })
-  });
-  
-  function showCommonTips(text, type) {
-    $complaintModalTip.text(text).show();
-    if (type == 'error') {
-      $complaintModalTip.removeClass('success').addClass('error');
-    } else {
-      $complaintModalTip.removeClass('error').addClass('success');
-    }
-  }
-  
-  function setCommentSendStatus(value) {
-    complaintSending = value;
-    if (complaintSending) {
-      $complaintCommentBtn.addClass('loading');
-      $complaintCommentsContent.attr('readonly', true);
-      $complainCommentType.attr('readonly', true);
-    } else {
-      $complaintCommentBtn.removeClass('loading');
-      $complaintCommentsContent.attr('readonly', false);
-      $complainCommentType.attr('readonly', false);
-    }
-  }
-  
-  function setCommentSendTip(value) {
-    if (value) {
-      $('.appeal-success-tip').removeClass('hide');
-      $('.appeal-tip').addClass('hide');
-      $('.appeal-form').addClass('hide');
-      $('#landing-comments-complaint-modal .actions').addClass('hide');
-    } else {
-      $('.appeal-success-tip').addClass('hide');
-      $('.appeal-tip').removeClass('hide');
-      $('.appeal-form').removeClass('hide');
-      $('#landing-comments-complaint-modal .actions').removeClass('hide');
-    }
-  }
-</script>
-
-</div>
-<script>
-  "use strict";
-  $('.js-check-star').checkbox('set unchecked')
-</script>
-
-</div>
-</div>
-</div>
-<div class='four wide column' style='display: none;'>
-<div class='project__right-side'>
-<div class='side-item intro'>
-<div class='header'>
-<h4>About</h4>
-</div>
-<div class='content'>
-<span class='git-project-desc-text'>Thanks to the outstanding work accomplished by Chia, it is possible to run multiple blockchain projects using the same hardware resources. Multiple blockchains running simultaneously on PosT based pro</span>
-<a class='hide spread' href='javascript:void(0);'>
-expand
-<i class='caret down icon'></i>
-</a>
-<a class='retract hide' href='javascript:void(0);'>
-collapse
-<i class='caret up icon'></i>
-</a>
-<div class='intro-list'>
-<div class='blank d-flex d-flex-between dropdown item js-project-label_show label-list-line-feed project-label-list ui' data-labels='[]' data-url='/ext9/ext9-blockchain/update_description'>
-<div class='mixed-label'>
-</div>
-
-<div class='default'>No labels</div>
-</div>
-<div class='item'>
-<i class='iconfont icon-link'></i>
-<span class='git-project-homepage'>
-<a rel="nofollow" id="homepage" target="_blank" href="https://ext9.org/">https://ext9.org/</a>
-</span>
-</div>
-<div class='item'>
-<i class='iconfont icon-tag-program'></i>
-<span class='summary-languages'>
-Python
-<span class='text-muted'>
-and 3 more languages
-<i class='icon dropdown'></i>
-</span>
-</span>
-<div class='ui popup summary-languages-popup'>
-<div class='row'>
-<div class='lang'>
-<a href="/explore/all?lang=Python">Python</a>
-</div>
-<div class='lang-bar'>
-<div class='bar' style='width: 98.8%;'></div>
-</div>
-<a class="percentage" href="/explore/all?lang=Python">98.8%</a>
-</div>
-<div class='row'>
-<div class='lang'>
-<a href="/explore/all?lang=Shell">Shell</a>
-</div>
-<div class='lang-bar'>
-<div class='bar' style='width: 0.9%;'></div>
-</div>
-<a class="percentage" href="/explore/all?lang=Shell">0.9%</a>
-</div>
-<div class='row'>
-<div class='lang'>
-<a href="/explore/all?lang=PowerShell">PowerShell</a>
-</div>
-<div class='lang-bar'>
-<div class='bar' style='width: 0.3%;'></div>
-</div>
-<a class="percentage" href="/explore/all?lang=PowerShell">0.3%</a>
-</div>
-</div>
-</div>
-
-<div class='item'>
-<i class='iconfont icon-licence'></i>
-<a target="_blank" id="license-popup" href="/ext9/ext9-blockchain/blob/net9.dev/LICENSE">Apache-2.0</a>
-<div class='ui popup dark'>Use Apache-2.0</div>
-</div>
-</div>
-</div>
-<div class='content intro-form'>
-<div class='ui small input'>
-<textarea name='project[description]' placeholder='Description' rows='5'></textarea>
-</div>
-<div class='ui small input'>
-<input data-regex-value='(^$)|(^(http|https):\/\/(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).*)|(^(http|https):\/\/[a-zA-Z0-9]+([_\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,10}(:[0-9]{1,10})?(\?.*)?(\/.*)?$)' name='project[homepage]' placeholder='Homepage(eg: https://gitee.com)' type='text'>
-</div>
-<button class='ui orange button mt-1 btn-save'>
-Save
-</button>
-<div class='ui blank button btn-cancel-edit'>
-Cancel
-</div>
-</div>
-</div>
-<div class='side-item release'>
-<div class='header'>
-<h4>Releases</h4>
-</div>
-<div class='content'>
-<span class='text-muted'>
-No release
-</span>
-</div>
-</div>
-<div class='side-item contrib' data-url='/ext9/ext9-blockchain/contributors_count?ref=net9.dev' id='contributor'>
-<div class='header'>
-<h4>
-Contributors
-<span class='text-muted' id='contributor-count'></span>
-</h4>
-<a class="ui link button pull-right" href="/ext9/ext9-blockchain/contributors?ref=net9.dev">All</a>
-</div>
-<div class='content' id='contributor-list'></div>
-<div class='ui active centered inline loader' id='contributor-loader'></div>
-</div>
-<div class='side-item events' data-url='/ext9/ext9-blockchain/events.json' id='proj-events'>
-<div class='header'>
-<h4>Activities</h4>
-</div>
-<div class='content'>
-<div class='ui comments' id='event-list'></div>
-<a class="loadmore hide" href="javascript:void(0);">load more
-<i class='icon dropdown'></i>
-</a><center>
-<div class='text-muted nomore hide'>can not load any more</div>
-<div class='ui inline loader active'></div>
-</center>
-</div>
-</div>
-</div>
-<div class='ui modal tiny' id='edit-project-description'>
-<i class='iconfont icon-close close'></i>
-<div class='header'>Edit</div>
-<div class='content'>
-<div class='item mb-2'>
-<div class='title label'>About</div>
-<div class='ui small input'>
-<textarea maxlength='200' name='project[description]' placeholder='Description' rows='5'>Thanks to the outstanding work accomplished by Chia, it is possible to run multiple blockchain projects using the same hardware resources. Multiple blockchains running simultaneously on PosT based pro</textarea>
-</div>
-</div>
-<div class='item mb-2'>
-<div class='title label'>Homepage</div>
-<div class='ui small input'>
-<input data-regex-value='(^$)|(^(http|https):\/\/(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).*)|(^(http|https):\/\/[a-zA-Z0-9]+([_\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,10}(:[0-9]{1,10})?(\?.*)?(\/.*)?$)' name='project[homepage]' placeholder='Homepage(eg: https://gitee.com)' type='text' value='https://ext9.org/'>
-</div>
-</div>
-</div>
-<div class='actions'>
-<button class='ui button blank cancel'>Cancel</button>
-<button class='ui button orange btn-save'>Save</button>
-</div>
-</div>
-
-<script>
-  window.gon.projectRightSide = {
-    homepage: "https://ext9.org/",
-    description: "Thanks to the outstanding work accomplished by Chia, it is possible to run multiple blockchain projects using the same hardware resources. Multiple blockchains running simultaneously on PosT based pro",
-    url: '/ext9/ext9-blockchain/update_description',
-    i18n: {
-      invalidHomepage: 'Invalid homepage',
-      descriptionLimitExceeded: 'The length of the about shall not exceed %{limit} characters',
-      noDescription: 'no description',
-      noPermission: 'no permission',
-      requestError: 'update error!'
-    }
-  }
-  window.gon.cloneArrSelectedLabel = [] || []
-  $(function () {
-    var $editModal = $('#edit-project-description')
-    $editModal.modal({
-      onShow: function () {
-        window.globalUtils.getFocus($editModal.find('textarea'))
-      }
-    })
-    $('.project__right-side').on('click', '.header .btn-edit', function () {
-      $editModal.modal('show')
-    })
-    $('#license-popup').popup({ position: 'bottom center', lastResort: 'bottom center' })
-  
-    $('.js-project-label_show').projectLabel({
-      i18n: {
-        empty: "The name cannot be empty",
-        verify: "10. The name is only allowed to contain Chinese, letters, numbers or a dash (-), cannot start with a dash, and the length is less than 35 characters",
-        max: "Select up to 5"
-      }
-    })
-  })
-</script>
-
-</div>
-</div>
-</div>
-<script>
-  (function() {
-    $(function() {
-      Tree.init();
-      return TreeCommentActions.init();
-    });
-  
-  }).call(this);
-</script>
-
-</div>
-<script>
-  (function() {
-    var donateModal;
-  
-    Gitee.modalHelper = new GiteeModalHelper({
-      alertText: '提示',
-      okText: '确定'
-    });
-  
-    donateModal = new ProjectDonateModal({
-      el: '#project-donate-modal',
-      alipayUrl: '/ext9/ext9-blockchain/alipay',
-      wepayUrl: '/ext9/ext9-blockchain/wepay',
-      nameIsBlank: 'name cannot be blank',
-      nameTooLong: 'name is too long (maximum is 36 character)',
-      modalHelper: Gitee.modalHelper
-    });
-  
-    if (null === 'true') {
-      donateModal.show();
-    }
-  
-    $('#project-donate').on('click', function() {
-      return donateModal.show();
-    });
-  
-  }).call(this);
-</script>
-<script>
-  Tree.initHighlightTheme('white')
-</script>
-
-
-</div>
-<div class='gitee-project-extension'>
-<div class='extension public'>1</div>
-<div class='extension https'>https://gitee.com/ext9/ext9-blockchain.git</div>
-<div class='extension ssh'>git@gitee.com:ext9/ext9-blockchain.git</div>
-<div class='extension namespace'>ext9</div>
-<div class='extension repo'>ext9-blockchain</div>
-<div class='extension name'>ext9-blockchain</div>
-<div class='extension branch'>net9.dev</div>
-</div>
-
-<script>
-  $(function() {
-    GitLab.GfmAutoComplete.dataSource = "/ext9/ext9-blockchain/autocomplete_sources"
-    GitLab.GfmAutoComplete.Emoji.assetBase = '/assets/emoji'
-    GitLab.GfmAutoComplete.setup();
-  });
-</script>
-
-<footer id='git-footer-main'>
-<div class='ui container'>
-<div class='logo-row'>
-<img class='logo-img' src='/static/images/logo-black.svg?t=158106666'>
-</div>
-<div class='name-important'>
-©OSCHINA. All rights reserved
-</div>
-<div class='ui two column grid d-flex-centeris-en'>
-<div class='nine wide column git-footer-left'>
-<div class='ui four column grid' id='footer-left'>
-<div class='column'>
-<div class='ui link list'>
-<div class='item'>
-<a class="item" href="/about_us">About Us</a>
-</div>
-<div class='item'>
-<a class="item" href="https://www.oschina.net/news/131099/oschina-hiring">Join us</a>
-</div>
-<div class='item'>
-<a class="item" href="/terms">Terms of use</a>
-</div>
-<div class='item'>
-<a class="item" href="/oschina/git-osc/issues">Feedback</a>
-</div>
-<div class='item'>
-<a class="item" href="/links.html">Partners</a>
-</div>
-</div>
-</div>
-<div class='column'>
-<div class='ui link list'>
-<div class='item'>
-<a class="item" href="/all-about-git">Git Resources</a>
-</div>
-<div class='item'>
-<a class="item" href="https://oschina.gitee.io/learn-git-branching/">Learning Git</a>
-</div>
-<div class='item'>
-<a class="item" href="https://copycat.gitee.com/">CopyCat</a>
-</div>
-<div class='item'>
-<a class="item" href="/appclient">Downloads</a>
-</div>
-</div>
-</div>
-<div class='column'>
-<div class='ui link list'>
-<div class='item'>
-<a class="item" href="/gitee-stars">Gitee Stars</a>
-</div>
-<div class='item'>
-<a class="item" href="/gvp">Featured Projects</a>
-</div>
-<div class='item'>
-<a class="item" href="https://blog.gitee.com/">Blog</a>
-</div>
-<div class='item'>
-<a class="item" href="/enterprises#nonprofit-plan">Nonprofit</a>
-</div>
-</div>
-</div>
-<div class='column'>
-<div class='ui link list'>
-<div class='item'>
-<a class="item" href="/api/v5/swagger">OpenAPI</a>
-</div>
-<div class='item'>
-<a class="item" href="/help">Help Center</a>
-</div>
-<div class='item'>
-<a class="item" href="/self_services">Self-services</a>
-</div>
-<div class='item'>
-<a class="item" href="/help/articles/4338#article-header0">Updates</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class='seven wide column right aligned followus git-footer-right'>
-<div class='qrcode mini_app'>
-<img src="https://assets.gitee.com/assets/mini_app-e5eee5a21c552b69ae6bf2cf87406b59.jpg" alt="Mini app" />
-<p class='mini_app-text'>Mini Program</p>
-</div>
-<div class='qrcode weixin'>
-<img src="https://assets.gitee.com/assets/qrcode-weixin-9e7cfb27165143d2b8e8b268a52ea822.jpg" alt="Qrcode weixin" />
-<p class='weixin-text'>WeChat</p>
-</div>
-<div class='phone-and-qq column'>
-<div class='ui list official-support-container'>
-<div class='item'>
-<a class="icon-popup" title="QQ Group" href="//qm.qq.com/cgi-bin/qm/qr?k=OUfztMuf7jElTIf78lMuNT_D_lZYOWnd"><i class='iconfont icon-logo-qq'></i>
-<span>515965326</span>
-</a></div>
-<div class='item mail-and-zhihu'>
-<a class="icon-popup" title="E-mail" href="mailto: git@oschina.cn"><i class='iconfont icon-msg-mail'></i>
-<span id='git-footer-email'>git#oschina.cn</span>
-</a></div>
-<div class='item mail-and-zhihu'>
-<a class="icon-popup" title="Zhihu Official Account" target="_blank" href="https://www.zhihu.com/org/ma-yun-osc/"><i class='iconfont icon-zhihu'></i>
-<span>Gitee</span>
-</a></div>
-<div class='item tel'>
-<a class='icon-popup' title='Contact'>
-<i class='iconfont icon-tel'></i>
-<span>+86 400-606-0201</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class='bottombar'>
-<div class='ui container'>
-<div class='ui d-flex d-flex-between'>
-<div class='seven wide column partner d-flex'>
-<div class='open-atom d-flex-center'>
-<img class="logo-openatom mr-1" src="https://assets.gitee.com/assets/logo-openatom-d083391cc8a54e283529f3fc11cc38ca.svg" alt="Logo openatom" />
-<a target="_blank" href="https://www.openatom.org/">OpenAtom Foundation</a>
-<div class='sub-title ml-1'>Cooperative code hosting platform</div>
-</div>
-<div class='report-12377 d-flex-center ml-3'>
-<img class="report-12377__logo mr-1" src="https://assets.gitee.com/assets/12377@2x-1aa42ed2d2256f82a61ecf57be1ec244.png" alt="12377@2x" />
-<a target="_blank" href="https://12377.cn">违法和不良信息举报中心</a>
-</div>
-<div class='copyright ml-3'>
-<a href="http://beian.miit.gov.cn/">粤ICP备12009483号</a>
-</div>
-</div>
-<div class='nine wide column right aligned'>
-<i class='icon world'></i>
-<a href="/language/zh-CN">简 体</a>
-/
-<a href="/language/zh-TW">繁 體</a>
-/
-<a href="/language/en">English</a>
-</div>
-</div>
-</div>
-</div>
-</footer>
-<script>
-  var officialEmail = $('#git-footer-email').text()
-  $('#git-footer-main .icon-popup').popup({ position: 'bottom center' })
-  $('#git-footer-email').text(officialEmail.replace('#', '@'))
-  window.gon.popover_card_locale = {
-    follow:"Follow",
-    unfollow:"Following",
-    gvp_title: "GVP - Gitee Most Valuable Project",
-    project: "The author of ",
-    org: "The member of ",
-    member: "",
-    author: "",
-    user_blocked: "This account has been blocked or destroyed",
-    net_error: "Network error ",
-    unknown_exception: "Unknown exception"
-  }
-  window.gon.select_message = {
-    placeholder: "Please enter Gitee Profile Address or email address"
-  }
-</script>
-<script src="https://assets.gitee.com/webpacks/popover_card-5e5f80166768e5968f94.bundle.js"></script>
-
-
-<div class='side-toolbar'>
-<div class='button toolbar-help'>
-<i class='iconfont icon-help'></i>
-</div>
-<div class='ui popup left center dark'>Going to Help Center</div>
-<div class='toolbar-help-dialog'>
-<div class='toolbar-dialog-header'>
-<h3 class='toolbar-dialog-title'>Search</h3>
-<form class="toolbar-help-search-form" action="/help/load_keywords_data" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
-<div class='ui icon input fluid toolbar-help-search'>
-<input name='keywords' placeholder='Please enter a question' type='text'>
-<i class='icon search'></i>
-</div>
-</form>
-
-<i class='iconfont icon-close toolbar-dialog-close-icon'></i>
-</div>
-<div class='toolbar-dialog-content'>
-<div class='toolbar-help-hot-search'>
-<div class='toolbar-roll'>
-<a class="init active" title="Git 命令在线学习" href="https://oschina.gitee.io/learn-git-branching/?utm_source==gitee-help-widget"><i class='Blue icon icon-command iconfont'></i>
-<span>Git 命令在线学习</span>
-</a><a class="init " title="如何在 Gitee 导入 GitHub 仓库" href="https://gitee.com/help/articles/4261?utm_source==gitee-help-widget"><i class='icon icon-clipboard iconfont orange'></i>
-<span>如何在 Gitee 导入 GitHub 仓库</span>
-</a></div>
-<div class='toolbar-list'>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4114">Git 仓库基础操作</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4166">企业版和社区版功能对比</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4191">SSH 公钥设置</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4194">如何处理代码冲突</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4232">仓库体积过大，如何减小？</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4279">如何找回被删除的仓库数据</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4283">Gitee 产品配额说明</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4284">GitHub仓库快速导入Gitee及同步更新</a>
-</div>
-<div class='toolbar-list-item'>
-<a href="/help/articles/4328">什么是 Release（发行版）</a>
-</div>
-</div>
-</div>
-<div class='toolbar-help-search-reseult'>
-<div class='toolbar-help-flex-column'>
-<div class='ui centered inline loader toolbar-help-loader'></div>
-<div class='toolbar-list'></div>
-<div class='toolbar-help-link-to-help'>
-<a target="_blank" href="">See more results</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-<script>
-  var opt = { position: 'left center'};
-  var $helpSideToolbar = $('.button.toolbar-help');
-  var $toolbarRoll = $('.toolbar-roll');
-  
-  $(function() {
-    if (false) {
-      $helpSideToolbar.popup(opt).popup({lastResort:'left center'})
-    } else {
-      $helpSideToolbar.popup({lastResort:'left center'}).popup('show', opt);
-      setTimeout(function() {
-        $helpSideToolbar.popup('hide', opt);
-      }, 3000);
-    }
-  
-    if ($toolbarRoll.length) {
-      setInterval(function() {
-        var $nextActiveLink = $toolbarRoll.find('a.active').next();
-        if (!$nextActiveLink.length) {
-          $nextActiveLink = $toolbarRoll.find('a:first-child');
-        }
-        $nextActiveLink.attr('class', 'active').siblings().removeClass('active init');
-      }, 5000);
-    }
-  })
-</script>
-
-<div class='button share-link'>
-<i class='iconfont icon-share'></i>
-</div>
-<div class='ui popup dark'>
-<div class='header'>
-Share to
-</div>
-<div class='bdsharebuttonbox' style='display: flex'>
-<a class='iconfont icon-home-service-wechat' data-cmd='weixin' title='分享到微信'></a>
-<a class='iconfont icon-weibo' data-cmd='tsina' title='分享到新浪微博'></a>
-<a class='iconfont icon-qq' data-cmd='sqq' title='分享到QQ好友'></a>
-<a class='iconfont icon-qzone' data-cmd='qzone' title='分享到QQ空间'></a>
-</div>
-</div>
-<div class='popup button' id='home-comment'>
-<i class='iconfont icon-comment'></i>
-</div>
-<div class='ui popup dark'>Comment</div>
-<div class='toolbar-appeal popup button'>
-<i class='iconfont icon-report'></i>
-</div>
-<div class='ui popup dark'>
-Repository Report
-</div>
-<script>
-  $('.toolbar-appeal').popup({ position: 'left center' });
-</script>
-
-<div class='button gotop popup' id='gotop'>
-<i class='iconfont icon-top'></i>
-</div>
-<div class='ui popup dark'>Back to the top</div>
-</div>
-<div class='form modal normal-modal tiny ui' id='unlanding-complaint-modal'>
-<i class='iconfont icon-close close'></i>
-<div class='header'>
-Login prompt
-</div>
-<div class='container actions'>
-<div class='content'>
-This operation requires login to the code cloud account. Please log in before operating.
-</div>
-<div class='ui orange icon large button ok'>
-Go to login
-</div>
-<div class='ui button blank cancel'>
-No account. Register
-</div>
-</div>
-</div>
-<script>
-  var $elm = $('.toolbar-appeal');
-  
-  $elm.on('click', function() {
-    var modals = $("#unlanding-complaint-modal.normal-modal");
-    if (modals.length > 1) {
-      modals.eq(0).modal('show');
-    } else {
-      modals.modal('show');
-    }
-  })
-  $("#unlanding-complaint-modal.normal-modal").modal({
-    onDeny: function() {
-      window.location.href = "/signup?from=";
-    },
-    onApprove: function() {
-      window.location.href = "/login?from=";
-    }
-  })
-</script>
-
-<style>
-  .side-toolbar .bdsharebuttonbox a {
-    font-size: 24px;
-    color: white !important;
-    opacity: 0.9;
-    margin: 6px 6px 0px 6px;
-    background-image: none;
-    text-indent: 0;
-    height: auto;
-    width: auto;
-  }
-  
-  #udesk_btn a{
-    margin: 0px 20px 217px 0px !important;
-  }
-</style>
-<script>
-  (function() {
-    $('#project-user-message').popup({
-      position: 'left center'
-    });
-  
-  }).call(this);
-</script>
-<script>
-  Gitee.initSideToolbar({
-    hasComment: true,
-    commentUrl: '/ext9/ext9-blockchain#tree_comm_title'
-  })
-</script>
-<script>
-  window._bd_share_config = {
-    "common": {
-      "bdSnsKey": {},
-      "bdText": document.title,
-      "bdMini": "1",
-      "bdMiniList": ["bdxc","tqf","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],
-      "bdPic": "",
-      "bdStyle": "1",
-      "bdSize": "32"
-    },
-    "share": {}
-  }
-</script>
-<script src="/bd_share/static/api/js/share.js"></script>
-
-
-
-
-
-<script>
-  (function() {
-    this.__gac = {
-      domain: 'www.oschina.net'
-    };
-  
-  }).call(this);
-</script>
-
-</body>
-</html>
+min_mainnet_k_size: 32
+
+# Send a ping to all peers after ping_interval seconds
+ping_interval: 120
+self_hostname: &self_hostname "localhost"
+daemon_port: 35400
+inbound_rate_limit_percent: 100
+outbound_rate_limit_percent: 30
+
+network_overrides: &network_overrides
+  constants:
+    mainnet:
+      NETWORK_TYPE: 0
+      GENESIS_CHALLENGE: ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
+    testnet0:
+      MIN_PLOT_SIZE: 18
+      GENESIS_CHALLENGE: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      NETWORK_TYPE: 1
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
+    testnet2:
+      MIN_PLOT_SIZE: 18
+      GENESIS_CHALLENGE: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+      NETWORK_TYPE: 1
+      INITIAL_FREEZE_PERIOD: 100
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
+    testnet3:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: ca7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+    testnet4:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: dd7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      INITIAL_FREEZE_END_TIMESTAMP: 1618776900  # Sun Apr 18 2021 16:15:00 GMT-0400 (Eastern Daylight Time)
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+      EPOCH_BLOCKS: 768
+      DIFFICULTY_STARTING: 30
+    testnet5:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: ee7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      INITIAL_FREEZE_END_TIMESTAMP: 1618869600  # Mon Apr 19 2021 18:00:00 GMT-0400 (Eastern Daylight Time)
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+      EPOCH_BLOCKS: 768
+      DIFFICULTY_STARTING: 30
+    testnet7:
+      DIFFICULTY_CONSTANT_FACTOR: 10052721566054
+      GENESIS_CHALLENGE: 117816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015af
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc
+      INITIAL_FREEZE_END_TIMESTAMP: 1619661600  # Wed Apr 28 2021 22:00:00 GMT-0400 (Eastern Daylight Time)
+      MIN_PLOT_SIZE: 18
+      NETWORK_TYPE: 1
+      MEMPOOL_BLOCK_BUFFER: 10
+      EPOCH_BLOCKS: 768
+      DIFFICULTY_STARTING: 30
+    ext9:      
+      GENESIS_CHALLENGE: 7319a0d4a23e5c4fbaab34d1ec65b82d147cd09b6e8f97098bc00151bdce922a
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: 3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc 
+      DIFFICULTY_STARTING: 1
+      DIFFICULTY_CONSTANT_FACTOR: 1152921504606846976 
+      
+  config:
+    mainnet:
+      address_prefix: "xch"
+      default_full_node_port: 8444
+    testnet0:
+      address_prefix: "txch"
+    testnet1:
+      address_prefix: "txch"
+    testnet2:
+      address_prefix: "txch"
+    testnet3:
+      address_prefix: "txch"
+    testnet4:
+      address_prefix: "txch"
+    testnet7:
+      address_prefix: "txch"
+      default_full_node_port: 58444
+    ext9:
+      address_prefix: "nch"
+      default_full_node_port: 58445      
+
+selected_network: &selected_network "ext9"
+ALERTS_URL: https://download.chia.net/notify/mainnet_alert.txt
+CHIA_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937
+
+# public ssl ca is included in source code
+# Private ssl ca is used for trusted connections between machines user owns
+private_ssl_ca:
+  crt: "config/ssl/ca/private_ca.crt"
+  key: "config/ssl/ca/private_ca.key"
+
+chia_ssl_ca:
+  crt: "config/ssl/ca/chia_ca.crt"
+  key: "config/ssl/ca/chia_ca.key"
+
+
+daemon_ssl:
+  private_crt: "config/ssl/daemon/private_daemon.crt"
+  private_key: "config/ssl/daemon/private_daemon.key"
+
+
+# Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.
+logging: &logging
+  log_stdout: False  # If True, outputs to stdout instead of a file
+  log_filename: "log/debug.log"
+  log_level: "WARNING"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+  log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set
+  log_syslog: False  # If True, outputs to SysLog host and port specified
+  log_syslog_host: "localhost"  # Send logging messages to a remote or local Unix syslog
+  log_syslog_port: 514  # UDP port of the remote or local Unix syslog
+
+harvester:
+  # The harvester server (if run) will run on this port
+  port: 38448
+  farmer_peer:
+    host: *self_hostname
+    port: 38447
+
+  # If True, starts an RPC server at the following port
+  start_rpc_server: True
+  rpc_port: 38560
+  num_threads: 30
+  plot_loading_frequency_seconds: 120
+
+  # If True use parallel reads in chiapos
+  parallel_read: True
+
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  # Plots are searched for in the following directories
+  plot_directories: []
+
+  ssl:
+    private_crt:  "config/ssl/harvester/private_harvester.crt"
+    private_key:  "config/ssl/harvester/private_harvester.key"
+
+  private_ssl_ca:
+    crt: "config/ssl/ca/private_ca.crt"
+    key: "config/ssl/ca/private_ca.key"
+
+  chia_ssl_ca:
+    crt: "config/ssl/ca/chia_ca.crt"
+    key: "config/ssl/ca/chia_ca.key"
+
+pool:
+  # Replace this with a real puzzle hash
+  # xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+
+farmer:
+  # The farmer server (if run) will run on this port
+  port: 38447
+  # The farmer will attempt to connect to this full node and harvester
+  full_node_peer:
+    host: *self_hostname
+    port: 58445
+  harvester_peer:
+    host: *self_hostname
+    port: 38448
+
+  pool_public_keys: []
+
+  # Replace this with a real puzzle hash
+  # xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+
+  # If True, starts an RPC server at the following port
+  start_rpc_server: True
+  rpc_port: 38559
+
+  # To send a share to a pool, a proof of space must have required_iters less than this number
+  pool_share_threshold: 1000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    private_crt:  "config/ssl/farmer/private_farmer.crt"
+    private_key:  "config/ssl/farmer/private_farmer.key"
+    public_crt:  "config/ssl/farmer/public_farmer.crt"
+    public_key:  "config/ssl/farmer/public_farmer.key"
+
+# Don't run this unless you want to run VDF clients on the local machine.
+timelord_launcher:
+  # The server where the VDF clients will connect to.
+  port: 38000
+  # Number of VDF client processes to keep alive in the local machine.
+  process_count: 3
+  logging: *logging
+
+
+timelord:
+  # The timelord server (if run) will run on this port
+  port: 38446
+  # Provides a list of VDF clients expected to connect to this timelord.
+  # For each client, an IP is provided, together with the estimated iterations per second.
+  vdf_clients:
+    ip:
+      - *self_hostname
+      - localhost
+      - 127.0.0.1
+    ips_estimate:
+      - 150000
+  full_node_peer:
+      host: *self_hostname
+      port: 58445
+  # Maximum number of seconds allowed for a client to reconnect to the server.
+  max_connection_time: 60
+  # The ip and port where the TCP clients will connect.
+  vdf_server:
+    host: *self_hostname
+    port: 38000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+  # fast_algorithm is a faster proof generation algorithm. This speed increase
+  # requires much less memory usage and a does not have the risk of OOM that
+  # the normal timelord has but requires significantly more cores doing
+  # parrallel proof generation and creates a larger and slower to verify
+  # resulting proof.
+  # An Intel Core i9-10900K can run 2 normal vdf_clients at ~221,000 ips
+  # without slowing down but running more than 1 with fast_algorithm will
+  # run each vdf_client slower.
+  fast_algorithm: False
+  # Bluebox (sanatizing Timelord):
+  # If set 'True', the timelord will create compact proofs of time, instead of
+  # extending the chain. The attribute 'fast_algorithm' won't apply if timelord
+  # is running in sanitizer_mode.
+  # You must set 'send_uncompact_interval' in 'full_node' > 0 in the full_node
+  # section below to have full_node send existing time proofs to be sanitized.
+  sanitizer_mode: False
+
+  ssl:
+    private_crt:  "config/ssl/timelord/private_timelord.crt"
+    private_key:  "config/ssl/timelord/private_timelord.key"
+    public_crt:  "config/ssl/timelord/public_timelord.crt"
+    public_key:  "config/ssl/timelord/public_timelord.key"
+
+full_node:
+  # The full node server (if run) will run on this port
+  port: 58445
+
+  # Run multiple nodes with different databases by changing the database_path
+  database_path: db/blockchain_v1_CHALLENGE.sqlite
+  peer_db_path: db/peer_table_node.sqlite
+  simulator_database_path: sim_db/simulator_blockchain_v1_CHALLENGE.sqlite
+  simulator_peer_db_path: sim_db/peer_table_node.sqlite
+
+  # If True, starts an RPC server at the following port
+  start_rpc_server: True
+  rpc_port: 38555
+
+  # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway
+  enable_upnp: True
+
+  # If node is more than these blocks behind, will do a sync (long sync)
+  sync_blocks_behind_threshold: 300
+
+  # If node is more than these blocks behind, will do a short batch-sync, if it's less, will do a backtrack sync
+  short_sync_blocks_behind_threshold: 20
+
+  # How often to initiate outbound connections to other full nodes.
+  peer_connect_interval: 30
+  # Accept peers until this number of connections
+  target_peer_count: 240
+  # Initiate outbound connections until this number is hit.
+  target_outbound_peer_count: 7
+  # IPv4/IPv6 network addresses and CIDR blocks allowed to connect even when target_peer_count has been hit.
+  # exempt_peer_networks: ["192.168.0.3", "192.168.1.0/24", "fe80::/10", "2606:4700:4700::64/128"]
+  exempt_peer_networks: []
+  # Accept at most # of inbound connections for different node types.
+  max_inbound_wallet: 20
+  max_inbound_farmer: 10
+  max_inbound_timelord: 5
+  # Only connect to peers who we have heard about in the last recent_peer_threshold seconds
+  recent_peer_threshold: 6000
+
+  # Send to a Bluebox (sanatizing timelord) uncompact blocks once every
+  # 'send_uncompact_interval' seconds. Set to 0 if you don't use this feature.
+  send_uncompact_interval: 0
+  # At every 'send_uncompact_interval' seconds, send blueboxes 'target_uncompact_proofs' proofs to be normalized.
+  target_uncompact_proofs: 100
+  # Setting this flag as True, blueboxes will sanitize only data needed in weight proof calculation, as opposed to whole blocks.
+  # Default is set to False, as the network needs only one or two blueboxes like this.
+  sanitize_weight_proof_only: False
+  # timeout for weight proof request
+  weight_proof_timeout: 360
+
+  # when enabled, the full node will print a pstats profile to the root_dir/profile every second
+  # analyze with chia/utils/profiler.py
+  enable_profiler: False
+
+  # List of trusted DNS seeders to bootstrap from.
+  # If you modify this, please change the hardcode as well from FullNode.set_server()
+  dns_servers: []
+  farmer_peer:
+      host: *self_hostname
+      port: 38447
+  timelord_peer:
+      host: *self_hostname
+      port: 38446
+  introducer_peer:
+      host: introducer.ext9.org  # Chia AWS introducer IPv4/IPv6
+      port: 38445
+  wallet_peer:
+    host: *self_hostname
+    port: 38449
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    private_crt:  "config/ssl/full_node/private_full_node.crt"
+    private_key:  "config/ssl/full_node/private_full_node.key"
+    public_crt:  "config/ssl/full_node/public_full_node.crt"
+    public_key:  "config/ssl/full_node/public_full_node.key"
+
+ui:
+   # The ui node server (if run) will run on this port
+  port: 38222
+
+  # Which port to use to communicate with the full node
+  rpc_port: 38555
+
+  # This SSH key is for the ui SSH server
+  ssh_filename: config/ssh_host_key
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  # this is where the electron UI will find its daemon
+  # defaults to the one running locally with its private keys
+  daemon_host: *self_hostname
+  daemon_port: 35400
+  daemon_ssl:
+    private_crt: config/ssl/daemon/private_daemon.crt
+    private_key: config/ssl/daemon/private_daemon.key
+
+introducer:
+  host: *self_hostname
+  port: 38445
+  max_peers_to_send: 20
+  # The introducer will only return peers who it has seen in the last
+  # recent_peer_threshold seconds
+  recent_peer_threshold: 6000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    public_crt:  "config/ssl/full_node/public_full_node.crt"
+    public_key:  "config/ssl/full_node/public_full_node.key"
+
+wallet:
+  port: 38449
+  rpc_port: 39256
+
+  enable_profiler: False
+
+  # The minimum height that we care about for our transactions. Set to zero
+  # If we are restoring from private key and don't know the height.
+  starting_height: 0
+  start_height_buffer: 100  # Wallet will stop fly sync at starting_height - buffer
+  num_sync_batches: 50
+  initial_num_public_keys: 100
+  initial_num_public_keys_new_wallet: 5
+
+  full_node_peer:
+    host: *self_hostname
+    port: 58445
+
+  testing: False
+  database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
+  wallet_peers_path: wallet/db/wallet_peers.sqlite
+
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  target_peer_count: 5
+  peer_connect_interval: 60
+  # The introducer will only return peers who it has seen in the last
+  # recent_peer_threshold seconds
+  recent_peer_threshold: 6000
+
+  introducer_peer:
+    host: introducer.ext9.org # introducer.chia.net # Chia AWS introducer IPv4/IPv6
+    port: 38445
+
+  ssl:
+    private_crt:  "config/ssl/wallet/private_wallet.crt"
+    private_key:  "config/ssl/wallet/private_wallet.key"
+    public_crt:  "config/ssl/wallet/public_wallet.crt"
+    public_key:  "config/ssl/wallet/public_wallet.key"
+
+  trusted_peers:
+    trusted_node_1: "config/ssl/full_node/public_full_node.crt"
+
+  short_sync_blocks_behind_threshold: 20
