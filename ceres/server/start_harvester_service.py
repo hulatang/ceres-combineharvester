@@ -30,7 +30,7 @@ class HarvesterService(Service):
         upnp_ports: List[int] = [], 
         server_listen_ports: List[int] = [], 
         # connect_peers: List[PeerInfo], 
-        connect_peers: Dict = [],
+        connect_peers: Dict = dict(),
         auth_connect_peers: bool = True, 
         on_connect_callback: Optional[Callable] = None, 
         rpc_info: Optional[Tuple[type, int]] = None, 

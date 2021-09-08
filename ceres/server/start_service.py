@@ -143,7 +143,7 @@ class Service:
         await self._server.start_server(self._on_connect_callback)
 
         self._reconnect_tasks = [
-            start_reconnect_task(self._server, coin, peer, self._log, self._auth_connect_peers) for coin, peer in self._connect_peers.items()
+            start_reconnect_task(self._server, _, self._log, self._auth_connect_peers) for _ in self._connect_peers
         ]
         self._log.info(f"Started {self._service_name} service on network_id: {self._network_id}")
 

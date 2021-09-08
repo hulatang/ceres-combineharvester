@@ -23,7 +23,7 @@ def private_ssl_ca_paths(path: Path, config: Dict):
     )
 
 
-def chia_ssl_ca_paths(path: Path, config: Dict, coin: str="ceres"):
+def chia_ssl_ca_paths(path: Path, config: Dict, coin: str="chia"):
     return (
         path / config[f"{coin.lower()}_ssl_ca"]["crt"],
         path / config[f"{coin.lower()}_ssl_ca"]["key"],
