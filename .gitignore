@@ -87,6 +87,12 @@ vdf_bench
 main.sym
 *.recompiled
 
+# Commitizen
+package.json
+package-lock.json
+
+
+
 # Dev config react
 # chia-blockchain-gui/src/dev_config.js
 # React built app
