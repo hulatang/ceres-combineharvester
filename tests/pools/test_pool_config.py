@@ -3,8 +3,8 @@ from pathlib import Path
 
 from blspy import AugSchemeMPL, PrivateKey
 
-from chia.pools.pool_config import PoolWalletConfig
-from chia.util.config import load_config, save_config, create_default_chia_config
+from ceres.pools.pool_config import PoolWalletConfig
+from ceres.util.config import load_config, save_config, create_default_chia_config
 
 
 def test_pool_config():

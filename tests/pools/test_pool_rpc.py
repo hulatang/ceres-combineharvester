@@ -8,27 +8,27 @@ from typing import Optional, List, Dict
 import pytest
 from blspy import G1Element, AugSchemeMPL
 
-from chia.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from chia.plotting.create_plots import create_plots, PlotKeys
-from chia.pools.pool_wallet_info import PoolWalletInfo, PoolSingletonState
-from chia.protocols import full_node_protocol
-from chia.protocols.full_node_protocol import RespondBlock
-from chia.rpc.rpc_server import start_rpc_server
-from chia.rpc.wallet_rpc_api import WalletRpcApi
-from chia.rpc.wallet_rpc_client import WalletRpcClient
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
-from chia.types.blockchain_format.proof_of_space import ProofOfSpace
-from chia.types.blockchain_format.sized_bytes import bytes32
+from ceres.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from ceres.plotting.create_plots import create_plots, PlotKeys
+from ceres.pools.pool_wallet_info import PoolWalletInfo, PoolSingletonState
+from ceres.protocols import full_node_protocol
+from ceres.protocols.full_node_protocol import RespondBlock
+from ceres.rpc.rpc_server import start_rpc_server
+from ceres.rpc.wallet_rpc_api import WalletRpcApi
+from ceres.rpc.wallet_rpc_client import WalletRpcClient
+from ceres.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
+from ceres.types.blockchain_format.proof_of_space import ProofOfSpace
+from ceres.types.blockchain_format.sized_bytes import bytes32
 
-from chia.types.peer_info import PeerInfo
-from chia.util.bech32m import encode_puzzle_hash
+from ceres.types.peer_info import PeerInfo
+from ceres.util.bech32m import encode_puzzle_hash
 from tests.block_tools import get_plot_dir, get_plot_tmp_dir
-from chia.util.config import load_config
-from chia.util.hash import std_hash
-from chia.util.ints import uint16, uint32
-from chia.wallet.derive_keys import master_sk_to_local_sk
-from chia.wallet.transaction_record import TransactionRecord
-from chia.wallet.util.wallet_types import WalletType
+from ceres.util.config import load_config
+from ceres.util.hash import std_hash
+from ceres.util.ints import uint16, uint32
+from ceres.wallet.derive_keys import master_sk_to_local_sk
+from ceres.wallet.transaction_record import TransactionRecord
+from ceres.wallet.util.wallet_types import WalletType
 from tests.setup_nodes import self_hostname, setup_simulators_and_wallets, bt
 from tests.time_out_assert import time_out_assert
 

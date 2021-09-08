@@ -2,21 +2,21 @@ from typing import Dict, List, Optional, Tuple
 
 from blspy import AugSchemeMPL, G2Element, PrivateKey
 
-from chia.consensus.constants import ConsensusConstants
-from chia.util.hash import std_hash
-from chia.types.announcement import Announcement
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.coin_spend import CoinSpend
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.spend_bundle import SpendBundle
-from chia.util.clvm import int_from_bytes, int_to_bytes
-from chia.util.condition_tools import conditions_by_opcode, conditions_for_solution
-from chia.util.ints import uint32, uint64
-from chia.wallet.derive_keys import master_sk_to_wallet_sk
-from chia.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from ceres.consensus.constants import ConsensusConstants
+from ceres.util.hash import std_hash
+from ceres.types.announcement import Announcement
+from ceres.types.blockchain_format.coin import Coin
+from ceres.types.blockchain_format.program import Program
+from ceres.types.blockchain_format.sized_bytes import bytes32
+from ceres.types.coin_spend import CoinSpend
+from ceres.types.condition_opcodes import ConditionOpcode
+from ceres.types.condition_with_args import ConditionWithArgs
+from ceres.types.spend_bundle import SpendBundle
+from ceres.util.clvm import int_from_bytes, int_to_bytes
+from ceres.util.condition_tools import conditions_by_opcode, conditions_for_solution
+from ceres.util.ints import uint32, uint64
+from ceres.wallet.derive_keys import master_sk_to_wallet_sk
+from ceres.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     DEFAULT_HIDDEN_PUZZLE_HASH,
     calculate_synthetic_secret_key,
     puzzle_for_pk,

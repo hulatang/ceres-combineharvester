@@ -7,40 +7,40 @@ import pytest
 from clvm import SExp
 from clvm.EvalError import EvalError
 
-import chia.server.ws_connection as ws
+import ceres.server.ws_connection as ws
 
-from chia.full_node.mempool import Mempool
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.protocols import full_node_protocol
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
-from chia.types.announcement import Announcement
-from chia.types.blockchain_format.coin import Coin
-from chia.types.coin_spend import CoinSpend
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.spend_bundle import SpendBundle
-from chia.types.mempool_item import MempoolItem
-from chia.util.clvm import int_to_bytes
-from chia.util.condition_tools import conditions_for_solution
-from chia.util.errors import Err, ValidationError
-from chia.util.ints import uint64
-from chia.util.hash import std_hash
-from chia.types.mempool_inclusion_status import MempoolInclusionStatus
-from chia.util.api_decorators import api_request, peer_required, bytes_required
-from chia.full_node.mempool_check_conditions import parse_condition_args, parse_condition, get_name_puzzle_conditions
-from chia.full_node.pending_tx_cache import PendingTxCache
+from ceres.full_node.mempool import Mempool
+from ceres.full_node.full_node_api import FullNodeAPI
+from ceres.protocols import full_node_protocol
+from ceres.simulator.simulator_protocol import FarmNewBlockProtocol
+from ceres.types.announcement import Announcement
+from ceres.types.blockchain_format.coin import Coin
+from ceres.types.coin_spend import CoinSpend
+from ceres.types.condition_opcodes import ConditionOpcode
+from ceres.types.condition_with_args import ConditionWithArgs
+from ceres.types.spend_bundle import SpendBundle
+from ceres.types.mempool_item import MempoolItem
+from ceres.util.clvm import int_to_bytes
+from ceres.util.condition_tools import conditions_for_solution
+from ceres.util.errors import Err, ValidationError
+from ceres.util.ints import uint64
+from ceres.util.hash import std_hash
+from ceres.types.mempool_inclusion_status import MempoolInclusionStatus
+from ceres.util.api_decorators import api_request, peer_required, bytes_required
+from ceres.full_node.mempool_check_conditions import parse_condition_args, parse_condition, get_name_puzzle_conditions
+from ceres.full_node.pending_tx_cache import PendingTxCache
 from blspy import G2Element
 
 from tests.connection_utils import connect_and_get_peer
 from tests.core.node_height import node_height_at_least
 from tests.setup_nodes import bt, setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert
-from chia.types.blockchain_format.program import Program, INFINITE_COST
-from chia.consensus.condition_costs import ConditionCost
-from chia.consensus.cost_calculator import NPCResult
-from chia.types.blockchain_format.program import SerializedProgram
+from ceres.types.blockchain_format.program import Program, INFINITE_COST
+from ceres.consensus.condition_costs import ConditionCost
+from ceres.consensus.cost_calculator import NPCResult
+from ceres.types.blockchain_format.program import SerializedProgram
 from clvm_tools import binutils
-from chia.types.generator_types import BlockGenerator
+from ceres.types.generator_types import BlockGenerator
 from clvm.casts import int_from_bytes
 
 BURN_PUZZLE_HASH = b"0" * 32

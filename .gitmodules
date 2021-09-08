@@ -1,8 +1,8 @@
-[submodule "chia-blockchain-gui"]
-	path = chia-blockchain-gui
-	url = https://github.com/Chia-Network/chia-blockchain-gui.git
+[submodule "ceres-blockchain-gui"]
+	path = ceres-blockchain-gui
+	url = https://github.com/Ceres-Network/ceres-blockchain-gui.git
 	branch = pools
 [submodule "mozilla-ca"]
 	path = mozilla-ca
-	url = https://github.com/Chia-Network/mozilla-ca.git
+	url = https://github.com/Ceres-Network/mozilla-ca.git
         branch = main

@@ -1,5 +1,5 @@
 #
-# THIS FILE IS GENERATED. SEE https://github.com/Chia-Network/chia-blockchain/tree/main/tests#readme
+# THIS FILE IS GENERATED. SEE https://github.com/Ceres-Network/ceres-blockchain/tree/main/tests#readme
 #
 name: MacOS clvm Tests
 
@@ -63,14 +63,14 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-# Omitted checking out blocks and plots repo Chia-Network/test-cache
+# Omitted checking out blocks and plots repo Ceres-Network/test-cache
 
     - name: Link home directory
       run: |
         cd $HOME
-        ln -s $GITHUB_WORKSPACE/.chia
-        echo "$HOME/.chia"
-        ls -al $HOME/.chia
+        ln -s $GITHUB_WORKSPACE/.ceres
+        echo "$HOME/.ceres"
+        ls -al $HOME/.ceres
 
     - name: Run install script
       env:
@@ -92,5 +92,5 @@ jobs:
         . ./activate
         ./venv/bin/py.test tests/clvm/test_chialisp_deserialization.py tests/clvm/test_clvm_compilation.py tests/clvm/test_puzzles.py tests/clvm/test_serialized_program.py tests/clvm/test_singletons.py tests/clvm/test_spend_sim.py -s -v --durations 0 -n auto
 #
-# THIS FILE IS GENERATED. SEE https://github.com/Chia-Network/chia-blockchain/tree/main/tests#readme
+# THIS FILE IS GENERATED. SEE https://github.com/Ceres-Network/ceres-blockchain/tree/main/tests#readme
 #
