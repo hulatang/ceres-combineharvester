@@ -6,7 +6,7 @@ spare:
   network_id: "mainnet"
 silicoin:
   network_id: "mainnet"
-floracoin:
+flora:
   network_id: "mainnet"
 chiarose:
   network_id: "mainnet"
