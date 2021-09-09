@@ -1,3 +1,9 @@
+# [Ceres使用说明 中文版本](https://github.com/hulatang/ceres-combineharvester/blob/main/README_ch.md)
+
+---
+
+
+
 # Ceres Combine-Harvester
 
 Ceres is a combine harvester designed to harvest plots for Chia blockchain and multi chia forks(like flax, spare....) simultaneously by running single harvester on your machine.
@@ -66,7 +72,7 @@ git clone https://github.com/hulatangeric/Ceres-CombineHarvester.git -b og
 2. **Installation**
    
    ```
-   cd Ceres-CombineHarvester
+   cd eres-combineharvester
    sudo chmod +x install.sh
    ./install.sh
    ```

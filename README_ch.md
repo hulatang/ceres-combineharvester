@@ -70,7 +70,7 @@ Ceres的安装方式和Chia的安装方式相同
 2 . **安装**
 
 ```
-cd Ceres-CombineHarvester
+cd ceres-combineharvester
 sudo chmod +x install.sh
 ./install.sh
 ```
@@ -262,8 +262,6 @@ flax:
 #goji:
   #network_id: "mainnet" 
 ```
-
-
 
 下一步， 您仍然需要按照之前的章节， 为新加的币种，生成ssl文件
 
