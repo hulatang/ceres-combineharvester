@@ -71,6 +71,48 @@ git clone https://github.com/hulatangeric/Ceres-CombineHarvester.git -b og
    ./install.sh
    ```
 
+3. Activate
+   
+   ```
+   . ./activate
+   ```
+
+---
+
+Configure forks you wanna to harvester
+
+By default, Ceres is set to only harvest Chia
+
+To harvester other forks, open file:
+
+```
+ceres/util/all-coins-config.yaml
+```
+
+Just umcomment the name and network_id line, then Ceres will harvest those forks.
+
+The all-coins-config.yaml file looks like this:
+
+chia:
+
+network_id: "mainnet"
+
+#flax:
+
+    #network_id: "flax-mainnet"
+
+#spare:
+
+    #network_id: "mainnet"
+
+#silicoin:
+
+    #network_id: "mainnet"
+
+#flora:
+
+    #network_id: "mainnet"
+
 ---
 
 # Init
@@ -103,8 +145,6 @@ config for other forks is similar,
 ceres init -n [fork_name] -c [path_to_ca]
 ```
 
-
-
 Finally, what you need to change is your famer-peer ip address under Harvester section(not full node section) in each fork's config.yaml
 
 For example you want to harvest flax:
@@ -124,7 +164,7 @@ harvester:
 
 #### Note:
 
-Do above process for every fork's Farmer
+Repeat process  above for every fork you wanna to harvest
 
 ---
 
@@ -135,6 +175,14 @@ activate venv first, then run:
 ```
 ceres start harvester -r
 ```
+
+### Note:
+
+Nothing wrong if you see some info says like: No keys on this machine
+
+Running harvester does not require any keys.
+
+---
 
 # Stop
 
