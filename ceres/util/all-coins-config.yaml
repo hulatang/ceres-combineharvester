@@ -1,4 +1,4 @@
-ceres:
+chia:
   network_id: "mainnet"
 flax:
   network_id: "flax-mainnet"
