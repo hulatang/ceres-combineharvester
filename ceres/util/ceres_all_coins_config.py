@@ -20,8 +20,20 @@ def get_all_coins_config(service_name: str, coin_names=COIN_NAMES):
             all_coins_configs[coin] = {}
             all_coins_configs[coin]["config"] = coin_config
             all_coins_configs[coin]["constants"] = coin_updated_constants
+    
+    return all_coins_configs
         
-    print('ok')
 
-get_all_coins_config('harvester')
 
+
+def get_all_coins_default_constants(coin_names=COIN_NAMES):
+    import importlib
+
+    pkg_name = f"ceres.consensus.all_coins_default_constants"
+    all_coins_default_constants = {}
+    for coin in coin_names:
+        coin_constant_file_name = f".{coin}_default_constants"
+        coin_default_constant = importlib.import_module(coin_constant_file_name, pkg_name)
+        all_coins_default_constants[coin] = coin_default_constant.DEFAULT_CONSTANTS
+    
+    return all_coins_default_constants
