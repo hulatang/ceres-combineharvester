@@ -1,6 +1,6 @@
-from avocado.util.ints import uint64
+from ceres.util.ints import uint64
+from ceres.consensus.constants import ConsensusConstants
 
-from .constants import ConsensusConstants
 
 testnet_kwargs = {
     "SLOT_BLOCKS_TARGET": 32,

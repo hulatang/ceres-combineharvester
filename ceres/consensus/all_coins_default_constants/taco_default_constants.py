@@ -1,6 +1,5 @@
-from taco.util.ints import uint64
-
-from .constants import ConsensusConstants
+from ceres.util.ints import uint64
+from ceres.consensus.constants import ConsensusConstants
 
 testnet_kwargs = {
     "SLOT_BLOCKS_TARGET": 32,
