@@ -16,8 +16,6 @@ chia:
 #   network_id: "mainnet"
 # kale:
 #   network_id: "kale-mainnet"
-# goji:
-#   network_id: "mainnet"
 # chaingreen:
 #   network_id: "mainnet"
 # seno:
@@ -60,21 +58,24 @@ chia:
 #   network_id: "scam-mainnet"
 # fork:
 #   network_id: "fork-mainnet"
-# olive:
-#   network_id: "olive-mainnet"
 # lucky:
 #   network_id: "mainnet"
-# pipscoin:
-#   network_id: "pipscoin-mainnet"
-# beer:
-#   network_id: "beer-mainnet"
-# cunt:
-#   network_id: "cunt-mainnet"
-# thyme:
-#   network_id: "thyme-mainnet"
-# littlelambocoin:
-#   network_id: "mainnet"
 
+## Not support yet
+# olive:
+  # network_id: "olive-mainnet"
+# pipscoin:
+  # network_id: "pipscoin-mainnet"
+# beer:
+  # network_id: "beer-mainnet"
+# cunt:
+  # network_id: "cunt-mainnet"
+# thyme:
+  # network_id: "thyme-mainnet"
+# littlelambocoin:
+  # network_id: "mainnet"
+#goji:
+#  network_id: "mainnet"
 
 
 
