@@ -58,13 +58,13 @@ It's highly recommended to read through Chia's wiki, easpecially this article , 
 - if you are running FullNode version after chia 1.2.*, download Ceres by:
 
 ```
-git clone https://github.com/hulatangeric/ceres-combineHarvester.git
+git clone https://github.com/hulatang/ceres-combineharvester.git
 ```
 
 - if you are running FullNode version before chia 1.7.1, download Ceres by:
 
 ```
-git clone https://github.com/hulatangeric/ceres-combineHarvester.git -b og
+git clone https://github.com/hulatang/ceres-combineharvester.git -b og
 ```
 
 2. **Installation**

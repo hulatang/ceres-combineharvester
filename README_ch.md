@@ -59,12 +59,12 @@ Ceres的安装方式和Chia的安装方式相同
    - 如果您的FullNode或者Farmer版本是基于Chia 1.2之后的， 使用以下命令下载:
    
    ```
-   git clone https://github.com/hulatangeric/ceres-combineHarvester.git
+   git clone https://github.com/hulatang/ceres-combineharvester.git
    ```
 - 如果您的FullNode或者Farmer版本低于1.7.1， 使用以下命令下载:
   
   ```
-  git clone https://github.com/hulatangeric/ceres-combineHarvester.git -b og
+  git clone  -b oghttps://github.com/hulatang/ceres-combineharvester.git
   ```
 
 2 . **安装**
