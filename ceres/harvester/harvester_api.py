@@ -1,4 +1,5 @@
 import asyncio
+from ceres.util.ceres_all_coins_config import get_all_coins_config_constants
 import time
 from pathlib import Path
 from typing import Callable, List, Tuple
@@ -26,6 +27,11 @@ class HarvesterAPI:
 
     def __init__(self, harvester: Harvester):
         self.harvester = harvester
+        all_coins_config, farmer_peer_port_map_coin = get_all_coins_config_constants("harvester")
+        # save all coins config and farmer peer port coin map to be used for update self.harvester.constants
+        self.all_coins_config_constants = all_coins_config
+        self.farmer_peer_port_map_coin = farmer_peer_port_map_coin
+
 
     def _set_state_changed_callback(self, callback: Callable):
         self.harvester.state_changed_callback = callback
@@ -60,6 +66,21 @@ class HarvesterAPI:
         4. Looks up the full proof of space in the plot for each quality, approximately 64 reads per quality
         5. Returns the proof of space to the farmer
         """
+
+        # Ceres feat:
+        # when accept a challenge info from farmer peer, HarvesterApi should find out which coin the info is related
+        # we use peer.peer_port to find out the coin name
+        # using the coin name, we load its DEFAULT_CONSANTS, update the constants in self.harvester 
+        # self.harvester.constants will be updated every time a HavesterApi is called
+
+        coin_name = self.farmer_peer_port_map_coin[peer.peer_port]
+        coin_constants = self.all_coins_config_constants[coin_name]["constants"]
+        self.harvester.constants = coin_constants
+
+
+
+
+
         if not self.harvester.plot_manager.public_keys_available():
             # This means that we have not received the handshake yet
             return None
@@ -230,7 +251,7 @@ class HarvesterAPI:
         pass_msg = make_msg(ProtocolMessageTypes.farming_info, farming_info)
         await peer.send_message(pass_msg)
         self.harvester.log.info(
-            f"{len(awaitables)} plots were eligible for farming {new_challenge.challenge_hash.hex()[:10]}..."
+            f"({coin_name}): {len(awaitables)} plots were eligible for farming {new_challenge.challenge_hash.hex()[:10]}..."
             f" Found {total_proofs_found} proofs. Time: {time.time() - start:.5f} s. "
             f"Total {self.harvester.plot_manager.plot_count()} plots"
         )
