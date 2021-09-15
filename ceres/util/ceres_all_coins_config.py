@@ -6,7 +6,7 @@ from ceres.util.config import get_all_coin_names, load_config_cli
 
 COIN_NAMES = get_all_coin_names()
 
-def get_all_coins_config(service_name: str, coin_names=COIN_NAMES):
+def get_all_coins_config_constants(service_name: str, coin_names=COIN_NAMES):
 
     all_coins_configs = {}
     farmer_peer_port_map_coin = {}
@@ -56,4 +56,3 @@ def get_all_coins_default_constants(coin_names=COIN_NAMES):
 
 
 
-configs, mp = get_all_coins_config("harvester")
