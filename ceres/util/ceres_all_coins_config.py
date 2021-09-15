@@ -49,8 +49,3 @@ def get_all_coins_default_constants(coin_names=COIN_NAMES):
     return all_coins_default_constants
 
 
-
-
-config = get_all_coins_config('harvester')
-
-print('ok')
