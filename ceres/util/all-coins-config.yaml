@@ -5,7 +5,7 @@ chia:
 # spare:
 #   network_id: "mainnet"
 # silicoin:
-#   network_id: "mainnet"
+#   network_id: "testnet"
 # flora:
 #   network_id: "mainnet"
 # chiarose:
@@ -51,7 +51,7 @@ chia:
 # sector:
 #   network_id: "mainnet"
 # nchain:
-#   network_id: "mainnet"
+#   network_id: "ext9"
 # btcgreen:
 #   network_id: "btcgreen-mainnet"
 # cannabis:
