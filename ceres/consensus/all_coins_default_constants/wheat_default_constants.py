@@ -49,7 +49,7 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
-    "INITIAL_FREEZE_END_TIMESTAMP": 1626182291,  # 2021-07-13 21:18:11 GMT+8000
+    # "INITIAL_FREEZE_END_TIMESTAMP": 1626182291,  # 2021-07-13 21:18:11 GMT+8000
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list

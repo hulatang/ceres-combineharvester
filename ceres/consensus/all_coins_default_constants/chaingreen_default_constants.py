@@ -11,9 +11,9 @@ testnet_kwargs = {
     # multiplied by another factor of DIFFICULTY_CONSTANT_FACTOR, to be used in the VDF iter calculation formula.
     "DIFFICULTY_CONSTANT_FACTOR": 2 ** 20,
     "DIFFICULTY_STARTING": 1,
-    "DIFFICULTY_CHANGE_MAX_FACTOR": 3,  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
-    "DIFFICULTY_CHANGE_MAX_FACTOR_v1_2_0": 81,  # This difficulty change to be applied with v1.2.0
-    "v1_2_0_ACTIVATION_BLOCK": 170496,  # activation of v1.2.0 rules height
+    "DIFFICULTY_CHANGE_MAX_FACTOR": 81,  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
+    # "DIFFICULTY_CHANGE_MAX_FACTOR_v1_2_0": 81,  # This difficulty change to be applied with v1.2.0
+    # "v1_2_0_ACTIVATION_BLOCK": 170496,  # activation of v1.2.0 rules height
     # These 3 constants must be changed at the same time
     "SUB_EPOCH_BLOCKS": 384,  # The number of blocks per sub-epoch, mainnet 384
     "EPOCH_BLOCKS": 4608,  # The number of blocks per epoch, mainnet 4608. Must be multiple of SUB_EPOCH_BLOCKS
@@ -51,10 +51,11 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
-    "INITIAL_FREEZE_END_TIMESTAMP": 1621630800,  # 2021-05-21T21:00:00Z
+    # "INITIAL_FREEZE_END_TIMESTAMP": 1621630800,  # 2021-05-21T21:00:00Z
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list
+    "POOL_SUB_SLOT_ITERS": 37600000000,  # iters limit * NUM_SPS
 }
 
 
