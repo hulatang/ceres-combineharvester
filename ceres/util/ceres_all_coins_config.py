@@ -16,7 +16,8 @@ def get_all_coins_config(service_name: str, coin_names=COIN_NAMES):
             coin_config = load_config_cli(coin_root_path, "config.yaml", service_name)
             # connect_peers[coin] = [PeerInfo(coin_config["farmer_peer"]["host"], coin_config["farmer_peer"]["port"])]
             overrides = coin_config["network_overrides"]["constants"][coin_config["selected_network"]]
-            coin_updated_constants = ConsensusConstants.replace_str_to_bytes(**overrides)
+            coin_default_constant = get_coin_default_constants(coin)
+            coin_updated_constants = coin_default_constant.replace_str_to_bytes(**overrides)
             all_coins_configs[coin] = {}
             all_coins_configs[coin]["config"] = coin_config
             all_coins_configs[coin]["constants"] = coin_updated_constants
@@ -26,14 +27,30 @@ def get_all_coins_config(service_name: str, coin_names=COIN_NAMES):
 
 
 
-def get_all_coins_default_constants(coin_names=COIN_NAMES):
+
+def get_coin_default_constants(coin: str):
     import importlib
 
     pkg_name = f"ceres.consensus.all_coins_default_constants"
+    coin_constant_file_name = f".{coin}_default_constants"
+    coin_default_constant_module = importlib.import_module(coin_constant_file_name, pkg_name)
+    testnet_kwargs = coin_default_constant_module.testnet_kwargs
+
+    return ConsensusConstants(**testnet_kwargs)
+
+
+
+def get_all_coins_default_constants(coin_names=COIN_NAMES):
+
     all_coins_default_constants = {}
     for coin in coin_names:
-        coin_constant_file_name = f".{coin}_default_constants"
-        coin_default_constant = importlib.import_module(coin_constant_file_name, pkg_name)
-        all_coins_default_constants[coin] = coin_default_constant.DEFAULT_CONSTANTS
+        all_coins_default_constants[coin] = get_coin_default_constants(coin)
     
     return all_coins_default_constants
+
+
+
+
+config = get_all_coins_config('harvester')
+
+print('ok')
