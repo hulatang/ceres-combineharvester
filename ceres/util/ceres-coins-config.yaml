@@ -1,0 +1,167 @@
+# =========================================
+#     *** User Defined Section ***
+# =========================================
+
+# comment coins you DON'T mine
+mining_coins:
+  - chia
+  - flax
+  - spare
+  - silicoin
+  - flora 
+  - chiarose
+  - socks 
+  - apple 
+  - kale 
+  - chaingreen
+  - seno
+  - equality 
+  - greendoge 
+  - tad 
+  - dogechia
+  - maize 
+  - wheat
+  - taco
+  - covid
+  - melati
+  - cactus
+  - hddcoin
+  - avocado
+  - cryptodoge
+  - sector
+  - nchain
+  - btcgreen
+  - cannabis
+  - scam
+  - fork
+  - lucky
+
+
+# path of your plot files
+plot_directories: []
+
+
+
+#  Edit your Farmer machine IP address below
+farmer_machine:
+    - farmer_peer: 
+        address: localhost
+        coins:
+          - chia
+          - flax
+    # - farmer_peer: 
+    #     address: 192.168.1.100
+    #     coins:
+    #       - flora
+    #       - kale
+
+
+
+
+
+
+
+
+# ************************************************************************************************************
+# ==================================================
+#     *** DON'T mess up ANY configure below ***
+# ==================================================
+
+# DON'T edit ANY coin names below
+coin_names:
+  - chia
+  - flax
+  - spare
+  - silicoin
+  - flora 
+  - chiarose
+  - socks 
+  - apple 
+  - kale 
+  - chaingreen
+  - seno
+  - equality 
+  - greendoge 
+  - tad 
+  - dogechia
+  - maize 
+  - wheat
+  - taco
+  - covid
+  - melati
+  - cactus
+  - hddcoin
+  - avocado
+  - cryptodoge
+  - sector
+  - nchain
+  - btcgreen
+  - cannabis
+  - scam
+  - fork
+  - lucky
+
+# DONT edit ANYTHING below
+network_ids:
+  chia:
+    network_id: "mainnet"
+  flax:
+    network_id: "flax-mainnet"
+  spare: 
+    network_id: "mainnet"
+  silicoin:
+    network_id: "testnet"
+  flora: 
+    network_id: "mainnet"
+  chiarose: 
+    network_id: "mainnet"
+  socks: 
+    network_id: "mainnet"
+  apple: 
+    network_id: "mainnet"
+  kale: 
+    network_id: "kale-mainnet"
+  chaingreen:
+    network_id: "mainnet"
+  seno:
+    network_id: "mainnet"
+  equality: 
+    network_id: "equality-mainnet"
+  greendoge: 
+    network_id: "mainnet"
+  tad: 
+    network_id: "mainnet"
+  dogechia:
+    network_id: "dogechia-mainnet"
+  maize: 
+    network_id: "mainnet"
+  wheat:
+    network_id: "mainnet"
+  taco:
+    network_id: "taco-mainnet"
+  covid:
+    network_id: "covid-mainnet"
+  melati:
+    network_id: "mainnet"
+  cactus:
+    network_id: "mainnet"
+  hddcoin:
+    network_id: "mainnet"
+  avocado:
+    network_id: "mainnet"
+  cryptodoge:
+    network_id: "cryptodoge-mainnet"
+  sector:
+    network_id: "mainnet"
+  nchain:
+    network_id: "ext9"
+  btcgreen:
+    network_id: "btcgreen-mainnet"
+  cannabis:
+    network_id: "mainnet"
+  scam:
+    network_id: "scam-mainnet"
+  fork:
+    network_id: "fork-mainnet"
+  lucky:
+    network_id: "mainnet"
