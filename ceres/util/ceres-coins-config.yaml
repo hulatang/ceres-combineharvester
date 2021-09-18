@@ -2,39 +2,40 @@
 #     *** User Defined Section ***
 # =========================================
 
-# comment coins you DON'T mine
+# UNCOMMENT coins you are mining
+# Be very careful about the indent
 mining_coins:
   - chia
-  - flax
-  - spare
-  - silicoin
-  - flora 
-  - chiarose
-  - socks 
-  - apple 
-  - kale 
-  - chaingreen
-  - seno
-  - equality 
-  - greendoge 
-  - tad 
-  - dogechia
-  - maize 
-  - wheat
-  - taco
-  - covid
-  - melati
-  - cactus
-  - hddcoin
-  - avocado
-  - cryptodoge
-  - sector
-  - nchain
-  - btcgreen
-  - cannabis
-  - scam
-  - fork
-  - lucky
+  # - flax
+  # - spare
+  # - silicoin
+  # - flora 
+  # - chiarose
+  # - socks 
+  # - apple 
+  # - kale 
+  # - chaingreen
+  # - seno
+  # - equality 
+  # - greendoge 
+  # - tad 
+  # - dogechia
+  # - maize 
+  # - wheat
+  # - taco
+  # - covid
+  # - melati
+  # - cactus
+  # - hddcoin
+  # - avocado
+  # - cryptodoge
+  # - sector
+  # - nchain
+  # - btcgreen
+  # - cannabis
+  # - scam
+  # - fork
+  # - lucky
 
 
 # path of your plot files
@@ -49,8 +50,17 @@ farmer_machine:
         coins:
           - chia
           - flax
+    # SAMPLE
+    # You can add as many farmer as you have
+    # Note the indent
     # - farmer_peer: 
     #     address: 192.168.1.100
+    #     coins:
+    #       - flora
+    #       - kale
+
+    # - farmer_peer: 
+    #     address: 192.168.1.101
     #     coins:
     #       - flora
     #       - kale
