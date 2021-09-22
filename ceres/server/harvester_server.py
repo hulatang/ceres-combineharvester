@@ -1,7 +1,8 @@
 import asyncio
+from ceres.util.start_harvester_funcs import ssl_context_for_coin
 from ceres.util.update_handshake_args import update_handshake_args
 from ceres.cmds.init_funcs import chia_full_version_str
-from ceres.util.config import get_all_coin_config, load_config_cli
+# from ceres.util.config import get_all_coin_config, load_config_cli
 from ceres.util.default_root import get_coin_root_path
 from ceres.server.ssl_context import chia_ssl_ca_paths, private_ssl_ca_paths, private_ssl_paths
 import traceback
@@ -67,20 +68,21 @@ class ChiaHarvesterServer(ChiaServer):
             return False
         
         coin_root_path = get_coin_root_path(coin)
-        coin_config = load_config_cli(coin_root_path, "config.yaml", "harvester")
+        # coin_config = load_config_cli(coin_root_path, "config.yaml", "harvester")
 
-        _private_cert_path, _private_key_path = private_ssl_paths(coin_root_path, coin_config)
-        ca_private_crt_path, ca_private_key_path = private_ssl_ca_paths(coin_root_path, coin_config)
+        # _private_cert_path, _private_key_path = private_ssl_paths(coin_root_path, coin_config)
+        # ca_private_crt_path, ca_private_key_path = private_ssl_ca_paths(coin_root_path, coin_config)
         
         # private_ca_crt, private_ca_key = private_ssl_ca_paths(coin_root_path, self.config)
         # chia_ca_crt, chia_ca_key = chia_ssl_ca_paths(coin, coin_root_path, self.config)
 
 
         if auth:
-            ssl_context = ssl_context_for_client(
-                ca_private_crt_path, ca_private_key_path, _private_cert_path, _private_key_path
-                # self.ca_private_crt_path, self.ca_private_key_path, self._private_cert_path, self._private_key_path
-            )
+            ssl_context = ssl_context_for_coin(coin)
+            # ssl_context = ssl_context_for_client(
+            #     ca_private_crt_path, ca_private_key_path, _private_cert_path, _private_key_path
+            #     # self.ca_private_crt_path, self.ca_private_key_path, self._private_cert_path, self._private_key_path
+            # )
         else:
             ssl_context = ssl_context_for_client(
                 self.chia_ca_crt_path, self.chia_ca_key_path, self.p2p_crt_path, self.p2p_key_path
@@ -150,6 +152,7 @@ class ChiaHarvesterServer(ChiaServer):
                     'local_type': self._local_type
                 }
 
+                # TODO: update this function to new config path
                 handshake_args = update_handshake_args(coin, **handshake_args)
 
                 handshake = await connection.perform_handshake(**handshake_args)

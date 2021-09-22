@@ -1,3 +1,4 @@
+from ceres.util.start_harvester_funcs import get_harvester_connect_peers
 from ceres.server.start_harvester_service import run_harvester_service
 import os
 import pathlib
@@ -20,7 +21,7 @@ from ceres.util.default_root import DEFAULT_ROOT_PATH
 
 SERVICE_NAME = "harvester"
 
-COIN_NAMES = get_all_coin_names()
+# COIN_NAMES = get_all_coin_names()
 
 
 def service_kwargs_for_harvester(
@@ -31,11 +32,13 @@ def service_kwargs_for_harvester(
     # connect_peers = [PeerInfo(config["farmer_peer"]["host"], config["farmer_peer"]["port"])]
 
     # generate peer info for different coin
-    connect_peers = dict()
-    for coin in COIN_NAMES:
-        coin_root_path = pathlib.Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin.lower()}/mainnet"))).resolve()
-        coin_config = load_config_cli(coin_root_path, "config.yaml", SERVICE_NAME)
-        connect_peers[coin] = [PeerInfo(coin_config["farmer_peer"]["host"], coin_config["farmer_peer"]["port"])]
+    # connect_peers = dict()
+    # for coin in COIN_NAMES:
+    #     coin_root_path = pathlib.Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin.lower()}/mainnet"))).resolve()
+    #     coin_config = load_config_cli(coin_root_path, "config.yaml", SERVICE_NAME)
+    #     connect_peers[coin] = [PeerInfo(coin_config["farmer_peer"]["host"], coin_config["farmer_peer"]["port"])]
+
+    connect_peers = get_harvester_connect_peers(root_path)
 
     overrides = config["network_overrides"]["constants"][config["selected_network"]]
     updated_constants = consensus_constants.replace_str_to_bytes(**overrides)
