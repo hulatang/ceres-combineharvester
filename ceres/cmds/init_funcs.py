@@ -378,18 +378,18 @@ def chia_init(root_path: Path, coin: str="ceres", *, should_check_keys: bool = T
     protected Keychain. When launching the daemon from the GUI, we want the GUI to
     handle unlocking the keychain.
     """
-    if os.environ.get("CHIA_ROOT", None) is not None:
+    if os.environ.get("CERES_ROOT", None) is not None:
 # def chia_init(root_path: Path, coin: str = "ceres"):
     # if os.environ.get(f"{coin}_ROOT", None) is not None:
         print(
-            f"warning, your CHIA_ROOT is set to {os.environ['CHIA_ROOT']}. "
+            f"warning, your CERES_ROOT is set to {os.environ['CERES_ROOT']}. "
             f"Please unset the environment variable and run ceres init again\n"
             f"or manually migrate config.yaml"
         )
 
     print(f"{coin} directory {root_path}")
     if root_path.is_dir() and Path(root_path / "config" / "config.yaml").exists():
-        # This is reached if CHIA_ROOT is set, or if user has run ceres init twice
+        # This is reached if CERES_ROOT is set, or if user has run ceres init twice
         # before a new update.
         if fix_ssl_permissions:
             fix_ssl(root_path)
