@@ -1,3 +1,4 @@
+from ceres.cmds.ceres_init_funcs import ceres_init
 import click
 
 
@@ -18,3 +19,4 @@ def ceres_init_cmd(ctx: click.Context, name: str, create_certs: str, **kwargs):
     print('ceres init cmd')
     print(ctx)
     print(name)
+    ceres_init(ctx.obj["root_path"])
