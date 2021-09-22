@@ -1,5 +1,5 @@
-from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH
-from ceres.util.config import load_config
+from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH, get_coin_root_path
+from ceres.util.config import load_config, load_config_cli
 from pathlib import Path
 from ipaddress import IPv6Address, ip_address, IPv4Address
 
@@ -15,6 +15,12 @@ def get_mining_coin_names(root_path: Path=DEFAULT_CERES_ROOT_PATH):
         coin_names.extend(coins)
     
     return coin_names
+
+def get_coin_config(coin: str, subconfig: str):
+    coin_root_path = get_coin_root_path(coin)
+    config = load_config(coin_root_path, "config.yaml", subconfig)
+
+    return config
 
 
 
