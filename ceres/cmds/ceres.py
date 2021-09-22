@@ -1,7 +1,7 @@
 from ceres.cmds.ceres_init import ceres_init_cmd
 from io import TextIOWrapper
 from pathlib import Path
-from ceres.cmds.init_all import init_all
+# from ceres.cmds.init_all import init_all
 import click
 
 from ceres import __version__
