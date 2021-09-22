@@ -12,4 +12,5 @@ DEFAULT_ROOT_PATH = DEFAULT_CERES_ROOT_PATH
 DEFAULT_KEYS_ROOT_PATH = DEFAULT_CERES_KEYS_ROOT_PATH
 
 def get_coin_root_path(coin: str="chia"):
-    return Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin.lower()}/mainnet"))).resolve()
+    # return Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin.lower()}/mainnet"))).resolve()
+    return Path(DEFAULT_CERES_ROOT_PATH / f"all_coins" / f".{coin}"/"mainnet")
