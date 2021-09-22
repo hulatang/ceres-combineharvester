@@ -1,4 +1,5 @@
 import argparse
+from ceres.util.coins_initial_config.coins_initial_config import initial_coin_config_file
 import os
 import shutil
 import sys
@@ -30,7 +31,8 @@ def create_default_chia_config(root_path: Path, filenames=["config.yaml"]) -> No
 
 def create_default_coin_config(coin: str, root_path: Path) -> None:
     for filename in ["config.yaml"]:
-        default_config_file_data = initial_config_file(coin, filename)
+        # default_config_file_data = initial_config_file(coin, filename)
+        default_config_file_data = initial_coin_config_file(coin, filename)
         path = config_path_for_filename(root_path, filename)
         mkdir(path.parent)
         with open(path, "w") as f:
@@ -168,13 +170,13 @@ def traverse_dict(d: Dict, key_path: str) -> Any:
         raise KeyError(f"value not found for key: {key}")
 
 
-def get_all_coin_names(config_file: str="all-coins-config.yaml"):
-    # config_str = pkg_resources.resource_string(__name__, config_file)
-    # config = yaml.safe_load(config_str)
-    config = get_all_coin_config(config_file)
-    return [coin for coin in config.keys()]
+# def get_all_coin_names(config_file: str="all-coins-config.yaml"):
+#     # config_str = pkg_resources.resource_string(__name__, config_file)
+#     # config = yaml.safe_load(config_str)
+#     config = get_all_coin_config(config_file)
+#     return [coin for coin in config.keys()]
 
-def get_all_coin_config(config_file: str="all-coins-config.yaml"):
-    config_str = pkg_resources.resource_string(__name__, config_file)
-    config = yaml.safe_load(config_str)
-    return config
+# def get_all_coin_config(config_file: str="all-coins-config.yaml"):
+#     config_str = pkg_resources.resource_string(__name__, config_file)
+#     config = yaml.safe_load(config_str)
+#     return config
