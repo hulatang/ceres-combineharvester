@@ -110,11 +110,11 @@ def run_daemon_cmd(ctx: click.Context, wait_for_unlock: bool) -> None:
 
 
 
-@cli.command("init_all")
-@click.pass_context
-def init_all_cmd(ctx:click.Context) -> None:
-    print("init all")
-    init_all()
+# @cli.command("init_all")
+# @click.pass_context
+# def init_all_cmd(ctx:click.Context) -> None:
+#     print("init all")
+#     init_all()
 
 
 
