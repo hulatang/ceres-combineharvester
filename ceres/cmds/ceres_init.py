@@ -21,7 +21,7 @@ def ceres_init_cmd(ctx: click.Context, coins: bool, **kwargs):
     ceres_init(ctx.obj["root_path"], init_coins=coins)
 
 
-@click.command("generate-ssl", short_help="Generate ssl for every mining coins")
+@click.command("generate_ssl", short_help="Generate ssl for every mining coins")
 @click.pass_context
-def generate_ssl(ctx: click.Context):
-    print(f"Genrating ssl files for all coins")
+def ceres_generate_ssl(ctx: click.Context):
+    print(f"Generating ssl files for all coins")

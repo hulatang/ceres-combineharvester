@@ -1,4 +1,4 @@
-from ceres.cmds.ceres_init import ceres_init_cmd
+from ceres.cmds.ceres_init import ceres_generate_ssl, ceres_init_cmd
 from io import TextIOWrapper
 from pathlib import Path
 # from ceres.cmds.init_all import init_all
@@ -128,6 +128,7 @@ cli.add_command(plotnft_cmd)
 cli.add_command(configure_cmd)
 # cli.add_command(init_cmd)
 cli.add_command(ceres_init_cmd)
+cli.add_command(ceres_generate_ssl)
 cli.add_command(show_cmd)
 cli.add_command(start_cmd)
 cli.add_command(stop_cmd)
