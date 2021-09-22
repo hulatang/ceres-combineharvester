@@ -2,57 +2,23 @@
 #     *** User Defined Section ***
 # =========================================
 
-# UNCOMMENT coins you are mining
-# Be very careful about the indent
-mining_coins:
-  - chia
-  # - flax
-  # - spare
-  # - silicoin
-  # - flora 
-  # - chiarose
-  # - socks 
-  # - apple 
-  # - kale 
-  # - chaingreen
-  # - seno
-  # - equality 
-  # - greendoge 
-  # - tad 
-  # - dogechia
-  # - maize 
-  # - wheat
-  # - taco
-  # - covid
-  # - melati
-  # - cactus
-  # - hddcoin
-  # - avocado
-  # - cryptodoge
-  # - sector
-  # - nchain
-  # - btcgreen
-  # - cannabis
-  # - scam
-  # - fork
-  # - lucky
-
-
-# path of your plot files
-plot_directories: []
-
 
 
 #  Edit your Farmer machine IP address below
+#  Add coins name to it's farmer peer's coins part
+#  Only Use coin names under coins supported section below
 farmer_machine:
     - farmer_peer: 
         address: localhost
         coins:
           - chia
           - flax
-    # SAMPLE
-    # You can add as many farmer as you have
+
+
+    # Farmer Peer SAMPLE
+    # You can add as many farmer peers as you have
     # Note the indent
+
     # - farmer_peer: 
     #     address: 192.168.1.100
     #     coins:
@@ -62,8 +28,13 @@ farmer_machine:
     # - farmer_peer: 
     #     address: 192.168.1.101
     #     coins:
-    #       - flora
-    #       - kale
+    #       - spare
+    #       - chaingreen
+
+
+# path of your plot files
+plot_directories: []
+
 
 
 
@@ -77,6 +48,7 @@ farmer_machine:
 #     *** DON'T mess up ANY configure below ***
 # ==================================================
 
+# Supported Coin Names
 # DON'T edit ANY coin names below
 coin_names:
   - chia
