@@ -1,4 +1,6 @@
 
+from ceres.util.default_root import get_coin_root_path
+from ceres.util.ceres_config import get_mining_coin_names
 from ceres.util.path import mkdir
 from ceres.util.config import initial_config_file
 from pathlib import Path
@@ -8,17 +10,41 @@ from pkg_resources import ensure_directory
 from ceres.cmds.init_funcs import chia_init
 
 
-def ceres_init(root_path: Path, coin: str="ceres"):
-    chia_init(root_path, coin)
+def ceres_init(root_path: Path, coin: str="ceres", init_coins=False):
+    if not init_coins:
+        chia_init(root_path, coin)
+        create_ceres_coins_config(root_path)
+    else:
+        coins_config_file = root_path / "config" / "coins_config.yaml"
+        if not coins_config_file.exists():
+            print(f"coins_config.yaml NOT Found, run ceres init first")
+        else:
+            create_config_for_every_coins(root_path)
 
-    create_ceres_coins_config(root_path)
+
+
+def create_config_for_every_coins(root_path: Path):
+    coins_config_file = root_path / "config" / "coins_config.yaml"
+    if not coins_config_file.exists():
+        print(f"coins_config.yaml NOT Found, run ceres init first")
+    else:
+        all_coins_root_path = root_path / "all_coins"
+
+        if not all_coins_root_path.exists():
+            mkdir(all_coins_root_path)
+
+        coin_names = get_mining_coin_names(root_path)
+        for coin in coin_names:
+            coin_root_path = get_coin_root_path(coin)
+            chia_init(coin_root_path, coin)
+
 
 
 
 
 def create_ceres_coins_config(root_path: Path, filename: str="coins-config.yaml"):
     ceres_all_coins_config_path = root_path / "config"
-    ceres_all_coins_config_file = ceres_all_coins_config_path / f"coins_config"
+    ceres_all_coins_config_file = ceres_all_coins_config_path / f"coins_config.yaml"
 
     if ceres_all_coins_config_path.is_dir() and ceres_all_coins_config_file.exists():
         print(
