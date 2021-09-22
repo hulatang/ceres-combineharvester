@@ -1,4 +1,4 @@
-from ceres.cmds.ceres_init_funcs import ceres_init
+from ceres.cmds.ceres_init_funcs import ceres_generate_ssl_for_all_coins, ceres_init
 import click
 
 
@@ -25,3 +25,5 @@ def ceres_init_cmd(ctx: click.Context, coins: bool, **kwargs):
 @click.pass_context
 def ceres_generate_ssl(ctx: click.Context):
     print(f"Generating ssl files for all coins")
+    root_path = ctx.obj["root_path"]
+    ceres_generate_ssl_for_all_coins(root_path)

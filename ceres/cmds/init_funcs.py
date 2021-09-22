@@ -274,6 +274,9 @@ def init(create_certs: Optional[Path], root_path: Path, fix_ssl_permissions: boo
             return -1
     else:
         return chia_init(root_path, fix_ssl_permissions=fix_ssl_permissions)
+
+
+
 # def init_by_coin(coin: str, create_certs: Optional[Path], root_path: Path):
 def init_by_coin(coin: str, create_certs: Optional[Path]):
     root_path = Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin}/mainnet"))).resolve()
