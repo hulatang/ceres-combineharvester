@@ -251,7 +251,7 @@ class HarvesterAPI:
         pass_msg = make_msg(ProtocolMessageTypes.farming_info, farming_info)
         await peer.send_message(pass_msg)
         self.harvester.log.info(
-            f"({coin_name}): {len(awaitables)} plots were eligible for farming {new_challenge.challenge_hash.hex()[:10]}..."
+            f"({coin_name + ')':10}: {len(awaitables)} plots were eligible for farming {new_challenge.challenge_hash.hex()[:10]}..."
             f" Found {total_proofs_found} proofs. Time: {time.time() - start:.5f} s. "
             f"Total {self.harvester.plot_manager.plot_count()} plots"
         )
