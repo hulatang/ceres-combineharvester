@@ -43,7 +43,7 @@ class HarvesterService(Service):
             service_config = load_config_cli(root_path, "config.yaml", service_name)
         else:
             service_config = load_config(root_path, "config.yaml", service_name)
-        initialize_logging(service_name, service_config["logging"], root_path)
+        # initialize_logging(service_name, service_config["logging"], root_path)
 
         ping_interval = self.config.get("ping_interval")
         inbound_rlp = self.config.get("inbound_rate_limit_percent")
