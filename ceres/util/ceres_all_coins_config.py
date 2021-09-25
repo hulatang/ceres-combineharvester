@@ -1,5 +1,5 @@
 from ceres.util.ceres_config import get_mining_coin_names
-from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH
+from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH, get_coin_root_path
 from ceres.consensus.constants import ConsensusConstants
 import os
 from pathlib import Path
@@ -19,7 +19,8 @@ def get_all_coins_config_constants(service_name: str, coin_names=COIN_NAMES):
 
 
     for coin in COIN_NAMES:
-            coin_root_path = Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin.lower()}/mainnet"))).resolve()
+            # coin_root_path = Path(os.path.expanduser(os.getenv(f"{coin.upper()}_ROOT", f"~/.{coin.lower()}/mainnet"))).resolve()
+            coin_root_path = get_coin_root_path(coin)
             coin_config = load_config_cli(coin_root_path, "config.yaml", service_name)
 
             farmer_peer_port = coin_config["farmer_peer"]["port"] 
