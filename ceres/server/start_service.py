@@ -64,7 +64,9 @@ class Service:
         self._rpc_close_task: Optional[asyncio.Task] = None
         self._network_id: str = network_id
 
-        proctitle_name = f"chia_{service_name}"
+        # TODO: change process name
+        # proctitle_name = f"chia_{service_name}"
+        proctitle_name = f"ceres_{service_name}"
         setproctitle(proctitle_name)
         self._log = logging.getLogger(service_name)
 
