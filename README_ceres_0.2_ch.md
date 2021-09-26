@@ -117,14 +117,9 @@ Ceres的安装方式和Chia的安装方式相同
    ~/.ceres/mainnet/config/coins_config.yaml 这个文件很重要，跟挖矿相关的信息都在这个文件里进行配置.
    
    coins_config.yaml 默认内容的头部， 是这样的: 
+   
+   
 
-    =========================================
-    
-    # *** User Defined Section ***
-    
-    # =========================================
-    
-    
     #  Edit your Farmer machine IP address below
     #  Add coins name to it's farmer peer's coins part
     #  Only Use coin names under coins supported section below
