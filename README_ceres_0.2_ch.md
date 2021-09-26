@@ -118,12 +118,15 @@ Ceres的安装方式和Chia的安装方式相同
    
    coins_config.yaml 默认内容的头部， 是这样的:
    
-   # =========================================
-   
-   # *** User Defined Section ***
-   
-   # =========================================
+   # 
 
+    =========================================
+    
+    # *** User Defined Section ***
+    
+    # =========================================
+    
+    
     #  Edit your Farmer machine IP address below
     #  Add coins name to it's farmer peer's coins part
     #  Only Use coin names under coins supported section below
