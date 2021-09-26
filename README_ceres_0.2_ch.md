@@ -221,7 +221,7 @@ address: 192.168.1.200
 
 以chia为例
 
-将 chia所在farmer机器下， ~/~.chia/mainnet/config/ssl/ca 文件夹， 拷贝到 .ceres/mainnet/all_ca/chia_ca目录下
+将 chia所在farmer机器下， ~/.chia/mainnet/config/ssl/ca 文件夹， 拷贝到 ~/.ceres/mainnet/all_ca/chia_ca目录下
 
 ```
 scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all_ca/chia_ca
