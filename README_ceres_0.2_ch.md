@@ -80,6 +80,27 @@ Ceres的安装方式和Chia的安装方式相同
 
 **这一步很重要，请仔细阅读**
 
+**初始化Ceres总共需要三步**:
+
+```
+1. ceres init
+这一步是初始化ceres目录结构
+
+2. ceres init --coins
+在配置好farmer的信息后，这一步初始化每个币种的目录
+
+3. ceres generate_ssl
+拷贝好每个币的ca文件夹到指定目录后，这一步生成加密ssl文件
+```
+
+完成以上三步初始化之后，就可以运行ceres了
+
+---
+
+下面我们详细描述每一个步骤
+
+
+
 1. **初始化目录** 
    
    以下的 (venv) ➜ 代表命令行的提示符， 表明您已处于虚拟环境中
@@ -125,26 +146,29 @@ Ceres的安装方式和Chia的安装方式相同
            coins:
              - chia
                #- flax
-   
+   ```
    
        # Farmer Peer SAMPLE
        # You can add as many farmer peers as you have
        # Note the indent
-   
+       
        # - farmer_peer: 
        #     address: 192.168.1.100
        #     coins:
        #       - flora
        #       - kale
-   
+       
        # - farmer_peer: 
        #     address: 192.168.1.101
        #     coins:
        #       - spare
        #       - chaingreen
+       
+       # path of your plot files
+       plot_directories:[]
    
-   # path of your plot files
-   plot_directories:[]
+   ```
+   
    ```
 
 下面我们假设，您有两台电脑, 一共挖四种币，chia, flax, spare, kale, 分别为:
@@ -157,16 +181,17 @@ Ceres的安装方式和Chia的安装方式相同
 
 ```
 farmer_machine:
- - farmer_peer: 
-address: 192.168.1.100
- coins:
- - chia
- - flax
- - farmer_peer: 
-address: 192.168.1.200
- coins:
- - spare
- - kale
+
+- farmer_peer: 
+  address: 192.168.1.100
+  coins:
+- chia
+- flax
+- farmer_peer: 
+  address: 192.168.1.200
+  coins:
+- spare
+- kale
 ```
 
 **初始化挖矿配置**
@@ -238,11 +263,14 @@ scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all
 ```
 
 4. **生成ssl加密文件**
+   
+   ```
+   
+   ```
 
-```
 (venv) ➜ ceres generate_ssl
-```
 
+```
 **ceres配置完成！**
 
 ---
@@ -258,26 +286,26 @@ scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all
 日志级别的配置文件是 config.yaml 
 
 挖币相关配置文件为 coins_config.yaml
-
 ```
+
 vim ~/.ceres/mainnet/config/config.yaml
-```
 
+```
 修改
-
 ```
+
 log_level: "DEBUG"
-```
 
+```
 修改之后是这样子:
-
 ```
+
 # Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.
 
 logging: &logging
  log_level: "DEBUG" # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
-```
 
+```
 ---
 
 # 添加plot目录
@@ -285,20 +313,26 @@ logging: &logging
 plot目录的配置位置，是在 ~/.ceres/mainnet/config/coins_config.yaml 中的 plot_directories
 
 默认情况下
-
 ```
+
 #path of your plot files
 plot_directories: 【】
-```
 
+```
 添加您自己的plot文件夹,
+```
 
-```
 plot_directories:
+
 - /home/yourname/[path]/0001
+
 - /home/yourname/[path]/0002
+
 - /home/yourname/[path]/0003
-```
+  
+  ```
+  
+  ```
 
 ---
 
