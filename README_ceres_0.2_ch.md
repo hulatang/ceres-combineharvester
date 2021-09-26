@@ -114,7 +114,7 @@ Ceres的安装方式和Chia的安装方式相同
 
 2. **配置挖矿相关信息**
    
-   ~/~.ceres/mainnet/config/coins_config.yaml 这个文件很重要，跟挖矿相关的信息都在这个文件里进行配置.
+   ~/.ceres/mainnet/config/coins_config.yaml 这个文件很重要，跟挖矿相关的信息都在这个文件里进行配置.
    
    coins_config.yaml 默认内容的头部， 是这样的:
    
@@ -258,7 +258,7 @@ scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all
 
 运行ceres之前， 您可以选择ceres log的日志级别 , 默认设置遵循chia, 为warning.
 
-日志级别的配置文件是 ~/~.ceres/mainnet/config/config.yaml
+日志级别的配置文件是 ~/.ceres/mainnet/config/config.yaml
 
 **注意**:
 
