@@ -118,37 +118,34 @@ Ceres的安装方式和Chia的安装方式相同
    
    coins_config.yaml 默认内容的头部， 是这样的: 
    
+   ```
+   farmer_machine:
+       - farmer_peer: 
+           address: localhost
+           coins:
+             - chia
+               #- flax
    
-
-    #  Edit your Farmer machine IP address below
-    #  Add coins name to it's farmer peer's coins part
-    #  Only Use coin names under coins supported section below
-    farmer_machine:
-        - farmer_peer: 
-            address: localhost
-            coins:
-              - chia
-                #- flax
-    
-    
-        # Farmer Peer SAMPLE
-        # You can add as many farmer peers as you have
-        # Note the indent
-    
-        # - farmer_peer: 
-        #     address: 192.168.1.100
-        #     coins:
-        #       - flora
-        #       - kale
-    
-        # - farmer_peer: 
-        #     address: 192.168.1.101
-        #     coins:
-        #       - spare
-        #       - chaingreen
-    
-    # path of your plot files
-    plot_directories:[]
+   
+       # Farmer Peer SAMPLE
+       # You can add as many farmer peers as you have
+       # Note the indent
+   
+       # - farmer_peer: 
+       #     address: 192.168.1.100
+       #     coins:
+       #       - flora
+       #       - kale
+   
+       # - farmer_peer: 
+       #     address: 192.168.1.101
+       #     coins:
+       #       - spare
+       #       - chaingreen
+   
+   # path of your plot files
+   plot_directories:[]
+   ```
 
 下面我们假设，您有两台电脑, 一共挖四种币，chia, flax, spare, kale, 分别为:
 
