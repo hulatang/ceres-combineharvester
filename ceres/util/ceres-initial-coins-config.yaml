@@ -31,7 +31,9 @@ farmer_machine:
 
 
 # path of your plot files
+# NOTE the indent and "-" symbol before your path
 plot_directories: []
+# - /path/to/your/plots_directory/
 
 
 
