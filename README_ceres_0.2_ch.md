@@ -204,7 +204,8 @@ farmer_machine:
   coins:
     - chia
     - flax
-    - farmer_peer: 
+
+- farmer_peer: 
   address: 192.168.1.200
   coins:
     - spare
