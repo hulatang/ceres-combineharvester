@@ -54,7 +54,7 @@ Ceres运行一个单一的Harvester， 便可以和多个币种的Farmer通讯�
 
 **注意**:
 
-**如果您安装过旧版的ceres， 需要先删除根目录下的.ceres目录，重新初始化**
+**如果您安装过旧版的Ceres，或者您想完全重新安装Ceres, 需要先删除根目录下的.ceres目录，重新初始化**
 
 ```
 rm -rf ~/.ceres
@@ -62,19 +62,13 @@ rm -rf ~/.ceres
 
 ---
 
-
-
 Ceres的安装方式和Chia的安装方式相同
 
 强烈建议您在安装Ceres之前，先阅读一下Chia的文档，尤其是这篇文章
 
 [Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines)
 
-
-
 下面开始全新安装
-
-
 
 1. **下载源代码**
    
@@ -155,8 +149,6 @@ Ceres的安装方式和Chia的安装方式相同
 
 其中 coins_config.yaml是跟farmer相关的配置文件， 这个文件配置好之后，以后可以直接拷贝到其他希望运行ceres的机器上相同的目录下。
 
-
-
 2.**配置挖矿相关信息**
 
 ~/.ceres/mainnet/config/coins_config.yaml 这个文件很重要，跟挖矿相关的信息都在这个文件里进行配置.
@@ -164,15 +156,16 @@ Ceres的安装方式和Chia的安装方式相同
 coins_config.yaml 默认内容的头部， 是这样的: 
 
 ```
-f# path of your plot files
-# NOTE the indent and "-" symbol before your path
-plot_directories: []
-# - /path/to/your/plots_directory/armer_machine:
+#  Edit your Farmer machine IP address below
+#  Add coins name to it's farmer peer's coins part
+#  Only Use coin names under coins supported section below
+farmer_machine:
     - farmer_peer: 
         address: localhost
         coins:
-          - chia
-            #- flax
+          #- chia
+          #- flax
+
 # Farmer Peer SAMPLE
 # You can add as many farmer peers as you have
 # Note the indent
@@ -194,8 +187,6 @@ plot_directories: []
 plot_directories: []
 # - /path/to/your/plots_directory/
 ```
-
-
 
 下面我们假设，您有两台电脑, 一共挖四种币，chia, flax, spare, kale, 分别为:
 
@@ -261,8 +252,6 @@ farmer_machine:
 
 其中， all_ca文件夹是下一步用来存放每个币种的ca文件夹的，all_coins里面的内容不需要用户配置
 
-
-
 3. **拷贝每个币种的ca文件夹**
 
 以chia为例
@@ -287,7 +276,7 @@ scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all
 │   ├── kale_ca
 │   │   └── ca
 │   └── spare_ca
-│   └── ca
+│       └── ca
 ```
 
 4. **生成ssl加密文件**
@@ -314,8 +303,6 @@ scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all
 
 挖币相关配置文件为 coins_config.yaml
 
-
-
 打开配置文件
 
 ```
@@ -328,8 +315,6 @@ vim ~/.ceres/mainnet/config/config.yaml
 log_level: "DEBUG"
 # Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.
 ```
-
-
 
 ---
 
@@ -344,8 +329,6 @@ plot目录的配置位置，是在 ~/.ceres/mainnet/config/coins_config.yaml 中
 plot_directories: []
 ```
 
-
-
 添加您自己的plot文件夹, 
 
 **注意缩进 和 - 符号**
@@ -354,17 +337,15 @@ plot_directories: []
 plot_directories:
 
 - /home/your/plot/path/0001
-  
+
 - /home/your/plot/path/0002
-  
+
 - /home/your/plot/path/0003
 ```
 
 ---
 
 # 
-
-
 
 # 运行Ceres
 
@@ -507,4 +488,5 @@ coin_names:
   (venv) ➜ ceres init
   (venv) ➜ ceres init --coins
   (venv) ➜ ceres generate_ssl
+  (venv) ➜ ceres start harvester -r
   ```

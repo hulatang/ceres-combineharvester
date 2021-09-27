@@ -10,7 +10,7 @@ Ceres is a combine harvester designed to harvest plots for Chia blockchain and m
 
 # Basic: What is Ceres
 
-Ceres runs single harvester to harvester plots for multiple Chia Farmer,  Flax Farmer, Spare Famer....., shown in the figure:
+Ceres runs a single harvester to communicate with multiple locale or remote Chia Farmer,  Flax Farmer, Spare Famer....., shown in the figure:
 
 <img title="" src="https://github.com/hulatang/ceres-combineharvester/blob/wiki/wiki_images/ceres_network.png" alt="alt txt" data-align="center" width="486">
 
@@ -18,7 +18,9 @@ Ceres runs single harvester to harvester plots for multiple Chia Farmer,  Flax F
 
 # Features
 
-- single harvester, multiple chia forks harvested
+- **single harvester, multiple chia forks harvested**
+
+- **ceres harvester will not conflict with Chia harvester or  any fork's havesters**
 
 - both chia og plots and pool plots are supported
 
@@ -36,46 +38,51 @@ Ceres runs single harvester to harvester plots for multiple Chia Farmer,  Flax F
 
 ---
 
-# Before Install
+# Compatability
 
-Before install Ceres, you should choose the Ceres version you need.
+Currently, almost all forks have update their farmer version to Chia farmer version after 1.2.
 
-Ceres version should match the version of your FullNode or Farmer version.
-
-##### Note:
-
-Which Ceres version to use is not related to whether og plots or pool plots you are going to harvester, only related to the forks FullNode version you are running.
+So Ceres currently only support communication with farmers after Chia farmer 1.2
 
 ---
 
 # Installation
 
+---
+
+**Note**
+
+If you wanna reinstall Ceres or if you have installed old version Ceres before,
+
+you should first delete .ceres directory under your user home directory before Ceres initialization.
+
+```
+rm -rf ~/.ceres
+```
+
+---
+
 Ceres can be installed  the same way installing Chia normally.
 
 It's highly recommended to read through Chia's wiki, easpecially this article , [Farming on many machines · Chia-Network/chia-blockchain Wiki · GitHub](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) before using Ceres.
 
-1. **Download code ** 
-- if you are running FullNode version after chia 1.2.*, download Ceres by:
+**We start to initialize Ceres**
+
+1. **Download Code**
 
 ```
 git clone https://github.com/hulatang/ceres-combineharvester.git
 ```
 
-- if you are running FullNode version before chia 1.7.1, download Ceres by:
-
-```
-git clone https://github.com/hulatang/ceres-combineharvester.git -b og
-```
-
 2. **Installation**
    
    ```
-   cd eres-combineharvester
+   cd ceres-combineharvester
    sudo chmod +x install.sh
    ./install.sh
    ```
 
-3. Activate
+3. **Activate virtual environment**
    
    ```
    . ./activate
@@ -83,92 +90,215 @@ git clone https://github.com/hulatang/ceres-combineharvester.git -b og
 
 ---
 
-Configure forks you wanna to harvester
+# Ceres Init
 
-By default, Ceres is set to only harvest Chia
+**Read this section carefully**
 
-To harvester other forks, open file:
+Totally initialization has three steps,  read instruction detail below
 
 ```
-ceres/util/all-coins-config.yaml
+# first, initialize directory structure for ceres
+1. ceres init
+
+# second, after you have configure farmer info, initialize 
+# directories for every coins
+2. ceres init --coins
+
+# third, copy farmer ca directories to specific directory under .ceres
+# and generate ssl files for every coin
+3. ceres generate_ssl
 ```
 
-Just umcomment the name and network_id line, then Ceres will harvest those forks.
+**We start to initialize Ceres by steps in detail**:
 
-The all-coins-config.yaml file looks like this:
+(venv) ➜  stands for ceres virtual environment
 
-chia:
+~ stands for user home directory
 
-network_id: "mainnet"
+1. **Initialize ceres directory structure**
+   
+   ```
+   (venv) ➜ ceres init
+   ```
 
-#flax:
+ after complete this step, there will be a .ceres under your /home/username/ directory,
 
-    #network_id: "flax-mainnet"
+.ceres directory looks like this:
 
-#spare:
+```
+(venv) ➜ tree ~/.ceres -L 4
+.ceres
+└── mainnet
+   └── config
+       ├── coins_config.yaml
+       ├── config.yaml
+       └── ssl
+           ├── ca
+           ├── daemon
+           ├── farmer
+           ├── full_node
+           ├── harvester
+           ├── introducer
+           ├── timelord
+           └── wallet
+```
 
-    #network_id: "mainnet"
+2. **Setup farmer peers info**
+   
+   ~/.ceres/mainnet/config/coins_config.yaml is an importatnt configure file in which your farmer info is configured.
+   
+   by default top lines of coins_config.yaml looks like this
+   
+   ```
+   farmer_machine:
+       - farmer_peer: 
+           address: localhost
+           coins:
+             #- chia
+             #- flax
+   ```
 
-#silicoin:
+now let's assume you have two farmer machines, and you are going to farm chia, flax, spare and kale
 
-    #network_id: "mainnet"
+A: 192.168.1.100: chia, flax
 
-#flora:
+B: 192.168.1.299: spare, kale
 
-    #network_id: "mainnet"
+open ~/.ceres/mainnet/config/coins_config.yaml and enter your farmer info like below:
+
+**NOTE** the indent and "-" symbol
+
+```
+farmer_machine:
+
+- farmer_peer: 
+  address: 192.168.1.100
+  coins:
+    - chia
+    - flax
+    - farmer_peer: 
+  address: 192.168.1.200
+  coins:
+    - spare
+    - kale
+```
+
+Then run command:
+
+```
+(venv) ➜ ceres init --coins
+```
+
+After this step finished, ceres will make default root directories for every coin under .ceres
+
+Now .ceres directory looks like this:
+
+```
+(venv) ➜ tree ~/.ceres/mainnet -a -L 3
+.ceres/mainnet
+├── all_ca
+│   ├── chia_ca
+│   ├── flax_ca
+│   ├── kale_ca
+│   └── spare_ca
+├── all_coins
+│   ├── .chia
+│   │   └── mainnet
+│   ├── .flax
+│   │   └── mainnet
+│   ├── .kale
+│   │   └── mainnet
+│   └── .spare
+│   └── mainnet
+└── config
+ ├── coins_config.yaml
+ ├── config.yaml
+ └── ssl
+ ├── ca
+ ├── daemon
+ ├── farmer
+ ├── full_node
+ ├── harvester
+ ├── introducer
+ ├── timelord
+ └── wallet
+```
+
+3. **Copy your farmer ca directory of every coin into ceres**
+   
+   Take Chia for example, copy ca directory of your Chia farmer machine into  .ceres/mainnet/all_ca/chia_ca
+   
+   ```
+   scp -r username@192.168.1.100:~/.chia/mainnet/config/ssl/ca ~/.ceres/mainnet/all_ca/chia_ca
+   ```
+
+repeat above step, copy ca directory of every coin on your farmer machin into .ceres/mainnet/all_ca/[coin_name_]_ca directory
+
+after above step finnished, .ceres/mainnet/all_ca looks like this:
+
+```
+.ceres/mainnet
+├── all_ca
+│   ├── chia_ca
+│   │   └── ca
+│   ├── flax_ca
+│   │   └── ca
+│   ├── kale_ca
+│   │   └── ca
+│   └── spare_ca
+│       └── ca
+```
+
+4. **Generate ssl files**
+   
+   ```
+   (venv) ➜ ceres generate_ssl
+   ```
+
+After above steps completed, Ceres is successfully initialized.
 
 ---
 
-# Init
+## Log Level
 
-If you have setup forks you want to harvest, it is to say you have got .chia or .forks under your home directory, you an just skip this chapter to Run
+Before start ceres, you can configure log level as you wish.
 
-Here we init from absolutly fresh install, just run:
+By default, Ceres set log level the same as Chia: "Warning"
 
-```
-ceres init_all
-```
+If you wanna to set log level of Ceres to "DEBUG",
 
-note the underscore in init_all
+open ~/.ceres/mainnet/config/config.yaml
 
-this command will generate root path for each forks, like .chia, .flax under your home directory
-
-Next we generate ssl files for each forks, for example you want to harvest flax:
-
-1. copy ca directory from you flax farmer computer to local [path_to_ca], the ca directory is located at ~/.flax/mainnet/config/ssl/ca on your Flax Farmer machine.
-
-2. run:
+set the log level:
 
 ```
-ceres init -n flax -c [path_to_ca]
+log_level: "DEBUG"
 ```
 
-config for other forks is similar, 
+---
+
+## Add plot directories
+
+open file ~/.ceres/mainnet/config/coins_config.yaml
+
+by default it looks like this:
 
 ```
-ceres init -n [fork_name] -c [path_to_ca]
+#path of your plot files
+plot_directories: []
 ```
 
-Finally, what you need to change is your famer-peer ip address under Harvester section(not full node section) in each fork's config.yaml
-
-For example you want to harvest flax:
-
-Open the `~/.flax/mainnet/config/config.yaml` file, and enter your Farmer machine's IP address in the remote **`harvester`**'s farmer_peer section (NOT `full_node`).  
-EX:
+you should set plot_directories like this, NOTE the indent and "-" symbol
 
 ```
-harvester:
-  flax_ssl_ca:
-    crt: config/ssl/ca/flax_ca.crt
-    key: config/ssl/ca/flax_ca.key
-  farmer_peer:
-    host: Farmer.Machine.IP
-    port: 8447
+plot_directories:
+
+- /home/your/plot/path/0001
+
+- /home/your/plot/path/0002
+
+- /home/your/plot/path/0003
 ```
-
-#### Note:
-
-Repeat process  above for every fork you wanna to harvest
 
 ---
 
@@ -177,7 +307,24 @@ Repeat process  above for every fork you wanna to harvest
 activate venv first, then run:
 
 ```
-ceres start harvester -r
+(venv) ➜ ceres start harvester -r
+```
+
+you can use this command to see if Ceres works correctly:
+
+```
+tail -f ~/.ceres/mainnet/log/debug.log | grep ceres.harvester
+```
+
+you should see some info like this:
+
+```
+harvester ceres.harvester.harvester: INFO     (flax)     : 0 plots were eligible for farming 5c63a7238a... Found 0 proofs. Time: 0.00012 s. Total 20 plots
+harvester ceres.harvester.harvester: INFO     (chia)     : 0 plots were eligible for farming 1734aefc18... Found 0 proofs. Time: 0.00012 s. Total 20 plots
+harvester ceres.harvester.harvester: INFO     (flax)     : 2 plots were eligible for farming 5c63a7238a... Found 0 proofs. Time: 0.00012 s. Total 20 plots
+harvester ceres.harvester.harvester: INFO     (chia)     : 1 plots were eligible for farming 1734aefc18... Found 0 proofs. Time: 0.00012 s. Total 20 plots
+harvester ceres.harvester.harvester: INFO     (spare)    : 0 plots were eligible for farming 5c63a7238a... Found 0 proofs. Time: 0.00011 s. Total 20 plots
+harvester ceres.harvester.harvester: INFO     (kale)     : 1 plots were eligible for farming 1734aefc18... Found 0 proofs. Time: 0.00009 s. Total 20 plots
 ```
 
 ### Note:
@@ -196,7 +343,127 @@ ceres stop all -d
 
 ---
 
-# Network Architecture
+## Coin Names you can use:
+
+Please DO use names in coins_config.yaml
+
+```
+vim ~/.ceres/mainnet/config/coins_config.yaml
+```
+
+You can only use names under coin_names:
+
+```
+coin_names:
+   - chia
+   - flax
+   - spare
+   - silicoin
+   - flora 
+   - chiarose
+   - socks 
+   - apple 
+   - kale 
+   - chaingreen
+   - seno
+   - equality 
+   - greendoge 
+   - tad 
+   - dogechia
+   - maize 
+   - wheat
+   - taco
+   - covid
+   - melati
+   - cactus
+   - hddcoin
+   - avocado
+   - cryptodoge
+   - sector
+   - nchain
+   - btcgreen
+   - cannabis
+   - scam
+   - fork
+   - lucky
+```
+
+---
+
+## Add coin steps:
+
+Let's say you wanna add silicoin to farmer 192.168.1.100
+
+First stop ceres
+
+```
+(venv) ➜ ceres stop all -d
+```
+
+open ~/.ceres/mainnet/config/coins_config.yaml
+
+1. add silicoin to farmer_peer:
+
+```
+ farmer_machine:
+     - farmer_peer: 
+         address: 192.168.1.100
+         coins:
+           - chia
+           - flax
+           - silicoin  <--- add silicoin here
+```
+
+2. Then:
+
+```
+(venv) ➜ ceres init --coins
+```
+
+next copy silicoin farmer's ca directory to ~/.ceres/mainnet/all_ca/silicoin_ca
+
+3. next generate ssl files
+
+```
+(venv) ➜ ceres generate_ssl
+```
+
+4. restart ceres:
+
+```
+(venv) ➜ ceres restart harvester -r
+```
+
+---
+
+# Note:
+
+Once you set up one harvester machine
+
+you can copy ceres all_ca directory under ~/.ceres/mainnet and coins_config.yaml under ~/.ceres/mainnet/config to another harvester machine
+
+Then on the other machine:
+
+```
+(venv) ➜ ceres init
+(venv) ➜ ceres init --coins
+(venv) ➜ ceres generate_sll
+(venv) ➜ ceres start harvester -r
+```
+
+---
+
+## Current supported forks:
+
+Chia, Flax, Spare, Silicoin, Flora, Kale, Goji,, Seno, Apple
+
+Greendoge, Tad, Dogechia, Maize, Wheat, Taco, Covid, Melati, Cactus,
+
+Hddcoin, Avocado, Sector, Nchain, Btcgreen, Cannabis, Scam, Fork
+
+---
+
+## Network Architecture
 
 Defult Chia Harvester and Famer is structured as below
 
@@ -211,62 +478,3 @@ Ceres has a different structure, like below:
 By using Ceres, you can run an unique Harvester server which will response to all the farmer's request. Thanks to Chia's asyncio pattern, a single Harvester server has enough throughput  to proccess farmer's asynchronous challenge hash request.
 
 ---
-
-# Compatibility
-
-For a harvester, it is responsible for communicating with famer by complying chia's Harvester Protocol.
-
-### Current supported forks:
-
-Chia, Flax, Spare, Silicoin, Flora, Chiarose, Kale, Goji, Chaingreen, Seno, Socks, Apple
-
-Equality, Greendoge, Tad, Dogechia, Maize, Wheat, Taco, Covid, Melati, Cactus, 
-
-Hddcoin, Avocado, Cryptodoge, Sector, Nchain, Btcgreen, Cannabis, Scam, Fork, Olive, 
-
-Lucky, Pipscoin, Beer, Cunt, Thyme, Littlelambocoin    
-
----
-
-# How to add more forks?
-
-It is easy for Ceres to add more forks support .
-
-Just download the all-coin-config.yaml from github and replace the old file in chia/util  subdirectory.
-
-then run:
-
-```
-ceres stop all -d
-ceres start harvester -r
-```
-
----
-
-# How to select forks you want to harvest
-
-By default, only Chia is activated.
-
-Open the file ceres/util/all-coins-config.yaml
-
-Just uncomment forks you want to harvest, like below (just delete the # before corresponding line)
-
-```
-chia:
-  network_id: "mainnet"
-flax:
-  network_id: "flax-mainnet"
-#kale:
-  #network_id: "kale-mainnet"
-#goji:
-  #network_id: "mainnet"
-```
-
-Next, you should generate ssl files for every forks you activated, edit Farmer peer IP in its corresponded config files (.[fork]/mainnet/config/config.yaml)
-
-Finnaly:
-
-```
-ceres stop all -d
-ceres start harvester -r
-```
