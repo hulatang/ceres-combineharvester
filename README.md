@@ -356,37 +356,31 @@ You can only use names under coin_names:
 
 ```
 coin_names:
-   - chia
-   - flax
-   - spare
-   - silicoin
-   - flora 
-   - chiarose
-   - socks 
-   - apple 
-   - kale 
-   - chaingreen
-   - seno
-   - equality 
-   - greendoge 
-   - tad 
-   - dogechia
-   - maize 
-   - wheat
-   - taco
-   - covid
-   - melati
-   - cactus
-   - hddcoin
-   - avocado
-   - cryptodoge
-   - sector
-   - nchain
-   - btcgreen
-   - cannabis
-   - scam
-   - fork
-   - lucky
+  - chia
+  - flax
+  - spare
+  - silicoin
+  - flora 
+  - socks 
+  - apple 
+  - kale 
+  - greendoge 
+  - tad 
+  - dogechia
+  - maize 
+  - wheat
+  - taco
+  - covid
+  - melati
+  - cactus
+  - hddcoin
+  - avocado
+  - sector
+  - nchain
+  - btcgreen
+  - cannabis
+  - scam
+  - fork
 ```
 
 ---
