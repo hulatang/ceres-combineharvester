@@ -5,6 +5,7 @@ from ipaddress import IPv6Address, ip_address, IPv4Address
 
 
 
+# TODO: should check if coin name is supported
 def get_mining_coin_names(root_path: Path=DEFAULT_CERES_ROOT_PATH):
     farmer_configs = load_config(root_path, filename="coins_config.yaml", sub_config="farmer_machine")
 
