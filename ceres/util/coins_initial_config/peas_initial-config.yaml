@@ -1,0 +1,433 @@
+min_mainnet_k_size: 32
+
+# Send a ping to all peers after ping_interval seconds
+# 在ping_间隔秒后向所有对等方发送ping
+ping_interval: 120
+self_hostname: &self_hostname "localhost"
+daemon_port: 55300
+inbound_rate_limit_percent: 100
+outbound_rate_limit_percent: 30
+
+network_overrides: &network_overrides
+  constants:
+    mainnet:
+      NETWORK_TYPE: 0
+      GENESIS_CHALLENGE: ca7816bfcfea414140de5dae2223b00361a396177a9cb410ff61f20219af8f01
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d7e422a7ffafe4a0d5ea22e0922ab0493df0ff782bd8d4c01808649248b4cde1"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "d7e422a7ffafe4a0d5ea22e0922ab0493df0ff782bd8d4c01808649248b4cde1"
+    testnet0:
+      MIN_PLOT_SIZE: 18
+      GENESIS_CHALLENGE: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      NETWORK_TYPE: 1
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "d7e422a7ffafe4a0d5ea22e0922ab0493df0ff782bd8d4c01808649248b4cde1"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "d7e422a7ffafe4a0d5ea22e0922ab0493df0ff782bd8d4c01808649248b4cde1"
+  config:
+    mainnet:
+      address_prefix: "pea"
+      default_full_node_port: 3838
+    testnet0:
+      address_prefix: "pea"
+      default_full_node_port: 53838
+
+selected_network: &selected_network "mainnet"
+ALERTS_URL: https://download.chia.net/notify/mainnet_alert.txt
+PEAS_ALERTS_PUBKEY: b6db0fa9dd53f1d403b9cc49c84ebd3cb1714ff87d5f87a0f2aafc783d8fc70a3db6df9909b8f4ac9591da55ab399ec8
+
+# public ssl ca is included in source code
+# 源代码中包含公共ssl ca
+# Private ssl ca is used for trusted connections between machines user owns
+# 私有ssl ca用于用户拥有的计算机之间的受信任连接
+private_ssl_ca:
+  crt: "config/ssl/ca/private_ca.crt"
+  key: "config/ssl/ca/private_ca.key"
+
+peas_ssl_ca:
+  crt: "config/ssl/ca/peas_ca.crt"
+  key: "config/ssl/ca/peas_ca.key"
+
+
+daemon_ssl:
+  private_crt: "config/ssl/daemon/private_daemon.crt"
+  private_key: "config/ssl/daemon/private_daemon.key"
+
+
+# Controls logging of all servers (harvester, farmer, etc..). Each one can be overriden.
+# 控制所有服务器（harvester、farmer等）的日志记录。每一个都可以被覆盖。
+logging: &logging
+  log_stdout: False  # If True, outputs to stdout instead of a file
+  #如果为True，则输出到标准输出，而不是文件
+  log_filename: "log/debug.log"
+  log_level: "INFO"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+  #可以是关键、错误、警告、信息、调试、未设置
+  log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set
+  #最大文件旋转。如果未设置键，则默认值为7
+  log_syslog: False  # If True, outputs to SysLog host and port specified
+  #如果为True，则输出到SysLog主机和指定的端口
+  log_syslog_host: "localhost"  # Send logging messages to a remote or local Unix syslog
+  #将日志消息发送到远程或本地Unix系统日志
+  log_syslog_port: 514  # UDP port of the remote or local Unix syslog
+#远程或本地Unix系统日志的UDP端口
+harvester:
+  # The harvester server (if run) will run on this port
+  # harvester服务器（如果运行）将在此端口上运行
+  port: 8338
+  farmer_peer:
+    host: *self_hostname
+    port: 8337
+
+  # If True, starts an RPC server at the following port
+    # 如果为True，则在以下端口启动RPC服务器
+  start_rpc_server: True
+  rpc_port: 8230
+  num_threads: 30
+  plots_refresh_parameter:
+    interval_seconds: 120 # The interval in seconds to refresh the plot file manager
+    #刷新打印文件管理器的间隔（秒）
+    batch_size: 30 # How many plot files the harvester processes before it waits batch_sleep_milliseconds
+    #收割机在等待批处理\u睡眠\u毫秒之前处理多少打印文件
+    batch_sleep_milliseconds: 10 # Milliseconds the harvester sleeps between batch processing
+#收割机在批处理之间休眠的毫秒数
+
+  # If True use parallel reads in chiapos
+  parallel_read: True
+
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  # Plots are searched for in the following directories
+  plot_directories: []
+
+  ssl:
+    private_crt:  "config/ssl/harvester/private_harvester.crt"
+    private_key:  "config/ssl/harvester/private_harvester.key"
+
+  private_ssl_ca:
+    crt: "config/ssl/ca/private_ca.crt"
+    key: "config/ssl/ca/private_ca.key"
+
+  peas_ssl_ca:
+    crt: "config/ssl/ca/peas_ca.crt"
+    key: "config/ssl/ca/peas_ca.key"
+
+pool:
+  # Replace this with a real puzzle hash
+ 
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+
+farmer:
+  # The farmer server (if run) will run on this port
+  #  farmer服务器（如果运行）将在此端口上运行
+  port: 8337
+  # The farmer will attempt to connect to this full node and harvester
+  # 农民将尝试连接到此完整节点和收割机
+  full_node_peer:
+    host: *self_hostname
+    port: 3838
+  harvester_peer:
+    host: *self_hostname
+    port: 8338
+
+  pool_public_keys: []
+
+  # Replace this with a real puzzle hash
+ #将其替换为真正的拼图散列
+
+  # If True, starts an RPC server at the following port
+  #如果为True，则在以下端口启动RPC服务器
+  start_rpc_server: True
+  rpc_port: 8359
+
+  # To send a share to a pool, a proof of space must have required_iters less than this number
+  #要将共享发送到池，空间证明所需的文件数必须小于此数字
+  pool_share_threshold: 1000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    private_crt:  "config/ssl/farmer/private_farmer.crt"
+    private_key:  "config/ssl/farmer/private_farmer.key"
+    public_crt:  "config/ssl/farmer/public_farmer.crt"
+    public_key:  "config/ssl/farmer/public_farmer.key"
+
+# Don't run this unless you want to run VDF clients on the local machine.
+#除非要在本地计算机上运行VDF客户端，否则不要运行此操作。
+timelord_launcher:
+  # The server where the VDF clients will connect to.
+  #VDF客户端将连接到的服务器。
+  port: 8300
+  # Number of VDF client processes to keep alive in the local machine.
+#要在本地计算机中保持活动状态的VDF客户端进程数。
+  
+  process_count: 3
+  logging: *logging
+
+
+timelord:
+  # The timelord server (if run) will run on this port
+##################timelord服务器（如果运行）将在此端口上运行########################
+  port: 8336
+  # Provides a list of VDF clients expected to connect to this timelord.
+   #  提供预期连接到此timelord的VDF客户端的列表。
+  # For each client, an IP is provided, together with the estimated iterations per second.
+   #  对于每个客户机，都会提供一个IP，以及每秒的估计迭代次数。
+  vdf_clients:
+    ip:
+      - *self_hostname
+      - localhost
+      - 127.0.0.1
+    ips_estimate:
+      - 150000
+  full_node_peer:
+      host: *self_hostname
+      port: 3838
+  # Maximum number of seconds allowed for a client to reconnect to the server.
+ # 客户端重新连接到服务器所允许的最大秒数。
+  max_connection_time: 60
+  # The ip and port where the TCP clients will connect.
+  # TCP客户端将连接的ip和端口。
+  vdf_server:
+    host: *self_hostname
+    port: 8300
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+  # fast_algorithm is a faster proof generation algorithm. This speed increase
+  # requires much less memory usage and a does not have the risk of OOM that
+  # the normal timelord has but requires significantly more cores doing
+  # parrallel proof generation and creates a larger and slower to verify
+  # resulting proof.
+  # An Intel Core i9-10900K can run 2 normal vdf_clients at ~221,000 ips
+  # without slowing down but running more than 1 with fast_algorithm will
+  # run each vdf_client slower..
+#fast_算法是一种更快的证明生成算法。这个速度增加了
+#所需的内存使用量要少得多，而且a没有发生这种情况的风险
+#正常的timelord有但需要更多的内核
+#并行验证生成并创建更大、更慢的验证
+#结果证明。
+#Intel Core i9-10900K可在约221000个IP上运行2个普通vdf_客户端
+#不减速，但使用快速_算法运行超过1次将
+#以较慢的速度运行每个vdf_客户端
+  fast_algorithm: False
+  # Bluebox (sanatizing Timelord):
+  # If set 'True', the timelord will create compact proofs of time, instead of
+  # extending the chain. The attribute 'fast_algorithm' won't apply if timelord
+  # is running in sanitizer_mode.
+  # You must set 'send_uncompact_interval' in 'full_node' > 0 in the full_node
+  # section below to have full_node send existing time proofs to be sanitized.
+#蓝盒（赛纳提斯Timelord）：
+#如果设置为“真”，timelord将创建时间的紧凑证明，而不是
+#延伸链条。如果使用timelord，则属性“fast_algorithm”将不适用
+#正在消毒器模式下运行。
+#必须在完整节点的“完整节点”0中设置“发送\u解压\u间隔”
+#请在下面的部分中让full_节点发送现有的时间证明以进行消毒。
+  sanitizer_mode: false
+
+  ssl:
+    private_crt:  "config/ssl/timelord/private_timelord.crt"
+    private_key:  "config/ssl/timelord/private_timelord.key"
+    public_crt:  "config/ssl/timelord/public_timelord.crt"
+    public_key:  "config/ssl/timelord/public_timelord.key"
+
+full_node:
+  # The full node server (if run) will run on this port
+  #######################完整节点服务器（如果运行）将在此端口上运行######################
+  port: 3838
+
+  # Run multiple nodes with different databases by changing the database_path
+  #通过更改数据库路径，使用不同的数据库运行多个节点
+  database_path: db/blockchain_v1_CHALLENGE.sqlite
+  peer_db_path: db/peer_table_node.sqlite
+  simulator_database_path: sim_db/simulator_blockchain_v1_CHALLENGE.sqlite
+  simulator_peer_db_path: sim_db/peer_table_node.sqlite
+
+  # If True, starts an RPC server at the following port
+  # 如果为True，则在以下端口启动RPC服务器
+  start_rpc_server: True
+  rpc_port: 8333
+
+  # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway
+#使用UPnP尝试允许其他完整节点到达网关后面的节点
+  enable_upnp: True
+
+  # If node is more than these blocks behind, will do a sync (long sync)
+
+ # If node is more than these blocks behind, will do a sync (long sync)
+#如果节点超过后面的这些块，将执行同步（长同步）
+  sync_blocks_behind_threshold: 300
+
+  # If node is more than these blocks behind, will do a short batch-sync, if it's less, will do a backtrack sync
+  #若节点超过了后面的这些块，将执行短批量同步，若较少，将执行回溯同步
+  short_sync_blocks_behind_threshold: 20
+
+  # How often to initiate outbound connections to other full nodes.
+  #启动到其他完整节点的出站连接的频率。
+  peer_connect_interval: 30
+  # Accept peers until this number of connections
+  #接受对等方，直到达到此连接数
+  target_peer_count: 80
+  # Initiate outbound connections until this number is hit.
+  #启动出站连接，直到达到此号码。
+  target_outbound_peer_count: 8
+  # IPv4/IPv6 network addresses and CIDR blocks allowed to connect even when target_peer_count has been hit.
+  #IPv4/IPv6网络地址和CIDR块允许连接，即使目标对等计数已命中。
+  # exempt_peer_networks: ["192.168.0.3", "192.168.1.0/24", "fe80::/10", "2606:4700:4700::64/128"]
+  exempt_peer_networks: []
+  # Accept at most # of inbound connections for different node types.
+  #对于不同的节点类型，最多接受#个入站连接。
+  max_inbound_wallet: 20
+  max_inbound_farmer: 10
+  max_inbound_timelord: 5
+  # Only connect to peers who we have heard about in the last recent_peer_threshold seconds
+  #仅连接到我们在最近\u peer\u阈值秒内听说过的对等方
+  recent_peer_threshold: 6000
+
+  # Send to a Bluebox (sanatizing timelord) uncompact blocks once every
+  #每年发送一次到Bluebox（sanatizing timelord）解压块
+  # 'send_uncompact_interval' seconds. Set to 0 if you don't use this feature.
+  #“发送解压间隔”秒。如果不使用此功能，请设置为0。
+  send_uncompact_interval: 0
+  # At every 'send_uncompact_interval' seconds, send blueboxes 'target_uncompact_proofs' proofs to be normalized.
+  # 在每一个“发送\u不压缩\u间隔”秒，发送蓝盒的目标\u不压缩\u证明以进行规范化
+  target_uncompact_proofs: 100
+  # Setting this flag as True, blueboxes will sanitize only data needed in weight proof calculation, as opposed to whole blocks.
+  #将此标志设置为True，blueboxes将只清理重量验证计算中所需的数据，而不是整个块。
+  # Default is set to False, as the network needs only one or two blueboxes like this.
+  #默认设置为False，因为网络只需要一个或两个这样的蓝框。
+  sanitize_weight_proof_only: False
+  # timeout for weight proof request
+  #重量验证请求超时
+  weight_proof_timeout: 360
+
+  # when enabled, the full node will print a pstats profile to the root_dir/profile every second
+  #启用时，完整节点将每秒向根目录/配置文件打印pstats配置文件
+  # analyze with peas/utils/profiler.py
+  #使用peas/utils/profiler.py进行分析
+  enable_profiler: False
+
+  # List of trusted DNS seeders to bootstrap from.
+  #要从中引导的受信任DNS种子的列表。
+  # If you modify this, please change the hardcode as well from FullNode.set_server()
+  #如果修改此项，请同时更改FullNode.set_server（）中的硬代码
+  dns_servers:
+    - "dns-introducer.peas.net"
+  farmer_peer:
+      host: *self_hostname
+      port: 8337
+  timelord_peer:
+      host: *self_hostname
+      port: 8336
+  introducer_peer:
+      host: introducer.peas.net  # Peas AWS introducer IPv4/IPv6
+      port: 3838
+  wallet_peer:
+    host: *self_hostname
+    port: 8339
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    private_crt:  "config/ssl/full_node/private_full_node.crt"
+    private_key:  "config/ssl/full_node/private_full_node.key"
+    public_crt:  "config/ssl/full_node/public_full_node.crt"
+    public_key:  "config/ssl/full_node/public_full_node.key"
+
+ui:
+   # The ui node server (if run) will run on this port
+   #ui节点服务器（如果运行）将在此端口上运行
+  port: 8322
+
+  # Which port to use to communicate with the full node
+  #使用哪个端口与完整节点通信
+  rpc_port: 8333
+
+  # This SSH key is for the ui SSH server
+  ssh_filename: config/ssh_host_key
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  # this is where the electron UI will find its daemon
+   #  这是electron UI将找到其守护进程的地方
+  # defaults to the one running locally with its private keys
+    # 默认为使用其私钥在本地运行的
+  daemon_host: *self_hostname
+  daemon_port: 55300
+  daemon_ssl:
+    private_crt: config/ssl/daemon/private_daemon.crt
+    private_key: config/ssl/daemon/private_daemon.key
+
+introducer:
+  host: *self_hostname
+  port: 8335
+  max_peers_to_send: 20
+  # The introducer will only return peers who it has seen in the last
+  # 介绍人只会返回在过去几年中见过的同龄人
+  # recent_peer_threshold seconds
+  # 最近\u对等\u阈值秒
+  recent_peer_threshold: 6000
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  ssl:
+    public_crt:  "config/ssl/full_node/public_full_node.crt"
+    public_key:  "config/ssl/full_node/public_full_node.key"
+
+wallet:
+  port: 8339
+  rpc_port: 9356
+
+  enable_profiler: False
+
+  # The minimum height that we care about for our transactions. Set to zero
+  #  我们关心的交易最低高度。置零
+  # If we are restoring from private key and don't know the height.
+  #  如果我们正在从私钥恢复，但不知道其高度。
+  starting_height: 0
+  start_height_buffer: 100 
+   # Wallet will stop fly sync at starting_height - buffer
+   # 钱包将在开始时停止飞行同步\u高度-缓冲区
+  num_sync_batches: 50
+  initial_num_public_keys: 100
+  initial_num_public_keys_new_wallet: 5
+
+  full_node_peer:
+    host: *self_hostname
+    port: 3838
+
+  testing: False
+  database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
+  wallet_peers_path: wallet/db/wallet_peers.sqlite
+
+  logging: *logging
+  network_overrides: *network_overrides
+  selected_network: *selected_network
+
+  target_peer_count: 5
+  peer_connect_interval: 60
+  # The introducer will only return peers who it has seen in the last
+  #介绍人只会返回在过去几年中见过的同龄人
+  # recent_peer_threshold seconds
+  #最近\u对等\u阈值秒
+  recent_peer_threshold: 6000
+
+  introducer_peer:
+    host: introducer.peas.net # Peas AWS introducer IPv4/IPv6
+    port: 3838
+
+  ssl:
+    private_crt:  "config/ssl/wallet/private_wallet.crt"
+    private_key:  "config/ssl/wallet/private_wallet.key"
+    public_crt:  "config/ssl/wallet/public_wallet.crt"
+    public_key:  "config/ssl/wallet/public_wallet.key"
+
+  trusted_peers:
+    trusted_node_1: "config/ssl/full_node/public_full_node.crt"
+
+  short_sync_blocks_behind_threshold: 20
