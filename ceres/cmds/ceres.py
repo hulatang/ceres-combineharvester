@@ -5,6 +5,7 @@ from pathlib import Path
 import click
 
 from ceres import __version__
+from ceres.cmds.ceres_update import ceres_update_cmd
 from ceres.cmds.configure import configure_cmd
 from ceres.cmds.farm import farm_cmd
 from ceres.cmds.init import init_cmd
@@ -128,6 +129,7 @@ cli.add_command(plotnft_cmd)
 cli.add_command(configure_cmd)
 # cli.add_command(init_cmd)
 cli.add_command(ceres_init_cmd)
+cli.add_command(ceres_update_cmd)
 cli.add_command(ceres_generate_ssl)
 cli.add_command(show_cmd)
 cli.add_command(start_cmd)
