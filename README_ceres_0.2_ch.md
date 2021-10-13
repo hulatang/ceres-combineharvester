@@ -513,6 +513,7 @@ coin_names:
 git pull origin main
 (venv) ➜ ceres update
 
+# 按照添加币种部分的说明 添加你的配置信息
 
 # restart ceres
 (venv) ➜ ceres stop all -d

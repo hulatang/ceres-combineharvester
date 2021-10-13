@@ -1,4 +1,4 @@
-# [Ceres使用说明 中文版本](https://github.com/hulatang/ceres-combineharvester/blob/main/README_ceres_0.2_ch.md)
+# [Ceres使用说明 中文版本]()
 
 ---
 
@@ -500,6 +500,8 @@ besure you are under ceres-combineharvester directory
 # update ceres
 git pull origin main
 (venv) ➜ ceres update
+
+# do steps in Add Coin Steps 
 
 # restart ceres
 (venv) ➜ ceres stop all -d
