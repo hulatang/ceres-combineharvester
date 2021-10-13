@@ -412,6 +412,24 @@ coin_names:
   - cannabis
   - scam
   - fork
+  - olive
+  - pipscoin
+  - beer
+  - cunt
+  - littlelambocoin
+  - stor
+  - beet
+  - lotus
+  - mint
+  - kiwi
+  - mogua
+  - tranzact
+  - peas
+  - salvia
+  - staicoin
+  - taco
+  - melati
+  - cryptodoge
 ```
 
 ---
@@ -485,3 +503,49 @@ coin_names:
   (venv) ➜ ceres generate_ssl
   (venv) ➜ ceres start harvester -r
   ```
+
+---
+
+# 如何升级Ceres:
+
+```
+# update ceres
+git pull origin main
+(venv) ➜ ceres update
+
+
+# restart ceres
+(venv) ➜ ceres stop all -d
+(venv) ➜ ceres start harvester -r
+```
+
+**注意: 拉取新的代码之后， 一定要运行 ceres update， 才能完成升级**
+
+---
+
+# ChangeLog
+
+---
+
+**2021-10-13**
+
+**添加支持的币种**:
+
+- olive
+- pipscoin
+- beer
+- cunt
+- littlelambocoin
+- stor
+- beet
+- lotus
+- mint
+- kiwi
+- mogua
+- tranzact
+- peas
+- salvia
+- staicoin
+- taco
+- melati
+- cryptodoge

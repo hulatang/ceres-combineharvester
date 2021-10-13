@@ -356,7 +356,7 @@ You can only use names under coin_names:
 
 ```
 coin_names:
-  - chia
+  - chia
   - flax
   - spare
   - silicoin
@@ -381,6 +381,24 @@ coin_names:
   - cannabis
   - scam
   - fork
+  - olive
+  - pipscoin
+  - beer
+  - cunt
+  - littlelambocoin
+  - stor
+  - beet
+  - lotus
+  - mint
+  - kiwi
+  - mogua
+  - tranzact
+  - peas
+  - salvia
+  - staicoin
+  - taco
+  - melati
+  - cryptodoge
 ```
 
 ---
@@ -473,3 +491,48 @@ Ceres has a different structure, like below:
 By using Ceres, you can run an unique Harvester server which will response to all the farmer's request. Thanks to Chia's asyncio pattern, a single Harvester server has enough throughput  to proccess farmer's asynchronous challenge hash request.
 
 ---
+
+# How to update Ceres
+
+besure you are under ceres-combineharvester directory
+
+```
+# update ceres
+git pull origin main
+(venv) ➜ ceres update
+
+# restart ceres
+(venv) ➜ ceres stop all -d
+(venv) ➜ ceres start harvester -r
+```
+
+NOTE: after pulling code from github, don't forget to run ceres update to complete ceres updating.
+
+---
+
+# ChangeLog
+
+---
+
+**2021-10-13**
+
+**Add more supported coins:**
+
+- olive
+- pipscoin
+- beer
+- cunt
+- littlelambocoin
+- stor
+- beet
+- lotus
+- mint
+- kiwi
+- mogua
+- tranzact
+- peas
+- salvia
+- staicoin
+- taco
+- melati
+- cryptodoge
