@@ -33,7 +33,8 @@ def package_contents(package_name):
 
 ret = package_contents(package_name)
 
-
+print("Start scanning consensud constants files.")
+print("")
 for r in ret:
     try:
         m = import_module(r)
@@ -44,5 +45,6 @@ for r in ret:
     except Exception as e:
         print('Got unkown error: ', e)
     finally:
+        print(f"Coin: {r.split('.')[-1]} passed")
         print("")
 
