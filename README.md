@@ -1,4 +1,4 @@
-# [Ceres使用说明 中文版本]([ceres-combineharvester/README_ceres_0.2_ch.md at main · hulatang/ceres-combineharvester · GitHub](https://github.com/hulatang/ceres-combineharvester/blob/main/README_ceres_0.2_ch.md))
+# [Ceres使用说明 中文版本](https://github.com/hulatang/ceres-combineharvester/blob/main/README_ceres_0.2_ch.md)
 
 ---
 
