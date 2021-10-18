@@ -430,6 +430,8 @@ coin_names:
   - taco
   - melati
   - cryptodoge
+  - venidium
+  - goldcoin
 ```
 
 ---
@@ -525,6 +527,13 @@ git pull origin main
 ---
 
 # ChangeLog
+---
+
+**2021-10-18**
+**Add more supported coins:**
+
+- venidium
+- goldcoi
 
 ---
 

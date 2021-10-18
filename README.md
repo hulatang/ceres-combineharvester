@@ -399,6 +399,8 @@ coin_names:
   - taco
   - melati
   - cryptodoge
+  - venidium
+  - goldcoin
 ```
 
 ---
@@ -513,6 +515,18 @@ NOTE: after pulling code from github, don't forget to run ceres update to comple
 ---
 
 # ChangeLog
+
+---
+
+**2021-10-18**
+**Add more supported coins:**
+
+- venidium
+- goldcoin
+
+
+
+
 
 ---
 

@@ -96,6 +96,7 @@ coin_names:
   - cryptodoge
   - venidium
   - goldcoin
+  - aedgecoin
 
 
 
@@ -195,3 +196,5 @@ network_ids:
     network_id: "mainnet"
   goldcoin:
     network_id: "goldcoin-mainnet"
+  aedgecoin:
+    network_id: "mainnet"
