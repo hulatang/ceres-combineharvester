@@ -1,6 +1,6 @@
-from aedge.util.ints import uint64
+from ceres.util.ints import uint64
+from ceres.consensus.constants import ConsensusConstants
 
-from .constants import ConsensusConstants
 # /aedge/consensus/default_constants.py _AedgeFork
 testnet_kwargs = {
     "SLOT_BLOCKS_TARGET": 32,
