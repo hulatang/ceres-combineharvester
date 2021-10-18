@@ -31,7 +31,7 @@ def package_contents(package_name):
 
     return ret
 
-ret = package_contents(package_name)
+ret = sorted(package_contents(package_name))
 
 print("Start scanning consensud constants files.")
 print("")
