@@ -94,6 +94,8 @@ coin_names:
   - taco
   - melati
   - cryptodoge
+  - venidium
+  - goldcoin
 
 
 
@@ -189,3 +191,7 @@ network_ids:
     network_id: "mainnet"
   cryptodoge:
     network_id: "cryptodoge-mainnet"
+  venidium:
+    network_id: "mainnet"
+  goldcoin:
+    network_id: "goldcoin-mainnet"
