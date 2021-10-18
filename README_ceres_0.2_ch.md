@@ -527,13 +527,15 @@ git pull origin main
 ---
 
 # ChangeLog
+
 ---
 
 **2021-10-18**
-**Add more supported coins:**
+**添加新的币种:**
 
 - venidium
-- goldcoi
+- goldcoin
+- aedgecoin
 
 ---
 

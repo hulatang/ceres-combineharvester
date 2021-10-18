@@ -523,10 +523,7 @@ NOTE: after pulling code from github, don't forget to run ceres update to comple
 
 - venidium
 - goldcoin
-
-
-
-
+- aedgecoin
 
 ---
 
