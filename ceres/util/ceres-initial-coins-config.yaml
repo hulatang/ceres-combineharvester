@@ -193,7 +193,7 @@ network_ids:
   cryptodoge:
     network_id: "cryptodoge-mainnet"
   venidium:
-    network_id: "mainnet"
+    network_id: "kition"
   goldcoin:
     network_id: "goldcoin-mainnet"
   aedgecoin:
