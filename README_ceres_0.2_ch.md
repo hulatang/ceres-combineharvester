@@ -526,9 +526,33 @@ git pull origin main
 
 ---
 
+## Windows使用方法:
+
+下载ceres.zip, 解压缩，在cmd/powershell/windows terminal中执行 ceres.exe,
+
+使用流程和上面的linux相同
+
+---
+
+
+
+
+
+
+
 # ChangeLog
 
 ---
+
+**2021-10-19**
+
+**Windows 客户端 0.0.1** 
+
+修改了venidium的参数
+
+---
+
+
 
 **2021-10-18**
 **添加新的币种:**

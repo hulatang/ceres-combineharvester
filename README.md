@@ -514,7 +514,27 @@ NOTE: after pulling code from github, don't forget to run ceres update to comple
 
 ---
 
+## Windows Instruction
+
+Downloadd ceres.zip under Releases, unzip it
+
+Just run ceres.exe under cmd/powershell/windows terminal
+
+run ceres.exe the same way as linux instructions above.
+
+---
+
+
+
 # ChangeLog
+
+---
+
+**2021-10-19**
+
+**Windows 0.0.1 beta released**
+
+update venidium configuration
 
 ---
 
