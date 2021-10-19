@@ -1,6 +1,8 @@
 from ceres.util.ceres_config import get_mining_coin_names
 from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH, get_coin_root_path
 from ceres.consensus.constants import ConsensusConstants
+# from ceres.consensus.all_coins_default_constants import *
+from ceres.consensus.all_coins_default_constants import chia_default_constants
 import os
 from pathlib import Path
 from ceres.util.config import load_config_cli

@@ -2,6 +2,7 @@
 import importlib
 import pathlib
 import platform
+import os
 
 from pkg_resources import get_distribution
 
@@ -66,6 +67,19 @@ SERVERS = [
 entry_points = ["ceres.cmds.ceres"] + [f"ceres.server.start_{s}" for s in SERVERS]
 
 hiddenimports = []
+
+coin_constants_path = f"{ROOT}/ceres/consensus/all_coins_default_constants"
+
+constants_files = []
+
+all_files = os.listdir(coin_constants_path)
+
+for f in all_files:
+  if f == "__init__.py":
+    continue
+  constants_files.append("ceres/consensus/all_coins_default_constants/" + f)
+
+hiddenimports.extend(constants_files)
 hiddenimports.extend(entry_points)
 hiddenimports.extend(keyring_imports)
 
@@ -80,7 +94,7 @@ if THIS_IS_WINDOWS:
     entry_points.extend(["aiohttp", "ceres.util.bip39"])
 
 if THIS_IS_WINDOWS:
-    chia_mod = importlib.import_module("ceres")
+    ceres_mod = importlib.import_module("ceres")
     dll_paths = ROOT / "*.dll"
 
     binaries = [
@@ -102,7 +116,8 @@ if THIS_IS_WINDOWS:
 datas = []
 
 datas.append((f"{ROOT}/ceres/util/english.txt", "ceres/util"))
-datas.append((f"{ROOT}/ceres/util/initial-config.yaml", "ceres/util"))
+datas.append((f"{ROOT}/ceres/util/*.yaml", "ceres/util"))
+datas.append((f"{ROOT}/ceres/util/coins_initial_config/*.yaml", "ceres/util/coins_initial_config"))
 datas.append((f"{ROOT}/ceres/wallet/puzzles/*.hex", "ceres/wallet/puzzles"))
 datas.append((f"{ROOT}/ceres/ssl/*", "ceres/ssl"))
 datas.append((f"{ROOT}/mozilla-ca/*", "mozilla-ca"))

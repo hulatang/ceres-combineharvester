@@ -10,7 +10,7 @@ git status
 Write-Output "   ---"
 Write-Output "curl miniupnpc"
 Write-Output "   ---"
-Invoke-WebRequest -Uri "https://pypi.ceres.net/simple/miniupnpc/miniupnpc-2.2.2-cp39-cp39-win_amd64.whl" -OutFile "miniupnpc-2.2.2-cp39-cp39-win_amd64.whl"
+Invoke-WebRequest -Uri "https://pypi.chia.net/simple/miniupnpc/miniupnpc-2.2.2-cp39-cp39-win_amd64.whl" -OutFile "miniupnpc-2.2.2-cp39-cp39-win_amd64.whl"
 Write-Output "Using win_amd64 python 3.9 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
 Write-Output "Actual build from https://github.com/miniupnp/miniupnp/commit/7783ac1545f70e3341da5866069bde88244dd848"
 If ($LastExitCode -gt 0){
@@ -18,7 +18,7 @@ If ($LastExitCode -gt 0){
 }
 else
 {
-    Set-Location -Path - -PassThru
+    Set-Location -Path "../../" -PassThru
     Write-Output "miniupnpc download successful."
 }
 
@@ -48,7 +48,7 @@ Write-Output "   ---"
 Write-Output "   ---"
 Write-Output "Build ceres-blockchain wheels"
 Write-Output "   ---"
-pip wheel --use-pep517 --extra-index-url https://pypi.ceres.net/simple/ -f . --wheel-dir=.\build_scripts\win_build .
+pip wheel --use-pep517 --extra-index-url https://pypi.chia.net/simple/ -f . --wheel-dir=.\build_scripts\win_build .
 
 Write-Output "   ---"
 Write-Output "Install ceres-blockchain wheels into venv with pip"
@@ -69,68 +69,68 @@ Write-Output "   ---"
 $SPEC_FILE = (python -c 'import ceres; print(ceres.PYINSTALLER_SPEC_PATH)') -join "`n"
 pyinstaller --log-level INFO $SPEC_FILE
 
-Write-Output "   ---"
-Write-Output "Copy ceres executables to ceres-blockchain-gui\"
-Write-Output "   ---"
-Copy-Item "dist\daemon" -Destination "..\ceres-blockchain-gui\" -Recurse
-Set-Location -Path "..\ceres-blockchain-gui" -PassThru
+# Write-Output "   ---"
+# Write-Output "Copy ceres executables to ceres-blockchain-gui\"
+# Write-Output "   ---"
+# Copy-Item "dist\daemon" -Destination "..\ceres-blockchain-gui\" -Recurse
+# Set-Location -Path "..\ceres-blockchain-gui" -PassThru
 
-git status
+# git status
 
-Write-Output "   ---"
-Write-Output "Prepare Electron packager"
-Write-Output "   ---"
-$Env:NODE_OPTIONS = "--max-old-space-size=3000"
-npm install --save-dev electron-winstaller
-npm install -g electron-packager
-npm install
-npm audit fix
+# Write-Output "   ---"
+# Write-Output "Prepare Electron packager"
+# Write-Output "   ---"
+# $Env:NODE_OPTIONS = "--max-old-space-size=3000"
+# npm install --save-dev electron-winstaller
+# npm install -g electron-packager
+# npm install
+# npm audit fix
 
-git status
+# git status
 
-Write-Output "   ---"
-Write-Output "Electron package Windows Installer"
-Write-Output "   ---"
-npm run build
-If ($LastExitCode -gt 0){
-    Throw "npm run build failed!"
-}
+# Write-Output "   ---"
+# Write-Output "Electron package Windows Installer"
+# Write-Output "   ---"
+# npm run build
+# If ($LastExitCode -gt 0){
+#     Throw "npm run build failed!"
+# }
 
-Write-Output "   ---"
-Write-Output "Increase the stack for ceres command for (ceres plots create) chiapos limitations"
-# editbin.exe needs to be in the path
-editbin.exe /STACK:8000000 daemon\ceres.exe
-Write-Output "   ---"
+# Write-Output "   ---"
+# Write-Output "Increase the stack for ceres command for (ceres plots create) chiapos limitations"
+# # editbin.exe needs to be in the path
+# editbin.exe /STACK:8000000 daemon\ceres.exe
+# Write-Output "   ---"
 
-$packageVersion = "$env:CHIA_INSTALLER_VERSION"
-$packageName = "Ceres-$packageVersion"
+# $packageVersion = "$env:CHIA_INSTALLER_VERSION"
+# $packageName = "Ceres-$packageVersion"
 
-Write-Output "packageName is $packageName"
+# Write-Output "packageName is $packageName"
 
-Write-Output "   ---"
-Write-Output "electron-packager"
-electron-packager . Ceres --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\ceres.ico --app-version=$packageVersion
-Write-Output "   ---"
+# Write-Output "   ---"
+# Write-Output "electron-packager"
+# electron-packager . Ceres --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\ceres.ico --app-version=$packageVersion
+# Write-Output "   ---"
 
-Write-Output "   ---"
-Write-Output "node winstaller.js"
-node winstaller.js
-Write-Output "   ---"
+# Write-Output "   ---"
+# Write-Output "node winstaller.js"
+# node winstaller.js
+# Write-Output "   ---"
 
-git status
+# git status
 
-If ($env:HAS_SECRET) {
-   Write-Output "   ---"
-   Write-Output "Add timestamp and verify signature"
-   Write-Output "   ---"
-   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\ChiaSetup-$packageVersion.exe
-   signtool.exe verify /v /pa .\release-builds\windows-installer\ChiaSetup-$packageVersion.exe
-   }   Else    {
-   Write-Output "Skipping timestamp and verify signatures - no authorization to install certificates"
-}
+# If ($env:HAS_SECRET) {
+#    Write-Output "   ---"
+#    Write-Output "Add timestamp and verify signature"
+#    Write-Output "   ---"
+#    signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\ChiaSetup-$packageVersion.exe
+#    signtool.exe verify /v /pa .\release-builds\windows-installer\ChiaSetup-$packageVersion.exe
+#    }   Else    {
+#    Write-Output "Skipping timestamp and verify signatures - no authorization to install certificates"
+# }
 
-git status
+# git status
 
-Write-Output "   ---"
-Write-Output "Windows Installer complete"
-Write-Output "   ---"
+# Write-Output "   ---"
+# Write-Output "Windows Installer complete"
+# Write-Output "   ---"

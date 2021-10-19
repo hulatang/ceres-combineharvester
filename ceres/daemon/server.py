@@ -88,14 +88,14 @@ class PlotEvent(str, Enum):
 if getattr(sys, "frozen", False):
     name_map = {
         "ceres": "ceres",
-        "chia_wallet": "start_wallet",
-        "chia_full_node": "start_full_node",
-        "chia_harvester": "start_harvester",
-        "chia_farmer": "start_farmer",
-        "chia_introducer": "start_introducer",
-        "chia_timelord": "start_timelord",
-        "chia_timelord_launcher": "timelord_launcher",
-        "chia_full_node_simulator": "start_simulator",
+        "ceres_wallet": "start_wallet",
+        "ceres_full_node": "start_full_node",
+        "ceres_harvester": "start_harvester",
+        "ceres_farmer": "start_farmer",
+        "ceres_introducer": "start_introducer",
+        "ceres_timelord": "start_timelord",
+        "ceres_timelord_launcher": "timelord_launcher",
+        "ceres_full_node_simulator": "start_simulator",
     }
 
     def executable_for_service(service_name: str) -> str:

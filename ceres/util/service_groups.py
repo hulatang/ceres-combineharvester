@@ -1,19 +1,19 @@
 from typing import KeysView, Generator
 
 SERVICES_FOR_GROUP = {
-    "all": "chia_harvester chia_timelord_launcher chia_timelord chia_farmer chia_full_node chia_wallet".split(),
-    "node": "chia_full_node".split(),
+    "all": "cere_harvester cere_timelord_launcher cere_timelord cere_farmer cere_full_node cere_wallet".split(),
+    "node": "cere_full_node".split(),
     "harvester": "ceres_harvester".split(),
-    "farmer": "chia_harvester chia_farmer chia_full_node chia_wallet".split(),
-    "farmer-no-wallet": "chia_harvester chia_farmer chia_full_node".split(),
-    "farmer-only": "chia_farmer".split(),
-    "timelord": "chia_timelord_launcher chia_timelord chia_full_node".split(),
-    "timelord-only": "chia_timelord".split(),
-    "timelord-launcher-only": "chia_timelord_launcher".split(),
-    "wallet": "chia_wallet chia_full_node".split(),
-    "wallet-only": "chia_wallet".split(),
-    "introducer": "chia_introducer".split(),
-    "simulator": "chia_full_node_simulator".split(),
+    "farmer": "cere_harvester cere_farmer cere_full_node cere_wallet".split(),
+    "farmer-no-wallet": "cere_harvester cere_farmer cere_full_node".split(),
+    "farmer-only": "cere_farmer".split(),
+    "timelord": "cere_timelord_launcher cere_timelord cere_full_node".split(),
+    "timelord-only": "cere_timelord".split(),
+    "timelord-launcher-only": "cere_timelord_launcher".split(),
+    "wallet": "cere_wallet cere_full_node".split(),
+    "wallet-only": "cere_wallet".split(),
+    "introducer": "cere_introducer".split(),
+    "simulator": "cere_full_node_simulator".split(),
 }
 
 
