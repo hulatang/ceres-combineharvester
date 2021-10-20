@@ -49,14 +49,14 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
-    "INITIAL_FREEZE_END_TIMESTAMP": 1626739201, # 20 07 2021 00:00:01 GMT+0000
+    # "INITIAL_FREEZE_END_TIMESTAMP": 1626739201, # 20 07 2021 00:00:01 GMT+0000
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list
     "POOL_SUB_SLOT_ITERS": 37600000000,  # iters limit * NUM_SPS
-    "TIMELORD_PUZZLE_HASH": bytes.fromhex(
-        "e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4"
-    ),
+    # "TIMELORD_PUZZLE_HASH": bytes.fromhex(
+    #     "e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4"
+    # ),
 }
 
 
