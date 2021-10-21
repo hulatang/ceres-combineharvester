@@ -524,9 +524,59 @@ run ceres.exe the same way as linux instructions above.
 
 ---
 
-
-
 # ChangeLog
+
+---
+
+**2021-10-21**
+
+- Windows 0.0.2 released
+
+- Add coin supported: skynet
+
+**Note:**
+
+Skynet add redundant params into the message sent from Farmer to Harvester, which is meaningless, you should comment two lines of skynet farmer code to be harvestered by Ceres.
+
+I will send a pull request to skynet.
+
+Here is the codes:
+
+1.
+
+```
+skynet-blockchain/blob/main/skynet/farmer/farmer_api.py
+```
+
+Around line 438, comment this line:
+
+new_signage_point.timelord_reward_puzzle_hash
+
+```
+message = harvester_protocol.NewSignagePointHarvester(
+            new_signage_point.challenge_hash,
+            new_signage_point.difficulty,
+            new_signage_point.sub_slot_iters,
+            new_signage_point.signage_point_index,
+            new_signage_point.challenge_chain_sp,
+         #   new_signage_point.timelord_reward_puzzle_hash,
+            pool_difficulties,
+        )
+```
+
+2.
+
+```
+skynet-blockchain/blob/main/skynet/protocols/harvester_protocol.py
+```
+
+arround line 40: comment this line 
+
+timelord_reward_puzzle_hash: bytes32
+
+```
+
+```
 
 ---
 

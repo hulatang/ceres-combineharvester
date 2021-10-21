@@ -534,13 +534,64 @@ git pull origin main
 
 ---
 
-
-
-
-
-
-
 # ChangeLog
+
+---
+
+**2021-10-21**
+
+- **Windows客户端0.0.2**
+
+- 修改了coins_config.yaml的格式, 以便windows下可以正确识别
+
+- 添加新币: skynet
+
+**注意:**
+
+由于Skynet的Farmer代码修改的有问题，如果要用ceres挖skynet， 需要修改一下skynet  Farmer的代码
+
+我会向skynet作者发一个pull request.
+
+这个问题是skynet修改chia代码的时候，给Farmer发送到harvester添加了冗余参数，注释掉不会有任何影响，已经测试过！
+
+Skynet Farmer代码有两处需要注释掉:
+
+1. ```
+   skynet-blockchain/blob/main/skynet/farmer/farmer_api.py
+   ```
+
+第438行附近, 把new_signage_point.timelord_reward_puzzle_hash,  这行注释掉
+
+```
+message = harvester_protocol.NewSignagePointHarvester(
+            new_signage_point.challenge_hash,
+            new_signage_point.difficulty,
+            new_signage_point.sub_slot_iters,
+            new_signage_point.signage_point_index,
+            new_signage_point.challenge_chain_sp,
+         #   new_signage_point.timelord_reward_puzzle_hash,
+            pool_difficulties,
+        )
+```
+
+2. ```
+   skynet-blockchain/blob/main/skynet/protocols/harvester_protocol.py
+   ```
+
+第40行附近, 把timelord_reward_puzzle_hash: bytes32注释掉
+
+```
+@dataclass(frozen=True)
+@streamable
+class NewSignagePointHarvester(Streamable):
+    challenge_hash: bytes32
+    difficulty: uint64
+    sub_slot_iters: uint64
+    signage_point_index: uint8
+    sp_hash: bytes32
+    # timelord_reward_puzzle_hash: bytes32
+    pool_difficulties: List[PoolDifficulty]
+```
 
 ---
 
@@ -551,8 +602,6 @@ git pull origin main
 修改了venidium的参数
 
 ---
-
-
 
 **2021-10-18**
 **添加新的币种:**
