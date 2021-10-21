@@ -15,7 +15,7 @@ network_overrides: &network_overrides
       # we will finalize mainnet constants at a later time
       NETWORK_TYPE: 0
       # GENESIS_CHALLENGE will be announced at a later time for the mainnet to go live
-      GENESIS_CHALLENGE: 7135211bafafdc798babc4bcddc60da82b303beb5d7adb700564bda29557fc3e
+      GENESIS_CHALLENGE: "439cde51cd1325240d8cff68d48a74bb52fffb60dcd84c58b1f9a481a5a88f93"
       GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "c50843712cc740a066fc86932c2340c1d79f3f41543372240e1ab5738a5f3c4d"
       GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "c50843712cc740a066fc86932c2340c1d79f3f41543372240e1ab5738a5f3c4d"
     kition:

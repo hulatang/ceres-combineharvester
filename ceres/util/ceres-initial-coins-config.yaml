@@ -140,7 +140,7 @@ network_ids:
   cryptodoge:
     network_id: cryptodoge-mainnet
   venidium:
-    network_id: kition
+    network_id: mainnet
   goldcoin:
     network_id: goldcoin-mainnet
   aedgecoin:
