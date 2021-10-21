@@ -1,202 +1,147 @@
-# =========================================
-#     *** User Defined Section ***
-# =========================================
-
-#  Edit your Farmer machine IP address below
-#  Add coins name to it's farmer peer's coins part
-#  Only Use coin names under coins supported section below
 farmer_machine:
-    - farmer_peer: 
-        address: localhost
-        coins:
-          #- chia
-          #- flax
-
-
-    # Farmer Peer SAMPLE
-    # You can add as many farmer peers as you have
-    # Note the indent
-
-    # - farmer_peer: 
-    #     address: 192.168.1.100
-    #     coins:
-    #       - flora
-    #       - kale
-
-    # - farmer_peer: 
-    #     address: 192.168.1.101
-    #     coins:
-    #       - spare
-    #       - chaingreen
-
-
-# path of your plot files
-# NOTE the indent and "-" symbol before your path
+- farmer_peer:
+    address: localhost
+    coins: null
 plot_directories: []
-# - /path/to/your/plots_directory/
-
-
-
-
-
-
-
-
-
-# ************************************************************************************************************
-# ==================================================
-#     *** DON'T mess up ANY configure below ***
-# ==================================================
-
-# Supported Coin Names
-# DON'T edit ANY coin names below
 coin_names:
-  - chia
-  - flax
-  - spare
-  - silicoin
-  - flora 
-  - socks 
-  - apple 
-  - kale 
-  - greendoge 
-  - tad 
-  - dogechia
-  - maize 
-  - wheat
-  - taco
-  - covid
-  - melati
-  - cactus
-  - hddcoin
-  - avocado
-  - sector
-  - nchain
-  - btcgreen
-  - cannabis
-  - scam
-  - fork
-  - olive
-  - pipscoin
-  - beer
-  - cunt
-  - littlelambocoin
-  - stor
-  - beet
-  - lotus
-  - mint
-  - kiwi
-  - mogua
-  - tranzact
-  - peas
-  - salvia
-  - staicoin
-  - taco
-  - melati
-  - cryptodoge
-  - venidium
-  - goldcoin
-  - aedgecoin
-
-
-
-
-
-
-
-# DONT edit ANYTHING below
+- chia
+- flax
+- spare
+- silicoin
+- flora
+- socks
+- apple
+- kale
+- greendoge
+- tad
+- dogechia
+- maize
+- wheat
+- taco
+- covid
+- melati
+- cactus
+- hddcoin
+- avocado
+- sector
+- nchain
+- btcgreen
+- cannabis
+- scam
+- fork
+- olive
+- pipscoin
+- beer
+- cunt
+- littlelambocoin
+- stor
+- beet
+- lotus
+- mint
+- kiwi
+- mogua
+- tranzact
+- peas
+- salvia
+- staicoin
+- taco
+- melati
+- cryptodoge
+- venidium
+- goldcoin
+- aedgecoin
 network_ids:
-  chia:
-    network_id: "mainnet"
-  flax:
-    network_id: "flax-mainnet"
-  spare: 
-    network_id: "mainnet"
-  silicoin:
-    network_id: "testnet"
-  flora: 
-    network_id: "mainnet"
-  socks: 
-    network_id: "mainnet"
-  apple: 
-    network_id: "mainnet"
-  kale: 
-    network_id: "kale-mainnet"
-  greendoge: 
-    network_id: "mainnet"
-  tad: 
-    network_id: "mainnet"
-  dogechia:
-    network_id: "dogechia-mainnet"
-  maize: 
-    network_id: "mainnet"
-  wheat:
-    network_id: "mainnet"
-  taco:
-    network_id: "taco-mainnet"
-  covid:
-    network_id: "covid-mainnet"
-  melati:
-    network_id: "mainnet"
-  cactus:
-    network_id: "mainnet"
-  hddcoin:
-    network_id: "mainnet"
-  avocado:
-    network_id: "mainnet"
-  sector:
-    network_id: "mainnet"
-  nchain:
-    network_id: "ext9"
-  btcgreen:
-    network_id: "btcgreen-mainnet"
-  cannabis:
-    network_id: "mainnet"
-  scam:
-    network_id: "scam-mainnet"
-  fork:
-    network_id: "fork-mainnet"
-  olive:
-    network_id: "olive-mainnet"
-  pipscoin:
-    network_id: "pipscoin-mainnet"
-  beer:
-    network_id: "beer-mainnet"
-  cunt:
-    network_id: "cunt-mainnet"
-  littlelambocoin:
-    network_id: "mainnet"
-  stor:
-    network_id: "mainnet"
-  beet:
-    network_id: "beet-mainnet"
-  lotus:
-    network_id: "mainnet"
-  mint:
-    network_id: "mint-mainnet"
-  kiwi:
-    network_id: "mainnet" 
-  mogua:
-    network_id: "mogua-mainnet"  
-  tranzact:
-    network_id: "mainnet"  
-  peas:
-    network_id: "mainnet"   
-  salvia:
-    network_id: "mainnet"
-  staicoin:
-    network_id: "staicoin-mainnet"
-  taco:
-    network_id: "taco-mainnet"
-  melati:
-    network_id: "mainnet"
-  cryptodoge:
-    network_id: "cryptodoge-mainnet"
-  venidium:
-    network_id: "kition"
-  goldcoin:
-    network_id: "goldcoin-mainnet"
-  aedgecoin:
-    network_id: "mainnet"
-  skynet:
-    network_id: "testnet_09"
+- chia:
+    network_id: mainnet
+- flax:
+    network_id: flax-mainnet
+- spare:
+    network_id: mainnet
+- silicoin:
+    network_id: testnet
+- flora:
+    network_id: mainnet
+- socks:
+    network_id: mainnet
+- apple:
+    network_id: mainnet
+- kale:
+    network_id: kale-mainnet
+- greendoge:
+    network_id: mainnet
+- tad:
+    network_id: mainnet
+- dogechia:
+    network_id: dogechia-mainnet
+- maize:
+    network_id: mainnet
+- wheat:
+    network_id: mainnet
+- taco:
+    network_id: taco-mainnet
+- covid:
+    network_id: covid-mainnet
+- melati:
+    network_id: mainnet
+- cactus:
+    network_id: mainnet
+- hddcoin:
+    network_id: mainnet
+- avocado:
+    network_id: mainnet
+- sector:
+    network_id: mainnet
+- nchain:
+    network_id: ext9
+- btcgreen:
+    network_id: btcgreen-mainnet
+- cannabis:
+    network_id: mainnet
+- scam:
+    network_id: scam-mainnet
+- fork:
+    network_id: fork-mainnet
+- olive:
+    network_id: olive-mainnet
+- pipscoin:
+    network_id: pipscoin-mainnet
+- beer:
+    network_id: beer-mainnet
+- cunt:
+    network_id: cunt-mainnet
+- littlelambocoin:
+    network_id: mainnet
+- stor:
+    network_id: mainnet
+- beet:
+    network_id: beet-mainnet
+- lotus:
+    network_id: mainnet
+- mint:
+    network_id: mint-mainnet
+- kiwi:
+    network_id: mainnet
+- mogua:
+    network_id: mogua-mainnet
+- tranzact:
+    network_id: mainnet
+- peas:
+    network_id: mainnet
+- salvia:
+    network_id: mainnet
+- staicoin:
+    network_id: staicoin-mainnet
+- taco:
+    network_id: taco-mainnet
+- melati:
+    network_id: mainnet
+- cryptodoge:
+    network_id: cryptodoge-mainnet
+- venidium:
+    network_id: kition
+- goldcoin:
+    network_id: goldcoin-mainnet
+- aedgecoin:
+    network_id: mainnet
+- skynet:
+    network_id: testnet_09
