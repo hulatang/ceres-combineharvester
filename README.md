@@ -401,6 +401,7 @@ coin_names:
   - cryptodoge
   - venidium
   - goldcoin
+  - skynet (see Changelog for details)
 ```
 
 ---

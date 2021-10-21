@@ -432,6 +432,7 @@ coin_names:
   - cryptodoge
   - venidium
   - goldcoin
+  - skynet (需要修改farmer, changelog里面有详细说明)
 ```
 
 ---
