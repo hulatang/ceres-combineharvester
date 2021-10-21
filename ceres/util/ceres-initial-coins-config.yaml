@@ -1,7 +1,9 @@
 farmer_machine:
 - farmer_peer:
     address: localhost
-    coins: null
+    coins:
+    #- chia
+    #- flax
 plot_directories: []
 coin_names:
 - chia
