@@ -66,20 +66,25 @@ SERVERS = [
 
 entry_points = ["ceres.cmds.ceres"] + [f"ceres.server.start_{s}" for s in SERVERS]
 
-hiddenimports = []
+#hiddenimports = []
 
-coin_constants_path = f"{ROOT}/ceres/consensus/all_coins_default_constants"
+hiddenimports = collect_submodules(f"ceres.consensus.all_coins_default_constants")
 
-constants_files = []
+# coin_constants_path = f"{ROOT}/ceres/consensus/all_coins_default_constants/"
 
-all_files = os.listdir(coin_constants_path)
+# constants_files = []
 
-for f in all_files:
-  if f == "__init__.py":
-    continue
-  constants_files.append("ceres/consensus/all_coins_default_constants/" + f)
+#all_files = os.listdir(coin_constants_path)
 
-hiddenimports.extend(constants_files)
+#print(f"All Constant Files: {all_files}")
+
+#for fl in all_files:
+  #print(f"pyinstaller load constant file: {fl}")
+  # constants_files.append(f"{ROOT}/{fl}")
+  # constants_files.append("ceres/consensus/all_coins_default_constants/" + fl)
+  #hiddenimports.append(f"ceres/consensus/all_coins_default_constants/{fl}")
+
+#hiddenimports.extend(constants_files)
 hiddenimports.extend(entry_points)
 hiddenimports.extend(keyring_imports)
 
