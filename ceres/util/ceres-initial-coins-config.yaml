@@ -60,7 +60,7 @@ network_ids:
   spare:
     network_id: mainnet
   silicoin: 
-    network_id: testnet
+    network_id: mainnet
   flora:
     network_id: mainnet
   socks:
