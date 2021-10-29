@@ -10,9 +10,9 @@ outbound_rate_limit_percent: 30
 
 network_overrides: &network_overrides
   constants:
-    testnet_09:
+    mainnet:
       #DIFFICULTY_CONSTANT_FACTOR: 10052721566054
-      GENESIS_CHALLENGE: 5a5a3495f3ebeed006fba3c540cfd0519164bad5783d174a276379cb08395362
+      GENESIS_CHALLENGE: 0602914f913374525a1fab81809cd1454d1f7aa24755faa2587eb2d808dfff11
       GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4
       GENESIS_PRE_FARM_POOL_PUZZLE_HASH: e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4
       #INITIAL_FREEZE_END_TIMESTAMP: 1626739201 # 20 07 2021 00:00:01 GMT+0000
@@ -22,14 +22,14 @@ network_overrides: &network_overrides
       #EPOCH_BLOCKS: 768
       #DIFFICULTY_STARTING: 30
   config:
-    #mainnet:
-      #address_prefix: "xnt"
-      #default_full_node_port: 9999
-    testnet_09:
-      address_prefix: "txnt"
+    mainnet:
+      address_prefix: "xnt"
       default_full_node_port: 9999
+    #testnet_10:
+      #address_prefix: "txnt"
+      #default_full_node_port: 99999
 
-selected_network: &selected_network "testnet_09"
+selected_network: &selected_network "mainnet"
 ALERTS_URL: https://download.skynet-network.org/notify/mainnet_alert.txt
 SKYNET_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937
 
@@ -101,7 +101,7 @@ harvester:
 
 pool:
   # Replace this with a real puzzle hash
-  # xnt_target_address: txnt102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # xnt_target_address: xnt102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -121,7 +121,7 @@ farmer:
   pool_public_keys: []
 
   # Replace this with a real puzzle hash
-  # xnt_target_address: txnt102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # xnt_target_address: xnt102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
@@ -152,7 +152,7 @@ timelord_launcher:
 timelord:
 
   # Replace this with a real target address
-  # xnt_target_address: txnt102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # xnt_target_address: xnt102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
 
   # The timelord server (if run) will run on this port
   port: 9997

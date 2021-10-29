@@ -9,8 +9,8 @@ testnet_kwargs = {
     "SUB_SLOT_ITERS_STARTING": 2 ** 27,
     # DIFFICULTY_STARTING is the starting difficulty for the first epoch, which is then further
     # multiplied by another factor of DIFFICULTY_CONSTANT_FACTOR, to be used in the VDF iter calculation formula.
-    "DIFFICULTY_CONSTANT_FACTOR": 2 ** 60,
-    "DIFFICULTY_STARTING": 7,
+    "DIFFICULTY_CONSTANT_FACTOR": 2 ** 67,
+    "DIFFICULTY_STARTING": 4,
     "DIFFICULTY_CHANGE_MAX_FACTOR": 3,  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
     # These 3 constants must be changed at the same time
     "SUB_EPOCH_BLOCKS": 384,  # The number of blocks per sub-epoch, mainnet 384
@@ -25,11 +25,11 @@ testnet_kwargs = {
     "MAX_FUTURE_TIME": 5 * 60,  # The next block can have a timestamp of at most these many seconds in the future
     "NUMBER_OF_TIMESTAMPS": 11,  # Than the average of the last NUMBER_OF_TIMESTAMPS blocks
     # Used as the initial cc rc challenges, as well as first block back pointers, and first SES back pointer
-    # We override this value based on the chain being run (testnet_09, testnet_09, mainnet, etc)
+    # We override this value based on the chain being run (testnet_09, testnet_10, mainnet, etc)
     # Default used for tests is std_hash(b'')
-    "GENESIS_CHALLENGE": bytes.fromhex("5a5a3495f3ebeed006fba3c540cfd0519164bad5783d174a276379cb08395362"),
+    "GENESIS_CHALLENGE": bytes.fromhex("0602914f913374525a1fab81809cd1454d1f7aa24755faa2587eb2d808dfff11"),
     # Forks of skynet should change this value to provide replay attack protection. This is set to mainnet genesis chall
-    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("af0037ce4927cd5212734a87bae07454580f2d9986734908bac2031fe852de79"),
+    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("f0abc049cdffb33880bb7649e8f2dbff68fb8abedb5e8fb3536cc63d545487a8"),
     "GENESIS_PRE_FARM_POOL_PUZZLE_HASH": bytes.fromhex(
         "e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4"
     ),
@@ -49,14 +49,14 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
-    # "INITIAL_FREEZE_END_TIMESTAMP": 1626739201, # 20 07 2021 00:00:01 GMT+0000
+    #"INITIAL_FREEZE_END_TIMESTAMP": 1626739201, # 20 07 2021 00:00:01 GMT+0000
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list
     "POOL_SUB_SLOT_ITERS": 37600000000,  # iters limit * NUM_SPS
-    # "TIMELORD_PUZZLE_HASH": bytes.fromhex(
-    #     "e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4"
-    # ),
+    #"TIMELORD_PUZZLE_HASH": bytes.fromhex(
+    #    "e9a8b36d5c84b96f39e5262980eacc193e597fc9d254417f806190de5e598bc4"
+    #),
 }
 
 

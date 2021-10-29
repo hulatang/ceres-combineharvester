@@ -146,4 +146,4 @@ network_ids:
   aedgecoin:
     network_id: mainnet
   skynet:
-    network_id: testnet_09
+    network_id: mainnet
