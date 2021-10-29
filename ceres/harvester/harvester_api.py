@@ -1,4 +1,5 @@
 import asyncio
+from ceres.consensus.constants import ConsensusConstants
 from ceres.util.ceres_all_coins_config import get_all_coins_config_constants
 import time
 from pathlib import Path
@@ -74,8 +75,9 @@ class HarvesterAPI:
         # self.harvester.constants will be updated every time a HavesterApi is called
 
         coin_name = self.farmer_peer_port_map_coin[peer.peer_port]
-        coin_constants = self.all_coins_config_constants[coin_name]["constants"]
-        self.harvester.constants = coin_constants
+        # coin_constants = self.all_coins_config_constants[coin_name]["constants"]
+        current_constants = self.all_coins_config_constants[coin_name]["constants"]
+        # self.harvester.constants = coin_constants
 
 
 
@@ -90,7 +92,7 @@ class HarvesterAPI:
 
         loop = asyncio.get_running_loop()
 
-        def blocking_lookup(filename: Path, plot_info: PlotInfo) -> List[Tuple[bytes32, ProofOfSpace]]:
+        def blocking_lookup(filename: Path, plot_info: PlotInfo, coin_constants: ConsensusConstants) -> List[Tuple[bytes32, ProofOfSpace]]:
             # Uses the DiskProver object to lookup qualities. This is a blocking call,
             # so it should be run in a thread pool.
             try:
@@ -126,13 +128,13 @@ class HarvesterAPI:
                     # Found proofs of space (on average 1 is expected per plot)
                     for index, quality_str in enumerate(quality_strings):
                         required_iters: uint64 = calculate_iterations_quality(
-                            self.harvester.constants.DIFFICULTY_CONSTANT_FACTOR,
+                            coin_constants.DIFFICULTY_CONSTANT_FACTOR,
                             quality_str,
                             plot_info.prover.get_size(),
                             difficulty,
                             new_challenge.sp_hash,
                         )
-                        sp_interval_iters = calculate_sp_interval_iters(self.harvester.constants, sub_slot_iters)
+                        sp_interval_iters = calculate_sp_interval_iters(coin_constants, sub_slot_iters)
                         if required_iters < sp_interval_iters:
                             # Found a very good proof of space! will fetch the whole proof from disk,
                             # then send to farmer
@@ -178,14 +180,14 @@ class HarvesterAPI:
                 return []
 
         async def lookup_challenge(
-            filename: Path, plot_info: PlotInfo
+            filename: Path, plot_info: PlotInfo, coin_constants: ConsensusConstants
         ) -> Tuple[Path, List[harvester_protocol.NewProofOfSpace]]:
             # Executes a DiskProverLookup in a thread pool, and returns responses
             all_responses: List[harvester_protocol.NewProofOfSpace] = []
             if self.harvester._is_shutdown:
                 return filename, []
             proofs_of_space_and_q: List[Tuple[bytes32, ProofOfSpace]] = await loop.run_in_executor(
-                self.harvester.executor, blocking_lookup, filename, plot_info
+                self.harvester.executor, blocking_lookup, filename, plot_info, coin_constants
             )
             for quality_str, proof_of_space in proofs_of_space_and_q:
                 all_responses.append(
@@ -210,13 +212,15 @@ class HarvesterAPI:
                         # This is being executed at the beginning of the slot
                         total += 1
                         if ProofOfSpace.passes_plot_filter(
-                            self.harvester.constants,
+                            # coin_constants,
+                            current_constants,
                             try_plot_info.prover.get_id(),
                             new_challenge.challenge_hash,
                             new_challenge.sp_hash,
                         ):
                             passed += 1
-                            awaitables.append(lookup_challenge(try_plot_filename, try_plot_info))
+                            awaitables.append(lookup_challenge(try_plot_filename, try_plot_info, current_constants))
+                            # awaitables.append(lookup_challenge(try_plot_filename, try_plot_info))
                 except Exception as e:
                     self.harvester.log.error(f"Error plot file {try_plot_filename} may no longer exist {e}")
 
