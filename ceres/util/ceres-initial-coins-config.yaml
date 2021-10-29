@@ -52,6 +52,7 @@ coin_names:
 - venidium
 - goldcoin
 - aedgecoin
+- skynet
 network_ids:
   chia:
     network_id: mainnet
