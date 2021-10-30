@@ -529,6 +529,14 @@ run ceres.exe the same way as linux instructions above.
 
 ---
 
+**2021-10-30**
+
+- fix a bug when lots of forks are harvestered, which will affetct the minning efficiency
+
+- skynet mainnet supported (skynet farmer code modification required， see detail below)
+
+---
+
 **2021-10-21**
 
 - Windows 0.0.2 released
