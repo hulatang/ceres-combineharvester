@@ -28,7 +28,42 @@ def show_cmd(
     ctx: click.Context
 ):
     print('farmer show')
+
+    root_path  = ctx.obj["root_path"]
+    ceres_config = load_config(root_path, filename="coins_config.yaml")
+    farmer_machine = ceres_config["farmer_machine"]
+
+    if not farmer_machine:
+        print("No Farmer Peer set")
+        print("run ceres farmers add to add new farmer peers")
+        return 
+
+    print("-" * 50)
     detect_conflict()
+
+
+
+    print("-" * 50)
+    print("All Farmer Peers:")
+    for farmer in farmer_machine:
+        print(f"Famer Peer")
+        host = farmer["farmer_peer"]["address"]
+        coins = farmer["farmer_peer"]["coins"]
+        print(f"    Address: {host}")
+        print(f"    coins: {coins}")
+        print("")
+    print("-" * 50)
+
+    valid_coins = get_valid_coin_names()
+    print("")
+    print(f"Ceres currently support {len(valid_coins)} coins:")
+    print("")
+    print(sorted(valid_coins))
+
+
+
+
+
 
 
 @farmers_cmd.command("add", short_help="Add Farmer Peers")
@@ -101,6 +136,8 @@ def detect_conflict():
         return False
     
     err = False
+
+    detect_valid_name(farmer_machine)
     
     try:
         detect_duplicated_hosts(farmer_machine)
@@ -118,11 +155,11 @@ def detect_conflict():
         err = True
         err = e.args[0]
         for name, hosts in err.items():
-            print(f"Error: Found duplicated coin names {name} in hosts: {hosts}")
+            print(f"Error: Found duplicated coin names \"{name}\": in hosts: {hosts}")
         print("")
     
-    if err:
-        sys.exit("Found error, fix the conflicts.")
+    # if err:
+    #     sys.exit("Found error, fix the conflicts.")
     
 
     
@@ -194,6 +231,22 @@ def detect_duplicated_coins(farmer_machine):
         err[name] = hosts
     
     raise ValueError(err)
+
+def detect_valid_name(farmer_machine):
+    valid_names = get_valid_coin_names()
+    not_supported_names = []
+
+    for farmer in farmer_machine:
+        coins = farmer["farmer_peer"]["coins"]
+        unsupported_names = [name for name in coins if name not in valid_names]
+        not_supported_names.extend(unsupported_names)
+    
+    for name in not_supported_names:
+        print("")
+        print(f"Error: Found coins not supported: {name}")
+        print("")
+    
+    
 
 
 
