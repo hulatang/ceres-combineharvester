@@ -17,6 +17,12 @@ def get_mining_coin_names(root_path: Path=DEFAULT_CERES_ROOT_PATH):
     
     return coin_names
 
+
+def get_valid_coin_names(root_path: Path=DEFAULT_CERES_ROOT_PATH):
+    return load_config(root_path, filename="coins_config.yaml", sub_config="coin_names")
+
+
+
 def get_coin_config(coin: str, subconfig: str):
     coin_root_path = get_coin_root_path(coin)
     config = load_config(coin_root_path, "config.yaml", subconfig)
