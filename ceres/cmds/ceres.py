@@ -8,6 +8,7 @@ from ceres import __version__
 from ceres.cmds.ceres_update import ceres_update_cmd
 from ceres.cmds.configure import configure_cmd
 from ceres.cmds.farm import farm_cmd
+from ceres.cmds.farmers import farmers_cmd
 from ceres.cmds.init import init_cmd
 from ceres.cmds.keys import keys_cmd
 from ceres.cmds.netspace import netspace_cmd
@@ -136,6 +137,7 @@ cli.add_command(start_cmd)
 cli.add_command(stop_cmd)
 cli.add_command(netspace_cmd)
 cli.add_command(farm_cmd)
+cli.add_command(farmers_cmd)
 
 if supports_keyring_passphrase():
     cli.add_command(passphrase_cmd)
