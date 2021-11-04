@@ -70,10 +70,11 @@ def get_plot_filenames(root_path: Path) -> Dict[Path, List[Path]]:
 
 def add_plot_directory(root_path: Path, str_path: str) -> Dict:
     log.debug(f"add_plot_directory {str_path}")
-    config = load_config(root_path, "config.yaml")
+    config = load_config(root_path, "coins_config.yaml")
     if str(Path(str_path).resolve()) not in get_plot_directories(root_path, config):
-        config["harvester"]["plot_directories"].append(str(Path(str_path).resolve()))
-    save_config(root_path, "config.yaml", config)
+        config["plot_directories"].append(str(Path(str_path).resolve()))
+        # config["harvester"]["plot_directories"].append(str(Path(str_path).resolve()))
+    save_config(root_path, "coins_config.yaml", config)
     return config
 
 
