@@ -86,6 +86,11 @@ def add_cmd(
         print("Invalid IP address:", e)
         return
     
+    invalid_coins = verify_name(coins)
+
+    coins = [c for c in coins if c not in invalid_coins]
+    
+    
     
     # print(f"Ceres Root Path: {ctx['root_path']}")
     root_path = ctx.obj["root_path"]
@@ -215,7 +220,7 @@ def remove_cmd(
         
     if not host_found:
         print(f"{farmer_host} NOT Found")
-    # ctx.invoke(show_cmd)
+    ctx.invoke(show_cmd)
     
 
 
@@ -344,7 +349,15 @@ def detect_valid_name(farmer_machine):
     for name in not_supported_names:
         print(f"Error: Found coins not supported: {name}")
     print("")
-    
+
+
+
+def verify_name(coins):
+    valid_names = get_valid_coin_names()
+    not_supported_names = [c for c in coins if c not in valid_names]
+    return not_supported_names
+
+
 
 
 
