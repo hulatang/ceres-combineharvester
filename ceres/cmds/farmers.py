@@ -4,6 +4,7 @@ from collections import Counter
 import click
 import sys
 from ipaddress import ip_address
+from ceres.types.blockchain_format import coin
 
 from ceres.util.ceres_config import get_valid_coin_names
 from ceres.util.config import load_config, save_config
@@ -14,7 +15,7 @@ from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH
 # VALID_COIN_NAMES = get_valid_coin_names()
 
 
-@click.group("farmers", short_help="Mangager Farmers Peers")
+@click.group("farmers", short_help="Mangage Farmers Peers")
 @click.pass_context
 def farmers_cmd(ctx: click.Context):
     print("-" * 50)
@@ -23,7 +24,7 @@ def farmers_cmd(ctx: click.Context):
 
 
 
-@farmers_cmd.command("show", short_help="Show Farmers")
+@farmers_cmd.command("show", short_help="Show farmers peers")
 @click.pass_context
 def show_cmd(
     ctx: click.Context
@@ -71,7 +72,7 @@ def test_cmd(ctx: click.Context):
 
 
 
-@farmers_cmd.command("add", short_help="Add Farmer Peers and coins")
+@farmers_cmd.command("add", short_help="Add farmer peers and coins")
 @click.option("--host", help="Farmer peer IP address", type=str, required=True)
 @click.option("-c", "--coins", help="coins to harvester", type=str, multiple=True, required=True)
 @click.pass_context
@@ -89,6 +90,9 @@ def add_cmd(
     invalid_coins = verify_name(coins)
 
     coins = [c for c in coins if c not in invalid_coins]
+
+    if not coins:
+        return
     
     
     
@@ -164,7 +168,7 @@ def add_cmd(
     # ctx.invoke(show_cmd)
 
 
-@farmers_cmd.command("remove", short_help="Remove Farmer Peers or coins")
+@farmers_cmd.command("remove", short_help="Remove farmer peers and coins")
 @click.option("--host", help="Farmer peer IP address", type=str, required=True)
 @click.option("-c", "--coins", help="coins to harvester", type=str, multiple=True, required=True)
 @click.pass_context
@@ -260,7 +264,7 @@ def detect_conflict():
         print("")
 
     if not err:
-        print("Nothing Conflict under Farmer Machine")
+        print("No conflict under Farmer Machine")
     
     # if err:
     #     sys.exit("Found error, fix the conflicts.")
@@ -355,7 +359,8 @@ def detect_valid_name(farmer_machine):
 def verify_name(coins):
     valid_names = get_valid_coin_names()
     not_supported_names = [c for c in coins if c not in valid_names]
-    print(f"{not_supported_names} are not supported")
+    if not_supported_names:
+        print(f"{not_supported_names} are not supported")
     return not_supported_names
 
 

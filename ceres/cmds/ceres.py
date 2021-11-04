@@ -45,7 +45,8 @@ def monkey_patch_click() -> None:
 
 @click.group(
     help=f"\n  Manage ceres blockchain infrastructure ({__version__})\n",
-    epilog="Try 'ceres start node', 'ceres netspace -d 192', or 'ceres show -s'",
+    # epilog="Try 'ceres start node', 'ceres netspace -d 192', or 'ceres show -s'",
+    epilog="Try 'ceres init', 'ceres start harvester -r', or 'ceres farmers show'",
     context_settings=CONTEXT_SETTINGS,
 )
 @click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
@@ -123,10 +124,10 @@ def run_daemon_cmd(ctx: click.Context, wait_for_unlock: bool) -> None:
 
 
 
-cli.add_command(keys_cmd)
+# cli.add_command(keys_cmd)
 cli.add_command(plots_cmd)
-cli.add_command(wallet_cmd)
-cli.add_command(plotnft_cmd)
+# cli.add_command(wallet_cmd)
+# cli.add_command(plotnft_cmd)
 cli.add_command(configure_cmd)
 # cli.add_command(init_cmd)
 cli.add_command(ceres_init_cmd)
@@ -135,8 +136,8 @@ cli.add_command(ceres_generate_ssl)
 cli.add_command(show_cmd)
 cli.add_command(start_cmd)
 cli.add_command(stop_cmd)
-cli.add_command(netspace_cmd)
-cli.add_command(farm_cmd)
+# cli.add_command(netspace_cmd)
+# cli.add_command(farm_cmd)
 cli.add_command(farmers_cmd)
 
 if supports_keyring_passphrase():
