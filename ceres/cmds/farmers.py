@@ -11,7 +11,7 @@ from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH
 
 
 
-VALID_COIN_NAMES = get_valid_coin_names()
+# VALID_COIN_NAMES = get_valid_coin_names()
 
 
 @click.group("farmers", short_help="Mangager Farmers")
@@ -73,7 +73,7 @@ def test_cmd(ctx: click.Context):
 
 @farmers_cmd.command("add", short_help="Add Farmer Peers and coins")
 @click.option("--host", help="Farmer peer IP address", type=str, required=True)
-@click.option("-c", "--coins", help="coins to harvester", type=click.Choice(VALID_COIN_NAMES), multiple=True, required=True)
+@click.option("-c", "--coins", help="coins to harvester", type=str, multiple=True, required=True)
 @click.pass_context
 def add_cmd(
     ctx: click.Context,
@@ -161,7 +161,7 @@ def add_cmd(
 
 @farmers_cmd.command("remove", short_help="Remove Farmer Peers or coins")
 @click.option("--host", help="Farmer peer IP address", type=str, required=True)
-@click.option("-c", "--coins", help="coins to harvester", type=click.Choice(VALID_COIN_NAMES), multiple=True, required=True)
+@click.option("-c", "--coins", help="coins to harvester", type=str, multiple=True, required=True)
 @click.pass_context
 def remove_cmd(
     ctx: click.Context,
@@ -215,7 +215,7 @@ def remove_cmd(
         
     if not host_found:
         print(f"{farmer_host} NOT Found")
-    ctx.invoke(show_cmd)
+    # ctx.invoke(show_cmd)
     
 
 
