@@ -260,7 +260,7 @@ def detect_conflict():
         print("")
 
     if not err:
-        print("Nothing Conflict")
+        print("Nothing Conflict under Farmer Machine")
     
     # if err:
     #     sys.exit("Found error, fix the conflicts.")
@@ -355,6 +355,7 @@ def detect_valid_name(farmer_machine):
 def verify_name(coins):
     valid_names = get_valid_coin_names()
     not_supported_names = [c for c in coins if c not in valid_names]
+    print(f"{not_supported_names} are not supported")
     return not_supported_names
 
 
