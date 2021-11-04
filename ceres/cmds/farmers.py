@@ -241,11 +241,10 @@ def detect_valid_name(farmer_machine):
         unsupported_names = [name for name in coins if name not in valid_names]
         not_supported_names.extend(unsupported_names)
     
+    print("")
     for name in not_supported_names:
-        print("")
         print(f"Error: Found coins not supported: {name}")
-        print("")
-    
+    print("")
     
 
 
