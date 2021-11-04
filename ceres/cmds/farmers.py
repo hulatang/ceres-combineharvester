@@ -14,7 +14,7 @@ from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH
 # VALID_COIN_NAMES = get_valid_coin_names()
 
 
-@click.group("farmers", short_help="Mangager Farmers")
+@click.group("farmers", short_help="Mangager Farmers Peers")
 @click.pass_context
 def farmers_cmd(ctx: click.Context):
     print("-" * 50)
