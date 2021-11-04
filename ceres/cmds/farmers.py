@@ -17,7 +17,6 @@ VALID_COIN_NAMES = get_valid_coin_names()
 @click.group("farmers", short_help="Mangager Farmers")
 @click.pass_context
 def farmers_cmd(ctx: click.Context):
-    print("Adding Farmer peers and coins to harvester")
     print("-" * 50)
     pass
 
@@ -72,7 +71,7 @@ def test_cmd(ctx: click.Context):
 
 
 
-@farmers_cmd.command("add", short_help="Add Farmer Peers")
+@farmers_cmd.command("add", short_help="Add Farmer Peers and coins")
 @click.option("--host", help="Farmer peer IP address", type=str, required=True)
 @click.option("-c", "--coins", help="coins to harvester", type=click.Choice(VALID_COIN_NAMES), multiple=True, required=True)
 @click.pass_context
@@ -158,6 +157,68 @@ def add_cmd(
     # )
     # print(f"{coins} add to farmer peer {host}")
     # ctx.invoke(show_cmd)
+
+
+@farmers_cmd.command("remove", short_help="Remove Farmer Peers or coins")
+@click.option("--host", help="Farmer peer IP address", type=str, required=True)
+@click.option("-c", "--coins", help="coins to harvester", type=click.Choice(VALID_COIN_NAMES), multiple=True, required=True)
+@click.pass_context
+def remove_cmd(
+    ctx: click.Context,
+    host: str,
+    coins: str
+):
+    try:
+        input_host = ip_address(host)
+    except ValueError as e:
+        print("Invalid IP address:", e)
+        return
+
+    
+    
+    # print(f"Ceres Root Path: {ctx['root_path']}")
+    root_path = ctx.obj["root_path"]
+    print(f"You Input IP: {host}")
+    print("Coins: ", coins)
+
+    ceres_config = load_config(DEFAULT_CERES_ROOT_PATH, filename="coins_config.yaml")
+    farmer_machine = ceres_config["farmer_machine"]
+
+
+    print("-" * 50)
+    print("Ceres Farmers Remove:")
+    print("")
+
+    if not farmer_machine:
+        print(f"Farmer peer is empty, nothing to remove.")
+        return
+    
+    host_found = False
+    for farmer in farmer_machine:
+        farmer_peer = farmer["farmer_peer"]
+        farmer_host = ip_address(farmer_peer["address"])
+
+        if farmer_host == input_host:
+            host_found = True
+            mining_coins = set(farmer_peer["coins"])
+            coins_to_remove = set(coins)
+            for c in coins:
+                if c in mining_coins:
+                    farmer_peer["coins"].remove(c)
+                    if not farmer_peer["coins"]:
+                        farmer_machine.remove(farmer)
+                    save_config(root_path, "coins_config.yaml", ceres_config)
+                    print(f"{c} removed from farmer host: {farmer_host}")
+                    coins_to_remove.remove(c)
+            if coins_to_remove:
+                print(f"{coins_to_remove} NOT found under farmer peer: {farmer_host}")
+        
+    if not host_found:
+        print(f"{farmer_host} NOT Found")
+    ctx.invoke(show_cmd)
+    
+
+
 
  
 
