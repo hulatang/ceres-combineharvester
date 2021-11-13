@@ -48,6 +48,7 @@ coin_names:
 - aedgecoin
 - skynet
 - ethgreen
+- melon
 network_ids:
   chia:
     network_id: mainnet
@@ -145,3 +146,5 @@ network_ids:
     network_id: mainnet
   ethgreen:
     network_id: ethgreen-mainnet
+  melon:
+    network_id: melon-mainnet
