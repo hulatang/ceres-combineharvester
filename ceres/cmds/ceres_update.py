@@ -3,7 +3,7 @@ from pathlib import Path
 import shutil
 from typing import Any, Dict, List, Union
 import click
-from ceres.util.config import config_path_for_filename, flatten_properties, initial_config_file, save_config
+from ceres.util.config import config_path_for_filename, create_default_coin_config, flatten_properties, initial_config_file, load_config, save_config
 from ceres.util.default_root import DEFAULT_CERES_ROOT_PATH
 import sys
 import yaml
@@ -30,40 +30,60 @@ def ceres_update_cmd(ctx: click.Context, sub_configs: List[str]):
     ceres_all_coins_config_str = initial_config_file('ceres', default_coins_config_filename)
     ceres_all_coins_config_data : Dict = yaml.safe_load(ceres_all_coins_config_str)
 
-    reserved_lines = []
 
-    with open(ceres_all_coins_config_file, "r") as f_coins_config:
-        # lines = f_coins_config.readlines()
-        # f_coins_config.write('')
-        for l in f_coins_config:
-            if "coin_names" in l:
-                break
-            reserved_lines.append(l)
-        
-    with open(ceres_all_coins_config_file, "w"): pass
+    user_defined_coins_config: Dict = load_config(DEFAULT_CERES_ROOT_PATH, "coins_config.yaml")
 
-
-    with open(ceres_all_coins_config_file, "a") as f_new_coins_config:
-        f_new_coins_config.writelines(reserved_lines)
-
-
+    if user_defined_coins_config.get("farmer_machine"):
+        ceres_all_coins_config_data["farmer_machine"] = user_defined_coins_config["farmer_machine"]
     
-
+    if user_defined_coins_config.get("plot_directories"):
+        ceres_all_coins_config_data["plot_directories"] = user_defined_coins_config["plot_directories"]
     
-    with open(ceres_all_coins_config_file, "a") as f_coins_config:
-        for sub_config in sub_configs:
-            # f_coins_config.write(sub_config + ":" + os.linesep)
-            # config_str = get_config_str(ceres_all_coins_config_data, sub_config)
-            sub_data = ceres_all_coins_config_data.get(sub_config)
-            data = {}
-            data[sub_config] = sub_data
+    # update coins_config.yaml
+    save_config(DEFAULT_CERES_ROOT_PATH, "coins_config.yaml", ceres_all_coins_config_data)
 
-            config_str = yaml.dump(data)
-            f_coins_config.write(config_str)
-    
+    # generate new config.yaml
+    create_default_coin_config("ceres", DEFAULT_CERES_ROOT_PATH)
 
 
     print(f"Done ceres updating.")
+
+
+
+
+    # reserved_lines = []
+
+    # with open(ceres_all_coins_config_file, "r") as f_coins_config:
+    #     # lines = f_coins_config.readlines()
+    #     # f_coins_config.write('')
+    #     for l in f_coins_config:
+    #         if "coin_names" in l:
+    #             break
+    #         reserved_lines.append(l)
+        
+    # with open(ceres_all_coins_config_file, "w"): pass
+
+
+    # with open(ceres_all_coins_config_file, "a") as f_new_coins_config:
+    #     f_new_coins_config.writelines(reserved_lines)
+
+
+    
+
+    
+    # with open(ceres_all_coins_config_file, "a") as f_coins_config:
+    #     for sub_config in sub_configs:
+    #         # f_coins_config.write(sub_config + ":" + os.linesep)
+    #         # config_str = get_config_str(ceres_all_coins_config_data, sub_config)
+    #         sub_data = ceres_all_coins_config_data.get(sub_config)
+    #         data = {}
+    #         data[sub_config] = sub_data
+
+    #         config_str = yaml.dump(data)
+    #         f_coins_config.write(config_str)
+    
+
+
 
 
 
