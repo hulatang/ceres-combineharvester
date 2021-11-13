@@ -47,6 +47,7 @@ coin_names:
 - goldcoin
 - aedgecoin
 - skynet
+- melon
 network_ids:
   chia:
     network_id: mainnet
@@ -142,3 +143,5 @@ network_ids:
     network_id: mainnet
   skynet:
     network_id: mainnet
+  melon:
+    network_id: melon-mainnet
