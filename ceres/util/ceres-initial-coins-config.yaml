@@ -47,6 +47,7 @@ coin_names:
 - goldcoin
 - aedgecoin
 - skynet
+- ethgreen
 network_ids:
   chia:
     network_id: mainnet
@@ -142,3 +143,5 @@ network_ids:
     network_id: mainnet
   skynet:
     network_id: mainnet
+  ethgreen:
+    network_id: ethgreen-mainnet
