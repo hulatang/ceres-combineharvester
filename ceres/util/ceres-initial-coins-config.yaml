@@ -49,6 +49,7 @@ coin_names:
 - skynet
 - ethgreen
 - melon
+- rolls
 network_ids:
   chia:
     network_id: mainnet
@@ -148,3 +149,5 @@ network_ids:
     network_id: ethgreen-mainnet
   melon:
     network_id: melon-mainnet
+  rolls:
+    network_id: mainnet
