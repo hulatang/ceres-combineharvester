@@ -525,7 +525,101 @@ run ceres.exe the same way as linux instructions above.
 
 ---
 
+## ceres cli:
+
+## ceres farmers
+
+You can use ceres farmers to manage your farmer peers
+
+check help
+
+```
+ceres farmers help
+```
+
+```
+Commands:
+  add     Add farmer peers and coins
+  remove  Remove farmer peers and coins
+  show    Show farmers peers
+```
+
+### ceres farmers show
+
+This command will show you the farmer peer information you already added
+
+```
+No conflict under Farmer Machine
+--------------------------------------------------
+All Farmer Peers:
+Famer Peer
+    Address: 192.168.1.100
+    coins: ['chia', 'flax']
+
+Famer Peer
+    Address: 192.168.1.101
+    coins: ['spare', 'kale']
+
+--------------------------------------------------
+```
+
+### ceres farmers add
+
+This command is used to add farmer peers and coins
+
+--host indicate the farmer peer IP address
+
+-c indicate the coin name you are going to add
+
+you can using mulitple -c in command
+
+Demo:
+
+```
+ceres farmers add --host 192.168.1.100 -c chia -c flax
+```
+
+### ceres farmers remove
+
+This command is used to remove coins from farmer peer
+
+--host indicate the farmer peer IP address
+
+-c indicate the coin name you are going to remove
+
+you can using mulitple -c in command
+
+Demo:
+
+```
+ceres farmers remove --host 192.168.1.100 -c chia -c flax
+```
+
+---
+
 # ChangeLog
+
+---
+
+**2021-11-15**
+
+1. **new coins added**:
+   
+   - ethgreen
+   - melon
+   - rolls
+
+2. ceres cli: ceres farmers
+
+        Add ceres cli command: ceres farmers
+
+        see ceres cli chapter above to see details
+
+3. ceres cli: ceres plots, now you can use **ceres plots add** to add plots directories.
+
+4. fix rpc 8560 bug
+
+5. change default log_level from "WARNING" to "DEBUG"
 
 ---
 
@@ -584,7 +678,16 @@ arround line 40: comment this line
 timelord_reward_puzzle_hash: bytes32
 
 ```
-
+@dataclass(frozen=True)
+@streamable
+class NewSignagePointHarvester(Streamable):
+    challenge_hash: bytes32
+    difficulty: uint64
+    sub_slot_iters: uint64
+    signage_point_index: uint8
+    sp_hash: bytes32
+    # timelord_reward_puzzle_hash: bytes32
+    pool_difficulties: List[PoolDifficulty]
 ```
 
 ---

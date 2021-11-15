@@ -535,7 +535,101 @@ git pull origin main
 
 ---
 
+## Ceres cli
+
+### ceres farmers:
+
+Ceres通过这个命令来管理需要通信的farmer
+
+可以通过 ceres farmers -h 查看
+
+ceres farmers 支持的命令有:
+
+```
+Commands:
+  add     Add farmer peers and coins
+  remove  Remove farmer peers and coins
+  show    Show farmers peers
+```
+
+### ceres farmers show
+
+显示当前您已经添加的farmer信息
+
+```
+No conflict under Farmer Machine
+--------------------------------------------------
+All Farmer Peers:
+Famer Peer
+    Address: 192.168.1.100
+    coins: ['chia', 'flax']
+
+Famer Peer
+    Address: 192.168.1.101
+    coins: ['spare', 'kale']
+
+--------------------------------------------------
+```
+
+### ceres farmers add
+
+添加farmer和币中, 
+
+--host 指定farmer的ip
+
+-c 指定币名
+
+-c 可以多次使用， 以便一次性添加多个币种
+
+示例:
+
+```
+ceres farmers add --host 192.168.1.100 -c chia -c flax
+```
+
+### ceres farmers remove
+
+删除币名
+
+--host 指定farmer的ip
+
+-c 指定币名
+
+-c 可以多次使用，以便一次性删除多个币种
+
+示例:
+
+```
+ceres farmers remove --host 192.168.1.231 -c chia -c flax
+```
+
+ceres farmers会检测不支持的币名, 错误的币名,以及有可能出现的重复farmer ip以及币名，供您参考
+
+---
+
 # ChangeLog
+
+---
+
+**2021-11-15**
+
+1. **添加新的币种:**
+- ethgreen
+
+- melon
+
+- rolls
+2. **添加ceres cli:  ceres famers**
+   
+   ceres添加farmer端不需要手动修改coins_config.yaml文件了
+   
+   具体使用方法，请查看上面 ceres cli章节
+
+3. 添加ceres cli:  ceres plots add ， 以后可以通过命令行来添加plots文件夹
+
+4. 修改了一个rpc端口bug: 不会再出现rpc 8560错误
+
+5. 默认log_level改为debug, 不用再手动修改了
 
 ---
 
