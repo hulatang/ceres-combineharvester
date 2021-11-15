@@ -63,11 +63,11 @@ def show_cmd(
 
 
 
-@farmers_cmd.command("test")
-@click.pass_context
-def test_cmd(ctx: click.Context):
-    print("test")
-    ctx.invoke(show_cmd)
+# @farmers_cmd.command("test")
+# @click.pass_context
+# def test_cmd(ctx: click.Context):
+#     print("test")
+#     ctx.invoke(show_cmd)
 
 
 
