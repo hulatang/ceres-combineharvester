@@ -601,6 +601,16 @@ ceres farmers remove --host 192.168.1.100 -c chia -c flax
 
 ---
 
+2021-11-17
+
+new coins added:
+
+- kujenga
+
+- shibgreen
+
+---
+
 **2021-11-15**
 
 1. **new coins added**:
