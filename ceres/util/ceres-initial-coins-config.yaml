@@ -51,6 +51,7 @@ coin_names:
 - melon
 - rolls
 - shibgreen
+- kujenga
 network_ids:
   chia:
     network_id: mainnet
@@ -154,3 +155,5 @@ network_ids:
     network_id: mainnet
   shibgreen:
     network_id: shibgreen-mainnet
+  kujenga:
+    network_id: mainnet
