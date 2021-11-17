@@ -50,6 +50,7 @@ coin_names:
 - ethgreen
 - melon
 - rolls
+- shibgreen
 network_ids:
   chia:
     network_id: mainnet
@@ -151,3 +152,5 @@ network_ids:
     network_id: melon-mainnet
   rolls:
     network_id: mainnet
+  shibgreen:
+    network_id: shibgreen-mainnet
