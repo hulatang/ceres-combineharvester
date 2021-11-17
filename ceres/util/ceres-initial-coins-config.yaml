@@ -50,6 +50,7 @@ coin_names:
 - ethgreen
 - melon
 - rolls
+- kujenga
 network_ids:
   chia:
     network_id: mainnet
@@ -150,4 +151,6 @@ network_ids:
   melon:
     network_id: melon-mainnet
   rolls:
+    network_id: mainnet
+  kujenga:
     network_id: mainnet
